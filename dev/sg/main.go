@@ -63,6 +63,7 @@ var (
 			opsCommand,
 			checkCommand,
 			dbCommand,
+			generateCommand,
 		},
 	}
 )

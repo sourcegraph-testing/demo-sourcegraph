@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 	"sync"
@@ -45,7 +46,7 @@ var (
 			FlagSet:   checkGoFlagSet,
 			Checks: []checkScriptFn{
 				runCheckScript("Go format", "dev/check/gofmt.sh"),
-				runCheckScript("Go generate", "dev/check/go-generate.sh"),
+				checkGoGenerate,
 				runCheckScript("Go lint", "dev/check/go-lint.sh"),
 				runCheckScript("Go pkg/database/dbconn", "dev/check/go-dbconn-import.sh"),
 				runCheckScript("Go enterprise imports in OSS", "dev/check/go-enterprise-import.sh"),
@@ -284,4 +285,30 @@ func checkDockerfiles(ctx context.Context) *checkReport {
 		}(),
 		err: combinedErrors,
 	}
+}
+
+func checkGoGenerate(ctx context.Context) *checkReport {
+	start := time.Now()
+	err := generateDo(ctx, nil, generateQuiet)
+	if err != nil {
+		return &checkReport{
+			header:   "Go generate check",
+			duration: time.Since(start),
+			err:      err,
+		}
+	}
+
+	cmd := exec.CommandContext(ctx, "git", "diff", "--exit-code", "--", ".", ":!go.sum")
+	out, err := cmd.CombinedOutput()
+	r := checkReport{
+		header:   "Go generate check",
+		duration: time.Since(start),
+	}
+	if err != nil {
+		r.err = err
+		r.output = string(out)
+		return &r
+	}
+
+	return &r
 }
