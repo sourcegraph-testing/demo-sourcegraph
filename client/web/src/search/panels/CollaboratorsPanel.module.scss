@@ -10,6 +10,22 @@
     position: relative;
 }
 
+.info {
+    font-size: 0.75rem;
+}
+
+.info-box {
+    font-size: 0.85rem;
+}
+
+.info-header {
+    font-size: 1rem;
+}
+
+.panel {
+    height: calc(100% - 1rem);
+}
+
 .button {
     text-align: left;
     margin-left: 0.125rem;
