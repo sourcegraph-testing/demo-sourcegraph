@@ -93,6 +93,7 @@ const MemberItem: React.FunctionComponent<MemberItemProps> = ({
                 >
                     <div className={styles.avatarContainer}>
                         <UserAvatar
+                            inline={false}
                             size={36}
                             className={styles.avatar}
                             user={member}
