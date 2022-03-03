@@ -28,25 +28,3 @@ go mod tidy
 echo "Ensure we update go.sum by actually compiling some code which depends on zoekt."
 echo "We do this by running 'go test' without actually running any tests."
 go test -run '^$' github.com/sourcegraph/sourcegraph/cmd/frontend/graphqlbackend
-
-BODY="Sync zoekt version from soucegraph/zoekt@${version}"
-BRANCH="update-zoekt/${version}"
-
-create_pull_request() {
-  gh pr create \
-    --title "Update zoekt to ${module}" \
-    --body "${BODY}" \
-    --head "${BRANCH}" \
-    --label "automerge"
-}
-
-set_pull_request_automerge() {
-  local url="$1"
-
-  gh pr merge "$url" \
-    --auto \
-    --squash
-}
-
-url=$(create_pull_request)
-# set_pull_request_automerge "$url" || true
