@@ -8,13 +8,6 @@ steps:
           branch: update-zoekt/zoekt
           create-branch: 'true'
           message: |
-            Update zoekt to ${TARGET_COMMIT?}
-
-            Links:
-
-            [Commit]
-            - zoekt: https://sourcegraph.com/github.com/sourcegraph/zoekt/-/commit/${TARGET_COMMIT}
-            [Tree]
-            - zoekt: https://sourcegraph.com/github.com/sourcegraph/zoekt@${TARGET_COMMIT}
+            Update zoekt
           remote: origin
 
