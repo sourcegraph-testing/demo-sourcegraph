@@ -14,7 +14,7 @@ upstream=github.com/google/zoekt
 fork=github.com/sourcegraph/zoekt
 
 oldsha="$(go mod edit -print | grep "$fork" | grep -o '[a-f0-9]*$')"
-module="$(go get -v "${fork}@${version}")"
+go get -v "${fork}@${version}"
 newsha="$(echo "$module" | grep -o '[a-f0-9]*$')"
 
 # echo "https://github.com/sourcegraph/zoekt/compare/$oldsha...$newsha"
