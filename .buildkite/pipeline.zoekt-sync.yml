@@ -1,7 +1,7 @@
 steps:
   - label: ':go: Update zoekt'
     command:
-      - ./dev/zoekt/update.sh
+      - ./dev/zoekt/update
     plugins:
       - "thedyrt/git-commit#v0.3.0":
           add: '.'
