@@ -1,0 +1,5 @@
+steps:
+  - label: ':go: Update zoekt' 
+    command: 
+      - ./dev/zoekt/update.sh
+
