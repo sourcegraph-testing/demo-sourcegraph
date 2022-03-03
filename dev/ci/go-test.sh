@@ -38,6 +38,18 @@ function go_test() {
   mkdir -p './test-reports'
   go-junit-report <"$tmpfile" >>./test-reports/go-test-junit.xml
 
+  # Create annotation from test failure
+  if [ "$test_exit_code" -ne 0 ]; then
+    set -x
+    echo "~~~ Creating test failures anotation"
+    RICHGO_CONFIG="./.richstyle.yml"
+    cp "./dev/ci/go-test-failures.richstyle.yml" $RICHGO_CONFIG
+    mkdir -p ./annotations
+    richgo testfilter <"$tmpfile" >>./annotations/go-test
+    rm -rf RICHGO_CONFIG
+    set +x
+  fi
+
   return "$test_exit_code"
 }
 
