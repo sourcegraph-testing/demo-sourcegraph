@@ -63,5 +63,6 @@ func (j *commitGraphJob) Routines(ctx context.Context) ([]goroutine.BackgroundRo
 		),
 	}
 
+	// TODO - add max age metric
 	return routines, nil
 }

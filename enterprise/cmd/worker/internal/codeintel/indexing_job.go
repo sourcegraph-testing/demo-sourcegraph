@@ -83,6 +83,8 @@ func (j *indexingJob) Routines(ctx context.Context) ([]goroutine.BackgroundRouti
 		return float64(count)
 	}))
 
+	// TODO - add max age metric
+
 	routines := []goroutine.BackgroundRoutine{
 		indexing.NewIndexScheduler(dbStoreShim, policyMatcher, indexEnqueuer, indexingConfigInst.RepositoryProcessDelay, indexingConfigInst.RepositoryBatchSize, indexingConfigInst.PolicyBatchSize, indexingConfigInst.AutoIndexingTaskInterval, observationContext),
 		indexing.NewDependencySyncScheduler(dbStoreShim, dependencySyncStore, extSvcStore, syncMetrics),

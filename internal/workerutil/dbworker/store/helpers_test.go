@@ -147,6 +147,9 @@ func defaultTestStoreOptions(clock glock.Clock) Options {
 			sqlf.Sprintf("w.state"),
 			sqlf.Sprintf("w.execution_logs"),
 		},
+		AlternateColumnNames: map[string]string{
+			"queued_at": "uploaded_at",
+		},
 		StalledMaxAge: time.Second * 5,
 		MaxNumResets:  5,
 		MaxNumRetries: 3,

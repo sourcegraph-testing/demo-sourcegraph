@@ -23,4 +23,6 @@ func initPrometheusMetric(observationContext *observation.Context, queueName str
 
 		return float64(count)
 	}))
+
+	// TODO - add max age metric
 }

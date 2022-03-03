@@ -183,6 +183,8 @@ func mustRegisterQueueMetric(observationContext *observation.Context, workerStor
 
 		return float64(count)
 	}))
+
+	// TODO - add max age metric
 }
 
 func makeWorkerMetrics(observationContext *observation.Context) workerutil.WorkerMetrics {
