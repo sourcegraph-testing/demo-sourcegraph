@@ -1,5 +1,20 @@
 steps:
-  - label: ':go: Update zoekt' 
-    command: 
+  - label: ':go: Update zoekt'
+    command:
       - ./dev/zoekt/update.sh
+    plugins:
+      - "thedyrt/git-commit#v0.3.0":
+          add: '.'
+          branch: update-zoekt/zoekt
+          create-branch: 'true'
+          message: |
+            Update zoekt to ${TARGET_COMMIT?}
+
+            Links:
+
+            [Commit]
+            - zoekt: https://sourcegraph.com/github.com/sourcegraph/zoekt/-/commit/${TARGET_COMMIT}
+            [Tree]
+            - zoekt: https://sourcegraph.com/github.com/sourcegraph/zoekt@${TARGET_COMMIT}
+          remote: origin
 
