@@ -9,6 +9,7 @@ import (
 
 	gql "github.com/sourcegraph/sourcegraph/cmd/frontend/graphqlbackend"
 	"github.com/sourcegraph/sourcegraph/enterprise/cmd/frontend/internal/codeintel/resolvers"
+	"github.com/sourcegraph/sourcegraph/internal/api"
 	indexerconsts "github.com/sourcegraph/sourcegraph/internal/codeintel/indexer-consts"
 	"github.com/sourcegraph/sourcegraph/internal/observation"
 )
@@ -29,16 +30,18 @@ const (
 )
 
 type codeIntelSupportResolver struct {
-	gitBlobMeta *gql.GitBlobCodeIntelInfoArgs
-	resolver    resolvers.Resolver
-	errTracer   *observation.ErrCollector
+	repo      api.RepoName
+	path      string
+	resolver  resolvers.Resolver
+	errTracer *observation.ErrCollector
 }
 
-func NewCodeIntelSupportResolver(resolver resolvers.Resolver, args *gql.GitBlobCodeIntelInfoArgs, errTracer *observation.ErrCollector) gql.CodeIntelSupportResolver {
+func NewCodeIntelSupportResolver(resolver resolvers.Resolver, repoName api.RepoName, path string, errTracer *observation.ErrCollector) gql.CodeIntelSupportResolver {
 	return &codeIntelSupportResolver{
-		gitBlobMeta: args,
-		resolver:    resolver,
-		errTracer:   errTracer,
+		repo:      repoName,
+		path:      path,
+		resolver:  resolver,
+		errTracer: errTracer,
 	}
 }
 
@@ -55,7 +58,7 @@ func (r *codeIntelSupportResolver) SearchBasedSupport(ctx context.Context) (_ gq
 			log.Bool("ctagsSupported", ctagsSupported))
 	}()
 
-	ctagsSupported, language, err = r.resolver.SupportedByCtags(ctx, r.gitBlobMeta.Path, r.gitBlobMeta.Repo)
+	ctagsSupported, language, err = r.resolver.SupportedByCtags(ctx, r.path, r.repo)
 	if err != nil {
 		return nil, err
 	}
@@ -68,7 +71,7 @@ func (r *codeIntelSupportResolver) SearchBasedSupport(ctx context.Context) (_ gq
 }
 
 func (r *codeIntelSupportResolver) PreciseSupport(ctx context.Context) (gql.PreciseCodeIntelSupportResolver, error) {
-	return NewPreciseCodeIntelSupportResolver(r.gitBlobMeta.Path), nil
+	return NewPreciseCodeIntelSupportResolver(r.path), nil
 }
 
 type searchBasedSupportResolver struct {
