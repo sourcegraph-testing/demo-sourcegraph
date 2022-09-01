@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"sort"
+	"strconv"
 	"testing"
 	"time"
 
@@ -393,7 +394,7 @@ func TestStoreAddExecutionLogEntry(t *testing.T) {
 	numEntries := 5
 
 	for i := 0; i < numEntries; i++ {
-		command := []string{"ls", "-a", fmt.Sprintf("%d", i+1)}
+		command := []string{"ls", "-a", strconv.Itoa(i + 1)}
 		payload := fmt.Sprintf("<load payload %d>", i+1)
 
 		entry := workerutil.ExecutionLogEntry{
@@ -426,7 +427,7 @@ func TestStoreAddExecutionLogEntry(t *testing.T) {
 		}
 
 		expected := workerutil.ExecutionLogEntry{
-			Command: []string{"ls", "-a", fmt.Sprintf("%d", i+1)},
+			Command: []string{"ls", "-a", strconv.Itoa(i + 1)},
 			Out:     fmt.Sprintf("<load payload %d>", i+1),
 		}
 		if diff := cmp.Diff(expected, entry); diff != "" {
@@ -462,7 +463,7 @@ func TestStoreUpdateExecutionLogEntry(t *testing.T) {
 
 	numEntries := 5
 	for i := 0; i < numEntries; i++ {
-		command := []string{"ls", "-a", fmt.Sprintf("%d", i+1)}
+		command := []string{"ls", "-a", strconv.Itoa(i + 1)}
 		payload := fmt.Sprintf("<load payload %d>", i+1)
 
 		entry := workerutil.ExecutionLogEntry{
@@ -500,7 +501,7 @@ func TestStoreUpdateExecutionLogEntry(t *testing.T) {
 		}
 
 		expected := workerutil.ExecutionLogEntry{
-			Command: []string{"ls", "-a", fmt.Sprintf("%d", i+1)},
+			Command: []string{"ls", "-a", strconv.Itoa(i + 1)},
 			Out:     fmt.Sprintf("<load payload %d>\n<load payload %d again, nobody was at home>", i+1, i+1),
 		}
 		if diff := cmp.Diff(expected, entry); diff != "" {
