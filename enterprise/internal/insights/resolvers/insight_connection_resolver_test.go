@@ -136,14 +136,14 @@ func TestResolver_InsightConnection(t *testing.T) {
 		if len(nodes) != 2 {
 			t.Fatal("incorrect length")
 		}
-		autogold.Want("first insight", map[string]interface{}{"description": "errors.Errorf/fmt.Printf usage", "title": "fmt usage"}).Equal(t, map[string]interface{}{
+		autogold.Want("first insight", map[string]any{"description": "errors.Errorf/fmt.Printf usage", "title": "fmt usage"}).Equal(t, map[string]any{
 			"title":       nodes[0].Title(),
 			"description": nodes[0].Description(),
 		})
 		// TODO(slimsag): put series length into map (autogold bug, omits the field for some reason?)
 		autogold.Want("first insight: series length", int(2)).Equal(t, len(nodes[0].Series()))
 
-		autogold.Want("second insight", map[string]interface{}{"description": "gitserver exec & close usage", "title": "gitserver usage"}).Equal(t, map[string]interface{}{
+		autogold.Want("second insight", map[string]any{"description": "gitserver exec & close usage", "title": "gitserver usage"}).Equal(t, map[string]any{
 			"title":       nodes[1].Title(),
 			"description": nodes[1].Description(),
 		})

@@ -308,7 +308,7 @@ func HandleCheckUsernameTaken(db dbutil.DB) func(w http.ResponseWriter, r *http.
 	}
 }
 
-func httpLogAndError(w http.ResponseWriter, msg string, code int, errArgs ...interface{}) {
+func httpLogAndError(w http.ResponseWriter, msg string, code int, errArgs ...any) {
 	log15.Error(msg, errArgs...)
 	http.Error(w, msg, code)
 }

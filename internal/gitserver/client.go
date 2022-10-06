@@ -902,13 +902,13 @@ func (c *Client) Remove(ctx context.Context, repo api.RepoName) error {
 	return nil
 }
 
-func (c *Client) httpPost(ctx context.Context, repo api.RepoName, op string, payload interface{}) (resp *http.Response, err error) {
+func (c *Client) httpPost(ctx context.Context, repo api.RepoName, op string, payload any) (resp *http.Response, err error) {
 	return c.do(ctx, repo, "POST", op, payload)
 }
 
 // do performs a request to a gitserver, sharding based on the given
 // repo name (the repo name is otherwise not used).
-func (c *Client) do(ctx context.Context, repo api.RepoName, method, op string, payload interface{}) (resp *http.Response, err error) {
+func (c *Client) do(ctx context.Context, repo api.RepoName, method, op string, payload any) (resp *http.Response, err error) {
 	span, ctx := ot.StartSpanFromContext(ctx, "Client.do")
 	defer func() {
 		span.LogKV("repo", string(repo), "method", method, "op", op)

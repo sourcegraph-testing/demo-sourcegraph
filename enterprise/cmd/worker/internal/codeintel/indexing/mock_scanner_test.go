@@ -144,14 +144,14 @@ type PackageReferenceScannerCloseFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c PackageReferenceScannerCloseFuncCall) Args() []interface{} {
-	return []interface{}{}
+func (c PackageReferenceScannerCloseFuncCall) Args() []any {
+	return []any{}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c PackageReferenceScannerCloseFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c PackageReferenceScannerCloseFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // PackageReferenceScannerNextFunc describes the behavior when the Next
@@ -250,12 +250,12 @@ type PackageReferenceScannerNextFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c PackageReferenceScannerNextFuncCall) Args() []interface{} {
-	return []interface{}{}
+func (c PackageReferenceScannerNextFuncCall) Args() []any {
+	return []any{}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c PackageReferenceScannerNextFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c PackageReferenceScannerNextFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }

@@ -807,7 +807,7 @@ func testStoreChangesetSpecsCurrentState(t *testing.T, ctx context.Context, s *S
 		opts.BatchChange = batchChange.ID
 		opts.CurrentSpec = oldSpecs[state].ID
 		opts.OwnedByBatchChange = batchChange.ID
-		opts.Metadata = map[string]interface{}{"Title": string(state)}
+		opts.Metadata = map[string]any{"Title": string(state)}
 		changesets[state] = ct.CreateChangeset(t, ctx, s, *opts)
 	}
 
@@ -940,7 +940,7 @@ func testStoreChangesetSpecsCurrentStateAndTextSearch(t *testing.T, ctx context.
 		ExternalID:          "5678",
 		ExternalState:       btypes.ChangesetExternalStateOpen,
 		OwnedByBatchChange:  batchChange.ID,
-		Metadata: map[string]interface{}{
+		Metadata: map[string]any{
 			"Title": "foo",
 		},
 	})
@@ -952,7 +952,7 @@ func testStoreChangesetSpecsCurrentStateAndTextSearch(t *testing.T, ctx context.
 		ExternalID:          "5679",
 		ExternalState:       btypes.ChangesetExternalStateOpen,
 		OwnedByBatchChange:  batchChange.ID,
-		Metadata: map[string]interface{}{
+		Metadata: map[string]any{
 			"Title": "bar",
 		},
 	})
@@ -964,7 +964,7 @@ func testStoreChangesetSpecsCurrentStateAndTextSearch(t *testing.T, ctx context.
 		ExternalID:          "5680",
 		ExternalState:       btypes.ChangesetExternalStateClosed,
 		OwnedByBatchChange:  batchChange.ID,
-		Metadata: map[string]interface{}{
+		Metadata: map[string]any{
 			"Title": "foo",
 		},
 	})
@@ -1097,7 +1097,7 @@ func testStoreChangesetSpecsTextSearch(t *testing.T, ctx context.Context, s *Sto
 		ExternalServiceType: repos[0].ExternalRepo.ServiceType,
 		ExternalID:          "1234",
 		OwnedByBatchChange:  batchChange.ID,
-		Metadata: map[string]interface{}{
+		Metadata: map[string]any{
 			"Title": "Tracked GitHub",
 		},
 	})
@@ -1108,7 +1108,7 @@ func testStoreChangesetSpecsTextSearch(t *testing.T, ctx context.Context, s *Sto
 		ExternalServiceType: repos[1].ExternalRepo.ServiceType,
 		ExternalID:          "1234",
 		OwnedByBatchChange:  batchChange.ID,
-		Metadata: map[string]interface{}{
+		Metadata: map[string]any{
 			"title": "Tracked GitLab",
 		},
 	})
@@ -1119,7 +1119,7 @@ func testStoreChangesetSpecsTextSearch(t *testing.T, ctx context.Context, s *Sto
 		ExternalServiceType: repos[0].ExternalRepo.ServiceType,
 		ExternalID:          "5678",
 		OwnedByBatchChange:  batchChange.ID,
-		Metadata: map[string]interface{}{
+		Metadata: map[string]any{
 			"Title": "GitHub branch",
 		},
 	})
@@ -1130,7 +1130,7 @@ func testStoreChangesetSpecsTextSearch(t *testing.T, ctx context.Context, s *Sto
 		ExternalServiceType: repos[1].ExternalRepo.ServiceType,
 		ExternalID:          "5678",
 		OwnedByBatchChange:  batchChange.ID,
-		Metadata: map[string]interface{}{
+		Metadata: map[string]any{
 			"title": "GitLab branch",
 		},
 	})

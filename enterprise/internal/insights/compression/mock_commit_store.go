@@ -192,14 +192,14 @@ type CommitStoreGetFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c CommitStoreGetFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
+func (c CommitStoreGetFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c CommitStoreGetFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c CommitStoreGetFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // CommitStoreGetMetadataFunc describes the behavior when the GetMetadata
@@ -301,14 +301,14 @@ type CommitStoreGetMetadataFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c CommitStoreGetMetadataFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c CommitStoreGetMetadataFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c CommitStoreGetMetadataFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c CommitStoreGetMetadataFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // CommitStoreInsertCommitsFunc describes the behavior when the
@@ -410,14 +410,14 @@ type CommitStoreInsertCommitsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c CommitStoreInsertCommitsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c CommitStoreInsertCommitsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c CommitStoreInsertCommitsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c CommitStoreInsertCommitsFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // CommitStoreSaveFunc describes the behavior when the Save method of the
@@ -518,14 +518,14 @@ type CommitStoreSaveFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c CommitStoreSaveFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c CommitStoreSaveFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c CommitStoreSaveFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c CommitStoreSaveFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // CommitStoreUpsertMetadataStampFunc describes the behavior when the
@@ -629,12 +629,12 @@ type CommitStoreUpsertMetadataStampFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c CommitStoreUpsertMetadataStampFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c CommitStoreUpsertMetadataStampFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c CommitStoreUpsertMetadataStampFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c CommitStoreUpsertMetadataStampFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }

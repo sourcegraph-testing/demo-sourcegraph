@@ -135,14 +135,14 @@ type BackgroundRoutineStartFuncCall struct{}
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c BackgroundRoutineStartFuncCall) Args() []interface{} {
-	return []interface{}{}
+func (c BackgroundRoutineStartFuncCall) Args() []any {
+	return []any{}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c BackgroundRoutineStartFuncCall) Results() []interface{} {
-	return []interface{}{}
+func (c BackgroundRoutineStartFuncCall) Results() []any {
+	return []any{}
 }
 
 // BackgroundRoutineStopFunc describes the behavior when the Stop method of
@@ -231,12 +231,12 @@ type BackgroundRoutineStopFuncCall struct{}
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c BackgroundRoutineStopFuncCall) Args() []interface{} {
-	return []interface{}{}
+func (c BackgroundRoutineStopFuncCall) Args() []any {
+	return []any{}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c BackgroundRoutineStopFuncCall) Results() []interface{} {
-	return []interface{}{}
+func (c BackgroundRoutineStopFuncCall) Results() []any {
+	return []any{}
 }

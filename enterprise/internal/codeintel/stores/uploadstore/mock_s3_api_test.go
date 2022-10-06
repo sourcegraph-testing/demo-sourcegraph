@@ -244,14 +244,14 @@ type S3APIAbortMultipartUploadFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c S3APIAbortMultipartUploadFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c S3APIAbortMultipartUploadFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c S3APIAbortMultipartUploadFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c S3APIAbortMultipartUploadFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // S3APICompleteMultipartUploadFunc describes the behavior when the
@@ -354,14 +354,14 @@ type S3APICompleteMultipartUploadFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c S3APICompleteMultipartUploadFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c S3APICompleteMultipartUploadFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c S3APICompleteMultipartUploadFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c S3APICompleteMultipartUploadFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // S3APICreateBucketFunc describes the behavior when the CreateBucket method
@@ -462,14 +462,14 @@ type S3APICreateBucketFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c S3APICreateBucketFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c S3APICreateBucketFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c S3APICreateBucketFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c S3APICreateBucketFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // S3APICreateMultipartUploadFunc describes the behavior when the
@@ -571,14 +571,14 @@ type S3APICreateMultipartUploadFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c S3APICreateMultipartUploadFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c S3APICreateMultipartUploadFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c S3APICreateMultipartUploadFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c S3APICreateMultipartUploadFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // S3APIDeleteObjectFunc describes the behavior when the DeleteObject method
@@ -679,14 +679,14 @@ type S3APIDeleteObjectFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c S3APIDeleteObjectFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c S3APIDeleteObjectFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c S3APIDeleteObjectFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c S3APIDeleteObjectFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // S3APIGetObjectFunc describes the behavior when the GetObject method of
@@ -787,14 +787,14 @@ type S3APIGetObjectFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c S3APIGetObjectFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c S3APIGetObjectFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c S3APIGetObjectFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c S3APIGetObjectFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // S3APIHeadObjectFunc describes the behavior when the HeadObject method of
@@ -895,14 +895,14 @@ type S3APIHeadObjectFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c S3APIHeadObjectFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c S3APIHeadObjectFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c S3APIHeadObjectFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c S3APIHeadObjectFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // S3APIPutBucketLifecycleConfigurationFunc describes the behavior when the
@@ -1008,14 +1008,14 @@ type S3APIPutBucketLifecycleConfigurationFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c S3APIPutBucketLifecycleConfigurationFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c S3APIPutBucketLifecycleConfigurationFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c S3APIPutBucketLifecycleConfigurationFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c S3APIPutBucketLifecycleConfigurationFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // S3APIUploadPartCopyFunc describes the behavior when the UploadPartCopy
@@ -1117,14 +1117,14 @@ type S3APIUploadPartCopyFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c S3APIUploadPartCopyFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c S3APIUploadPartCopyFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c S3APIUploadPartCopyFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c S3APIUploadPartCopyFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // MockS3Uploader is a mock implementation of the s3Uploader interface (from
@@ -1262,12 +1262,12 @@ type S3UploaderUploadFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c S3UploaderUploadFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c S3UploaderUploadFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c S3UploaderUploadFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c S3UploaderUploadFuncCall) Results() []any {
+	return []any{c.Result0}
 }

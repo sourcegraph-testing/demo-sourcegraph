@@ -163,7 +163,7 @@ type jsonStringField struct {
 	ptr  *string
 }
 
-func unredactField(old, new string, cfg interface{}, fields ...jsonStringField) (string, error) {
+func unredactField(old, new string, cfg any, fields ...jsonStringField) (string, error) {
 	// first we zero the fields on cfg, as they will contain data we don't need from the e.Configuration() call
 	// we just want an empty struct of the correct type for marshaling into
 	if err := zeroFields(cfg); err != nil {
@@ -203,7 +203,7 @@ func unredactField(old, new string, cfg interface{}, fields ...jsonStringField) 
 }
 
 // zeroFields zeroes the fields of a struct
-func zeroFields(s interface{}) error {
+func zeroFields(s any) error {
 	for _, f := range structs.Fields(s) {
 		if f.IsZero() {
 			continue
@@ -217,7 +217,7 @@ func zeroFields(s interface{}) error {
 }
 
 // config may contain comments, normalize with jsonc before unmarshaling with jsoniter
-func unmarshalConfig(buf string, v interface{}) error {
+func unmarshalConfig(buf string, v any) error {
 	normalized, err := jsonc.Parse(buf)
 	if err != nil {
 		return err

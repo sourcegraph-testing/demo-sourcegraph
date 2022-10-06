@@ -152,14 +152,14 @@ type MigratorDownFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c MigratorDownFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c MigratorDownFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c MigratorDownFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c MigratorDownFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // MigratorProgressFunc describes the behavior when the Progress method of
@@ -257,14 +257,14 @@ type MigratorProgressFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c MigratorProgressFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c MigratorProgressFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c MigratorProgressFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c MigratorProgressFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // MigratorUpFunc describes the behavior when the Up method of the parent
@@ -359,14 +359,14 @@ type MigratorUpFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c MigratorUpFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c MigratorUpFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c MigratorUpFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c MigratorUpFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // MockStoreIface is a mock implementation of the storeIface interface (from
@@ -530,14 +530,14 @@ type StoreIfaceAddErrorFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c StoreIfaceAddErrorFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c StoreIfaceAddErrorFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c StoreIfaceAddErrorFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c StoreIfaceAddErrorFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // StoreIfaceListFunc describes the behavior when the List method of the
@@ -635,14 +635,14 @@ type StoreIfaceListFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c StoreIfaceListFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c StoreIfaceListFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c StoreIfaceListFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c StoreIfaceListFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // StoreIfaceUpdateProgressFunc describes the behavior when the
@@ -744,12 +744,12 @@ type StoreIfaceUpdateProgressFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c StoreIfaceUpdateProgressFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c StoreIfaceUpdateProgressFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c StoreIfaceUpdateProgressFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c StoreIfaceUpdateProgressFuncCall) Results() []any {
+	return []any{c.Result0}
 }

@@ -25,8 +25,8 @@ type Serializer struct {
 
 func NewSerializer() *Serializer {
 	return &Serializer{
-		readers: sync.Pool{New: func() interface{} { return new(gzip.Reader) }},
-		writers: sync.Pool{New: func() interface{} { return gzip.NewWriter(nil) }},
+		readers: sync.Pool{New: func() any { return new(gzip.Reader) }},
+		writers: sync.Pool{New: func() any { return gzip.NewWriter(nil) }},
 	}
 }
 
@@ -76,7 +76,7 @@ func (s *Serializer) MarshalLocations(locations []semantic.LocationData) ([]byte
 }
 
 // encode gob-encodes and compresses the given payload.
-func (s *Serializer) encode(payload interface{}) (_ []byte, err error) {
+func (s *Serializer) encode(payload any) (_ []byte, err error) {
 	gzipWriter := s.writers.Get().(*gzip.Writer)
 	defer s.writers.Put(gzipWriter)
 
@@ -139,7 +139,7 @@ func (s *Serializer) UnmarshalLocations(data []byte) (locations []semantic.Locat
 
 // encode decompresses gob-decodes the given data and sets the given pointer. If the given data
 // is empty, the pointer will not be assigned.
-func (s *Serializer) decode(data []byte, target interface{}) (err error) {
+func (s *Serializer) decode(data []byte, target any) (err error) {
 	if len(data) == 0 {
 		return nil
 	}

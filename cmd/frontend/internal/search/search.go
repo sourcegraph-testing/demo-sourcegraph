@@ -82,7 +82,7 @@ func (h *streamHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	// Always send a final done event so clients know the stream is shutting
 	// down.
-	defer eventWriter.Event("done", map[string]interface{}{})
+	defer eventWriter.Event("done", map[string]any{})
 
 	// Log events to trace
 	eventWriter.StatHook = eventStreamOTHook(tr.LogFields)
@@ -599,7 +599,7 @@ type jsonArrayBuf struct {
 
 // Append marshals v and adds it to the json array buffer. If the size of the
 // buffer exceed FlushSize the buffer is written out.
-func (j *jsonArrayBuf) Append(v interface{}) error {
+func (j *jsonArrayBuf) Append(v any) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err

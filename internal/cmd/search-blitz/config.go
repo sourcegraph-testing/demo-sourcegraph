@@ -42,7 +42,7 @@ const (
 	Stream
 )
 
-func (s *Protocol) UnmarshalYAML(unmarshal func(interface{}) error) error {
+func (s *Protocol) UnmarshalYAML(unmarshal func(any) error) error {
 	var v string
 	if err := unmarshal(&v); err != nil {
 		return err

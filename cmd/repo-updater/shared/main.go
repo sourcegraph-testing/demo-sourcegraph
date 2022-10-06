@@ -300,7 +300,7 @@ func Main(enterpriseInit EnterpriseInit) {
 	globals.WatchExternalURL(nil)
 
 	debugserverEndpoints.repoUpdaterStateEndpoint = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		dumps := []interface{}{
+		dumps := []any{
 			scheduler.DebugDump(r.Context(), db),
 		}
 		for _, dumper := range debugDumpers {

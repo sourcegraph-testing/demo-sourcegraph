@@ -157,14 +157,14 @@ type SettingStoreGetLastestSchemaSettingsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c SettingStoreGetLastestSchemaSettingsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c SettingStoreGetLastestSchemaSettingsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c SettingStoreGetLastestSchemaSettingsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c SettingStoreGetLastestSchemaSettingsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // SettingStoreGetLatestFunc describes the behavior when the GetLatest
@@ -266,12 +266,12 @@ type SettingStoreGetLatestFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c SettingStoreGetLatestFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c SettingStoreGetLatestFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c SettingStoreGetLatestFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c SettingStoreGetLatestFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }

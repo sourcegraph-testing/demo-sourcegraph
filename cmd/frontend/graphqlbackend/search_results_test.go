@@ -36,7 +36,7 @@ import (
 
 var mockCount = func(_ context.Context, options database.ReposListOptions) (int, error) { return 0, nil }
 
-func assertEqual(t *testing.T, got, want interface{}) {
+func assertEqual(t *testing.T, got, want any) {
 	t.Helper()
 
 	if diff := cmp.Diff(got, want); diff != "" {

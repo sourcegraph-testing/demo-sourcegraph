@@ -20,7 +20,7 @@ func InitCodeIntelDatabase() (*sql.DB, error) {
 	return conn.(*sql.DB), err
 }
 
-var initCodeIntelDatabaseMemo = shared.NewMemoizedConstructor(func() (interface{}, error) {
+var initCodeIntelDatabaseMemo = shared.NewMemoizedConstructor(func() (any, error) {
 	postgresDSN := shared.WatchServiceConnectionValue(func(serviceConnections conftypes.ServiceConnections) string {
 		return serviceConnections.CodeIntelPostgresDSN
 	})

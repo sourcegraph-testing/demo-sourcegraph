@@ -35,7 +35,7 @@ func TestExternalServicesListOptions_sqlConditions(t *testing.T) {
 		afterID          int64
 		wantQuery        string
 		onlyCloudDefault bool
-		wantArgs         []interface{}
+		wantArgs         []any
 	}{
 		{
 			name:      "no condition",
@@ -45,19 +45,19 @@ func TestExternalServicesListOptions_sqlConditions(t *testing.T) {
 			name:      "only one kind: GitHub",
 			kinds:     []string{extsvc.KindGitHub},
 			wantQuery: "deleted_at IS NULL AND kind IN ($1)",
-			wantArgs:  []interface{}{extsvc.KindGitHub},
+			wantArgs:  []any{extsvc.KindGitHub},
 		},
 		{
 			name:      "two kinds: GitHub and GitLab",
 			kinds:     []string{extsvc.KindGitHub, extsvc.KindGitLab},
 			wantQuery: "deleted_at IS NULL AND kind IN ($1 , $2)",
-			wantArgs:  []interface{}{extsvc.KindGitHub, extsvc.KindGitLab},
+			wantArgs:  []any{extsvc.KindGitHub, extsvc.KindGitLab},
 		},
 		{
 			name:            "has namespace user ID",
 			namespaceUserID: 1,
 			wantQuery:       "deleted_at IS NULL AND namespace_user_id = $1",
-			wantArgs:        []interface{}{int32(1)},
+			wantArgs:        []any{int32(1)},
 		},
 		{
 			name:            "want no namespace",
@@ -69,7 +69,7 @@ func TestExternalServicesListOptions_sqlConditions(t *testing.T) {
 			name:      "has after ID",
 			afterID:   10,
 			wantQuery: "deleted_at IS NULL AND id < $1",
-			wantArgs:  []interface{}{int64(10)},
+			wantArgs:  []any{int64(10)},
 		},
 		{
 			name:             "has OnlyCloudDefault",

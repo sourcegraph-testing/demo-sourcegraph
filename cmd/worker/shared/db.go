@@ -19,7 +19,7 @@ func InitDatabase() (*sql.DB, error) {
 	return conn.(*sql.DB), nil
 }
 
-var initDatabaseMemo = NewMemoizedConstructor(func() (interface{}, error) {
+var initDatabaseMemo = NewMemoizedConstructor(func() (any, error) {
 	postgresDSN := WatchServiceConnectionValue(func(serviceConnections conftypes.ServiceConnections) string {
 		return serviceConnections.PostgresDSN
 	})

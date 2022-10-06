@@ -275,14 +275,14 @@ type ResolverCommitGraphFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c ResolverCommitGraphFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c ResolverCommitGraphFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c ResolverCommitGraphFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c ResolverCommitGraphFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // ResolverDeleteIndexByIDFunc describes the behavior when the
@@ -381,14 +381,14 @@ type ResolverDeleteIndexByIDFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c ResolverDeleteIndexByIDFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c ResolverDeleteIndexByIDFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c ResolverDeleteIndexByIDFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c ResolverDeleteIndexByIDFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // ResolverDeleteUploadByIDFunc describes the behavior when the
@@ -487,14 +487,14 @@ type ResolverDeleteUploadByIDFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c ResolverDeleteUploadByIDFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c ResolverDeleteUploadByIDFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c ResolverDeleteUploadByIDFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c ResolverDeleteUploadByIDFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // ResolverGetIndexByIDFunc describes the behavior when the GetIndexByID
@@ -599,14 +599,14 @@ type ResolverGetIndexByIDFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c ResolverGetIndexByIDFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c ResolverGetIndexByIDFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c ResolverGetIndexByIDFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c ResolverGetIndexByIDFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // ResolverGetIndexesByIDsFunc describes the behavior when the
@@ -710,19 +710,19 @@ type ResolverGetIndexesByIDsFuncCall struct {
 // invocation. The variadic slice argument is flattened in this array such
 // that one positional argument and three variadic arguments would result in
 // a slice of four, not two.
-func (c ResolverGetIndexesByIDsFuncCall) Args() []interface{} {
-	trailing := []interface{}{}
+func (c ResolverGetIndexesByIDsFuncCall) Args() []any {
+	trailing := []any{}
 	for _, val := range c.Arg1 {
 		trailing = append(trailing, val)
 	}
 
-	return append([]interface{}{c.Arg0}, trailing...)
+	return append([]any{c.Arg0}, trailing...)
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c ResolverGetIndexesByIDsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c ResolverGetIndexesByIDsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // ResolverGetUploadByIDFunc describes the behavior when the GetUploadByID
@@ -827,14 +827,14 @@ type ResolverGetUploadByIDFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c ResolverGetUploadByIDFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c ResolverGetUploadByIDFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c ResolverGetUploadByIDFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c ResolverGetUploadByIDFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // ResolverGetUploadsByIDsFunc describes the behavior when the
@@ -938,19 +938,19 @@ type ResolverGetUploadsByIDsFuncCall struct {
 // invocation. The variadic slice argument is flattened in this array such
 // that one positional argument and three variadic arguments would result in
 // a slice of four, not two.
-func (c ResolverGetUploadsByIDsFuncCall) Args() []interface{} {
-	trailing := []interface{}{}
+func (c ResolverGetUploadsByIDsFuncCall) Args() []any {
+	trailing := []any{}
 	for _, val := range c.Arg1 {
 		trailing = append(trailing, val)
 	}
 
-	return append([]interface{}{c.Arg0}, trailing...)
+	return append([]any{c.Arg0}, trailing...)
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c ResolverGetUploadsByIDsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c ResolverGetUploadsByIDsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // ResolverIndexConfigurationFunc describes the behavior when the
@@ -1052,14 +1052,14 @@ type ResolverIndexConfigurationFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c ResolverIndexConfigurationFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c ResolverIndexConfigurationFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c ResolverIndexConfigurationFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c ResolverIndexConfigurationFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // ResolverIndexConnectionResolverFunc describes the behavior when the
@@ -1158,14 +1158,14 @@ type ResolverIndexConnectionResolverFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c ResolverIndexConnectionResolverFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c ResolverIndexConnectionResolverFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c ResolverIndexConnectionResolverFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c ResolverIndexConnectionResolverFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // ResolverQueryResolverFunc describes the behavior when the QueryResolver
@@ -1267,14 +1267,14 @@ type ResolverQueryResolverFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c ResolverQueryResolverFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c ResolverQueryResolverFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c ResolverQueryResolverFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c ResolverQueryResolverFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // ResolverQueueAutoIndexJobForRepoFunc describes the behavior when the
@@ -1376,14 +1376,14 @@ type ResolverQueueAutoIndexJobForRepoFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c ResolverQueueAutoIndexJobForRepoFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c ResolverQueueAutoIndexJobForRepoFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c ResolverQueueAutoIndexJobForRepoFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c ResolverQueueAutoIndexJobForRepoFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // ResolverUpdateIndexConfigurationByRepositoryIDFunc describes the behavior
@@ -1490,14 +1490,14 @@ type ResolverUpdateIndexConfigurationByRepositoryIDFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c ResolverUpdateIndexConfigurationByRepositoryIDFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c ResolverUpdateIndexConfigurationByRepositoryIDFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c ResolverUpdateIndexConfigurationByRepositoryIDFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c ResolverUpdateIndexConfigurationByRepositoryIDFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // ResolverUploadConnectionResolverFunc describes the behavior when the
@@ -1596,12 +1596,12 @@ type ResolverUploadConnectionResolverFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c ResolverUploadConnectionResolverFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c ResolverUploadConnectionResolverFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c ResolverUploadConnectionResolverFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c ResolverUploadConnectionResolverFuncCall) Results() []any {
+	return []any{c.Result0}
 }

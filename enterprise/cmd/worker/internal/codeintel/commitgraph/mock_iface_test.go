@@ -181,14 +181,14 @@ type DBStoreCalculateVisibleUploadsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreCalculateVisibleUploadsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4, c.Arg5, c.Arg6, c.Arg7}
+func (c DBStoreCalculateVisibleUploadsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4, c.Arg5, c.Arg6, c.Arg7}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreCalculateVisibleUploadsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c DBStoreCalculateVisibleUploadsFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // DBStoreDirtyRepositoriesFunc describes the behavior when the
@@ -287,14 +287,14 @@ type DBStoreDirtyRepositoriesFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreDirtyRepositoriesFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c DBStoreDirtyRepositoriesFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreDirtyRepositoriesFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreDirtyRepositoriesFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreGetOldestCommitDateFunc describes the behavior when the
@@ -399,14 +399,14 @@ type DBStoreGetOldestCommitDateFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreGetOldestCommitDateFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreGetOldestCommitDateFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreGetOldestCommitDateFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c DBStoreGetOldestCommitDateFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // MockGitserverClient is a mock implementation of the GitserverClient
@@ -556,14 +556,14 @@ type GitserverClientCommitGraphFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c GitserverClientCommitGraphFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c GitserverClientCommitGraphFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c GitserverClientCommitGraphFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c GitserverClientCommitGraphFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // GitserverClientRefDescriptionsFunc describes the behavior when the
@@ -667,14 +667,14 @@ type GitserverClientRefDescriptionsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c GitserverClientRefDescriptionsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c GitserverClientRefDescriptionsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c GitserverClientRefDescriptionsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c GitserverClientRefDescriptionsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // MockLocker is a mock implementation of the Locker interface (from the
@@ -813,12 +813,12 @@ type LockerLockFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c LockerLockFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c LockerLockFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c LockerLockFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c LockerLockFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }

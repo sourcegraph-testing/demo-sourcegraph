@@ -160,14 +160,14 @@ type GitClientFileExistsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c GitClientFileExistsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c GitClientFileExistsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c GitClientFileExistsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c GitClientFileExistsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // GitClientListFilesFunc describes the behavior when the ListFiles method
@@ -268,14 +268,14 @@ type GitClientListFilesFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c GitClientListFilesFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c GitClientListFilesFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c GitClientListFilesFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c GitClientListFilesFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // GitClientRawContentsFunc describes the behavior when the RawContents
@@ -377,12 +377,12 @@ type GitClientRawContentsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c GitClientRawContentsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c GitClientRawContentsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c GitClientRawContentsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c GitClientRawContentsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }

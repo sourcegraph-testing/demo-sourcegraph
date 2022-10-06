@@ -18,12 +18,12 @@ import (
 type Writer interface {
 	// These methods only write the given message if verbose mode is enabled.
 	Verbose(s string)
-	Verbosef(format string, args ...interface{})
+	Verbosef(format string, args ...any)
 	VerboseLine(line FancyLine)
 
 	// These methods write their messages unconditionally.
 	Write(s string)
-	Writef(format string, args ...interface{})
+	Writef(format string, args ...any)
 	WriteLine(line FancyLine)
 }
 
@@ -146,7 +146,7 @@ func (o *Output) Verbose(s string) {
 	}
 }
 
-func (o *Output) Verbosef(format string, args ...interface{}) {
+func (o *Output) Verbosef(format string, args ...any) {
 	if o.opts.Verbose {
 		o.Writef(format, args...)
 	}
@@ -164,7 +164,7 @@ func (o *Output) Write(s string) {
 	fmt.Fprintln(o.w, s)
 }
 
-func (o *Output) Writef(format string, args ...interface{}) {
+func (o *Output) Writef(format string, args ...any) {
 	o.Lock()
 	defer o.Unlock()
 	fmt.Fprintf(o.w, format, o.caps.formatArgs(args)...)
@@ -234,5 +234,5 @@ func (o *Output) moveUp(lines int) {
 // writeStyle is a helper to write a style while respecting the terminal
 // capabilities.
 func (o *Output) writeStyle(style Style) {
-	fmt.Fprintf(o.w, "%s", o.caps.formatArgs([]interface{}{style})...)
+	fmt.Fprintf(o.w, "%s", o.caps.formatArgs([]any{style})...)
 }

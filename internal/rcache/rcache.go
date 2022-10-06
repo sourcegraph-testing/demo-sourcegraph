@@ -56,7 +56,7 @@ func (r *Cache) GetMulti(keys ...string) [][]byte {
 	if len(keys) == 0 {
 		return nil
 	}
-	rkeys := make([]interface{}, len(keys))
+	rkeys := make([]any, len(keys))
 	for i, key := range keys {
 		rkeys[i] = r.rkeyPrefix() + key
 	}
@@ -174,7 +174,7 @@ func (r *Cache) rkeyPrefix() string {
 // TB is a subset of testing.TB
 type TB interface {
 	Name() string
-	Skip(args ...interface{})
+	Skip(args ...any)
 	Helper()
 }
 

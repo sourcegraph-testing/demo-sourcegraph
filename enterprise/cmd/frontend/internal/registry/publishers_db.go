@@ -25,7 +25,7 @@ func (p dbPublisher) IsZero() bool { return p == dbPublisher{} }
 
 // publisherNotFoundError occurs when a registry extension publisher is not found.
 type publisherNotFoundError struct {
-	args []interface{}
+	args []any
 }
 
 // NotFound implements errcode.NotFounder.
@@ -126,7 +126,7 @@ SELECT user_id, org_id, non_canonical_name FROM publishers ORDER BY user_id NULL
 	err := dbconn.Global.QueryRowContext(ctx, q.Query(sqlf.PostgresBindVar), q.Args()...).Scan(&userID, &orgID, &p.NonCanonicalName)
 	if err != nil {
 		if err == sql.ErrNoRows {
-			return nil, &publisherNotFoundError{[]interface{}{"name", name}}
+			return nil, &publisherNotFoundError{[]any{"name", name}}
 		}
 		return nil, err
 	}

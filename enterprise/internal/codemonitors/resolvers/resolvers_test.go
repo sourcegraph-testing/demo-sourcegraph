@@ -415,7 +415,7 @@ func TestQueryMonitor(t *testing.T) {
 }
 
 func queryByUser(ctx context.Context, t *testing.T, schema *graphql.Schema, r *Resolver, user1 *testUser, user2 *testUser) {
-	input := map[string]interface{}{
+	input := map[string]any{
 		"userName":     user1.name,
 		"actionCursor": relay.MarshalID(monitorActionEventKind, 1),
 	}
@@ -626,7 +626,7 @@ func TestEditCodeMonitor(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	updateInput := map[string]interface{}{
+	updateInput := map[string]any{
 		"monitorID": string(relay.MarshalID(MonitorKind, 1)),
 		"triggerID": string(relay.MarshalID(monitorTriggerQueryKind, 1)),
 		"actionID":  string(relay.MarshalID(monitorActionEmailKind, 1)),
@@ -759,7 +759,7 @@ mutation ($monitorID: ID!, $triggerID: ID!, $actionID: ID!, $user1ID: ID!, $user
 `
 
 func recipientPaging(ctx context.Context, t *testing.T, schema *graphql.Schema, user1 *testUser, user2 *testUser) {
-	queryInput := map[string]interface{}{
+	queryInput := map[string]any{
 		"userName":        user1.name,
 		"recipientCursor": string(relay.MarshalID(monitorActionEmailRecipientKind, 1)),
 	}
@@ -821,7 +821,7 @@ query($userName: String!, $recipientCursor: String!){
 `
 
 func queryByID(ctx context.Context, t *testing.T, schema *graphql.Schema, r *Resolver, m *monitor, user1 *testUser, user2 *testUser) {
-	input := map[string]interface{}{
+	input := map[string]any{
 		"id": m.ID(),
 	}
 	response := apitest.Node{}
@@ -945,7 +945,7 @@ query ($id: ID!) {
 `
 
 func monitorPaging(ctx context.Context, t *testing.T, schema *graphql.Schema, user1 *testUser) {
-	queryInput := map[string]interface{}{
+	queryInput := map[string]any{
 		"userName":      user1.name,
 		"monitorCursor": string(relay.MarshalID(MonitorKind, 1)),
 	}
@@ -982,7 +982,7 @@ query($userName: String!, $monitorCursor: String!){
 `
 
 func actionPaging(ctx context.Context, t *testing.T, schema *graphql.Schema, user1 *testUser) {
-	queryInput := map[string]interface{}{
+	queryInput := map[string]any{
 		"userName":     user1.name,
 		"actionCursor": string(relay.MarshalID(monitorActionEmailKind, 1)),
 	}
@@ -1033,7 +1033,7 @@ query($userName: String!, $actionCursor:String!){
 `
 
 func triggerEventPaging(ctx context.Context, t *testing.T, schema *graphql.Schema, user1 *testUser) {
-	queryInput := map[string]interface{}{
+	queryInput := map[string]any{
 		"userName":           user1.name,
 		"triggerEventCursor": relay.MarshalID(monitorTriggerEventKind, 1),
 	}
@@ -1086,7 +1086,7 @@ query($userName: String!, $triggerEventCursor: String!){
 `
 
 func actionEventPaging(ctx context.Context, t *testing.T, schema *graphql.Schema, user1 *testUser) {
-	queryInput := map[string]interface{}{
+	queryInput := map[string]any{
 		"userName":          user1.name,
 		"actionCursor":      string(relay.MarshalID(monitorActionEmailKind, 1)),
 		"actionEventCursor": relay.MarshalID(monitorActionEventKind, 1),

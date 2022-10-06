@@ -244,7 +244,7 @@ type Changeset struct {
 	RepoID              api.RepoID
 	CreatedAt           time.Time
 	UpdatedAt           time.Time
-	Metadata            interface{}
+	Metadata            any
 	BatchChanges        []BatchChangeAssoc
 	ExternalID          string
 	ExternalServiceType string
@@ -359,7 +359,7 @@ func (c *Changeset) SetDiffStat(stat *diff.Stat) {
 	}
 }
 
-func (c *Changeset) SetMetadata(meta interface{}) error {
+func (c *Changeset) SetMetadata(meta any) error {
 	switch pr := meta.(type) {
 	case *github.PullRequest:
 		c.Metadata = pr
@@ -915,7 +915,7 @@ type ChangesetsStats struct {
 
 // ChangesetEventKindFor returns the ChangesetEventKind for the given
 // specific code host event.
-func ChangesetEventKindFor(e interface{}) (ChangesetEventKind, error) {
+func ChangesetEventKindFor(e any) (ChangesetEventKind, error) {
 	switch e := e.(type) {
 	case *github.AssignedEvent:
 		return ChangesetEventKindGitHubAssigned, nil
@@ -988,7 +988,7 @@ func ChangesetEventKindFor(e interface{}) (ChangesetEventKind, error) {
 
 // NewChangesetEventMetadata returns a new metadata object for the given
 // ChangesetEventKind.
-func NewChangesetEventMetadata(k ChangesetEventKind) (interface{}, error) {
+func NewChangesetEventMetadata(k ChangesetEventKind) (any, error) {
 	switch {
 	case strings.HasPrefix(string(k), "bitbucketserver"):
 		switch k {

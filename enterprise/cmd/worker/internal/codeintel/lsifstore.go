@@ -21,7 +21,7 @@ func InitLSIFStore() (*lsifstore.Store, error) {
 	return conn.(*lsifstore.Store), err
 }
 
-var initLSFIStore = shared.NewMemoizedConstructor(func() (interface{}, error) {
+var initLSFIStore = shared.NewMemoizedConstructor(func() (any, error) {
 	observationContext := &observation.Context{
 		Logger:     log15.Root(),
 		Tracer:     &trace.Tracer{Tracer: opentracing.GlobalTracer()},

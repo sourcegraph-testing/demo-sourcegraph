@@ -22,7 +22,7 @@ func InitDBStore() (*dbstore.Store, error) {
 	return conn.(*dbstore.Store), err
 }
 
-var initDBStore = shared.NewMemoizedConstructor(func() (interface{}, error) {
+var initDBStore = shared.NewMemoizedConstructor(func() (any, error) {
 	observationContext := &observation.Context{
 		Logger:     log15.Root(),
 		Tracer:     &trace.Tracer{Tracer: opentracing.GlobalTracer()},
@@ -47,7 +47,7 @@ func InitDependencyIndexStore() (dbworkerstore.Store, error) {
 	return store.(dbworkerstore.Store), err
 }
 
-var initDependencyIndexStore = shared.NewMemoizedConstructor(func() (interface{}, error) {
+var initDependencyIndexStore = shared.NewMemoizedConstructor(func() (any, error) {
 	observationContext := &observation.Context{
 		Logger:     log15.Root(),
 		Tracer:     &trace.Tracer{Tracer: opentracing.GlobalTracer()},

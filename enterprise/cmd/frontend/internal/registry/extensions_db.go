@@ -58,7 +58,7 @@ type dbExtensions struct{}
 
 // extensionNotFoundError occurs when an extension is not found in the extension registry.
 type extensionNotFoundError struct {
-	args []interface{}
+	args []any
 }
 
 // NotFound implements errcode.NotFounder.
@@ -116,7 +116,7 @@ func (s dbExtensions) GetByID(ctx context.Context, id int32) (*dbExtension, erro
 		return nil, err
 	}
 	if len(results) == 0 {
-		return nil, extensionNotFoundError{[]interface{}{id}}
+		return nil, extensionNotFoundError{[]any{id}}
 	}
 	return results[0], nil
 }
@@ -134,7 +134,7 @@ func (s dbExtensions) GetByUUID(ctx context.Context, uuid string) (*dbExtension,
 		return nil, err
 	}
 	if len(results) == 0 {
-		return nil, extensionNotFoundError{[]interface{}{uuid}}
+		return nil, extensionNotFoundError{[]any{uuid}}
 	}
 	return results[0], nil
 }
@@ -163,7 +163,7 @@ func (s dbExtensions) GetByExtensionID(ctx context.Context, extensionID string) 
 	// (https://github.com/sourcegraph/sourcegraph/issues/12068).
 	parts := strings.SplitN(extensionID, "/", 2)
 	if len(parts) < 2 {
-		return nil, extensionNotFoundError{[]interface{}{fmt.Sprintf("extensionID %q", extensionID)}}
+		return nil, extensionNotFoundError{[]any{fmt.Sprintf("extensionID %q", extensionID)}}
 	}
 	publisherName := parts[0]
 	extensionName := parts[1]
@@ -176,7 +176,7 @@ func (s dbExtensions) GetByExtensionID(ctx context.Context, extensionID string) 
 		return nil, err
 	}
 	if len(results) == 0 {
-		return nil, extensionNotFoundError{[]interface{}{fmt.Sprintf("extensionID %q", extensionID)}}
+		return nil, extensionNotFoundError{[]any{fmt.Sprintf("extensionID %q", extensionID)}}
 	}
 	return results[0], nil
 }
@@ -386,7 +386,7 @@ func (dbExtensions) Update(ctx context.Context, id int32, name *string) error {
 		return err
 	}
 	if nrows == 0 {
-		return extensionNotFoundError{[]interface{}{id}}
+		return extensionNotFoundError{[]any{id}}
 	}
 	return nil
 }
@@ -406,7 +406,7 @@ func (dbExtensions) Delete(ctx context.Context, id int32) error {
 		return err
 	}
 	if nrows == 0 {
-		return extensionNotFoundError{[]interface{}{id}}
+		return extensionNotFoundError{[]any{id}}
 	}
 	return nil
 }

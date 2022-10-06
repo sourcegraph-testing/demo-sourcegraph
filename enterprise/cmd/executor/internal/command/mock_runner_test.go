@@ -147,12 +147,12 @@ type CommandRunnerRunCommandFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c CommandRunnerRunCommandFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c CommandRunnerRunCommandFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c CommandRunnerRunCommandFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c CommandRunnerRunCommandFuncCall) Results() []any {
+	return []any{c.Result0}
 }

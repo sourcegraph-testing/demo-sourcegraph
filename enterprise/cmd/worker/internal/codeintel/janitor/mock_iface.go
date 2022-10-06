@@ -282,14 +282,14 @@ type DBStoreDeleteIndexesWithoutRepositoryFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreDeleteIndexesWithoutRepositoryFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreDeleteIndexesWithoutRepositoryFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreDeleteIndexesWithoutRepositoryFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreDeleteIndexesWithoutRepositoryFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreDeleteOldIndexesFunc describes the behavior when the
@@ -394,14 +394,14 @@ type DBStoreDeleteOldIndexesFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreDeleteOldIndexesFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c DBStoreDeleteOldIndexesFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreDeleteOldIndexesFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreDeleteOldIndexesFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreDeleteUploadsStuckUploadingFunc describes the behavior when the
@@ -506,14 +506,14 @@ type DBStoreDeleteUploadsStuckUploadingFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreDeleteUploadsStuckUploadingFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreDeleteUploadsStuckUploadingFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreDeleteUploadsStuckUploadingFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreDeleteUploadsStuckUploadingFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreDeleteUploadsWithoutRepositoryFunc describes the behavior when the
@@ -619,14 +619,14 @@ type DBStoreDeleteUploadsWithoutRepositoryFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreDeleteUploadsWithoutRepositoryFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreDeleteUploadsWithoutRepositoryFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreDeleteUploadsWithoutRepositoryFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreDeleteUploadsWithoutRepositoryFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreDirtyRepositoriesFunc describes the behavior when the
@@ -725,14 +725,14 @@ type DBStoreDirtyRepositoriesFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreDirtyRepositoriesFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c DBStoreDirtyRepositoriesFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreDirtyRepositoriesFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreDirtyRepositoriesFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreDoneFunc describes the behavior when the Done method of the parent
@@ -827,14 +827,14 @@ type DBStoreDoneFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreDoneFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c DBStoreDoneFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreDoneFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c DBStoreDoneFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // DBStoreGetUploadsFunc describes the behavior when the GetUploads method
@@ -938,14 +938,14 @@ type DBStoreGetUploadsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreGetUploadsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreGetUploadsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreGetUploadsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c DBStoreGetUploadsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // DBStoreHandleFunc describes the behavior when the Handle method of the
@@ -1037,14 +1037,14 @@ type DBStoreHandleFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreHandleFuncCall) Args() []interface{} {
-	return []interface{}{}
+func (c DBStoreHandleFuncCall) Args() []any {
+	return []any{}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreHandleFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c DBStoreHandleFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // DBStoreHardDeleteUploadByIDFunc describes the behavior when the
@@ -1146,19 +1146,19 @@ type DBStoreHardDeleteUploadByIDFuncCall struct {
 // invocation. The variadic slice argument is flattened in this array such
 // that one positional argument and three variadic arguments would result in
 // a slice of four, not two.
-func (c DBStoreHardDeleteUploadByIDFuncCall) Args() []interface{} {
-	trailing := []interface{}{}
+func (c DBStoreHardDeleteUploadByIDFuncCall) Args() []any {
+	trailing := []any{}
 	for _, val := range c.Arg1 {
 		trailing = append(trailing, val)
 	}
 
-	return append([]interface{}{c.Arg0}, trailing...)
+	return append([]any{c.Arg0}, trailing...)
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreHardDeleteUploadByIDFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c DBStoreHardDeleteUploadByIDFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // DBStoreRefreshCommitResolvabilityFunc describes the behavior when the
@@ -1275,14 +1275,14 @@ type DBStoreRefreshCommitResolvabilityFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreRefreshCommitResolvabilityFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
+func (c DBStoreRefreshCommitResolvabilityFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreRefreshCommitResolvabilityFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c DBStoreRefreshCommitResolvabilityFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // DBStoreSoftDeleteOldUploadsFunc describes the behavior when the
@@ -1388,14 +1388,14 @@ type DBStoreSoftDeleteOldUploadsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreSoftDeleteOldUploadsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c DBStoreSoftDeleteOldUploadsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreSoftDeleteOldUploadsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreSoftDeleteOldUploadsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreStaleSourcedCommitsFunc describes the behavior when the
@@ -1503,14 +1503,14 @@ type DBStoreStaleSourcedCommitsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreStaleSourcedCommitsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
+func (c DBStoreStaleSourcedCommitsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreStaleSourcedCommitsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreStaleSourcedCommitsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreTransactFunc describes the behavior when the Transact method of
@@ -1608,14 +1608,14 @@ type DBStoreTransactFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreTransactFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c DBStoreTransactFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreTransactFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreTransactFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // MockLSIFStore is a mock implementation of the LSIFStore interface (from
@@ -1747,17 +1747,17 @@ type LSIFStoreClearFuncCall struct {
 // invocation. The variadic slice argument is flattened in this array such
 // that one positional argument and three variadic arguments would result in
 // a slice of four, not two.
-func (c LSIFStoreClearFuncCall) Args() []interface{} {
-	trailing := []interface{}{}
+func (c LSIFStoreClearFuncCall) Args() []any {
+	trailing := []any{}
 	for _, val := range c.Arg1 {
 		trailing = append(trailing, val)
 	}
 
-	return append([]interface{}{c.Arg0}, trailing...)
+	return append([]any{c.Arg0}, trailing...)
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c LSIFStoreClearFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c LSIFStoreClearFuncCall) Results() []any {
+	return []any{c.Result0}
 }

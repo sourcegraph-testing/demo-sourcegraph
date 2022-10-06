@@ -12,7 +12,7 @@ func init() {
 	dbtesting.DBNameSuffix = "enterprisedb"
 }
 
-func equal(t testing.TB, name string, want, have interface{}) {
+func equal(t testing.TB, name string, want, have any) {
 	t.Helper()
 	if diff := cmp.Diff(want, have); diff != "" {
 		t.Fatalf("%q: %s", name, diff)

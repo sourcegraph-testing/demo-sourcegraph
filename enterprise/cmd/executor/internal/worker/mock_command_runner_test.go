@@ -158,14 +158,14 @@ type RunnerRunFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c RunnerRunFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c RunnerRunFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c RunnerRunFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c RunnerRunFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // RunnerSetupFunc describes the behavior when the Setup method of the
@@ -266,14 +266,14 @@ type RunnerSetupFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c RunnerSetupFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c RunnerSetupFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c RunnerSetupFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c RunnerSetupFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // RunnerTeardownFunc describes the behavior when the Teardown method of the
@@ -368,12 +368,12 @@ type RunnerTeardownFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c RunnerTeardownFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c RunnerTeardownFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c RunnerTeardownFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c RunnerTeardownFuncCall) Results() []any {
+	return []any{c.Result0}
 }

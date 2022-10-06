@@ -126,12 +126,12 @@ type ErrorHandlerHandleErrorFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c ErrorHandlerHandleErrorFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c ErrorHandlerHandleErrorFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c ErrorHandlerHandleErrorFuncCall) Results() []interface{} {
-	return []interface{}{}
+func (c ErrorHandlerHandleErrorFuncCall) Results() []any {
+	return []any{}
 }

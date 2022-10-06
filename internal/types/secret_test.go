@@ -53,9 +53,9 @@ func TestRoundTripRedactExternalServiceConfig(t *testing.T) {
 	}
 	var tc = []struct {
 		kind        string
-		config      interface{} // the config for the service kind
-		editField   *string     // a pointer to a field on the config we can edit to simulate the user using the API
-		secretField *string     // a pointer to the field we expect to be obfuscated
+		config      any     // the config for the service kind
+		editField   *string // a pointer to a field on the config we can edit to simulate the user using the API
+		secretField *string // a pointer to the field we expect to be obfuscated
 	}{
 		{
 			kind:        extsvc.KindGitHub,

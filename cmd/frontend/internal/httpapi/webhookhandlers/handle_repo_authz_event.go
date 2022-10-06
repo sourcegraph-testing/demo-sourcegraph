@@ -20,7 +20,7 @@ import (
 
 // handleGithubRepoAuthzEvent handles any github event containing a repository field, and enqueues the contained
 // repo for permissions synchronisation.
-func handleGitHubRepoAuthzEvent(ctx context.Context, extSvc *types.ExternalService, payload interface{}) error {
+func handleGitHubRepoAuthzEvent(ctx context.Context, extSvc *types.ExternalService, payload any) error {
 	if !conf.ExperimentalFeatures().EnablePermissionsWebhooks {
 		return nil
 	}

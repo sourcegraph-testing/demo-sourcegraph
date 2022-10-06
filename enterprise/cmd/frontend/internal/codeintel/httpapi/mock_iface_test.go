@@ -206,14 +206,14 @@ type DBStoreAddUploadPartFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreAddUploadPartFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c DBStoreAddUploadPartFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreAddUploadPartFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c DBStoreAddUploadPartFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // DBStoreDoneFunc describes the behavior when the Done method of the parent
@@ -308,14 +308,14 @@ type DBStoreDoneFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreDoneFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c DBStoreDoneFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreDoneFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c DBStoreDoneFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // DBStoreGetUploadByIDFunc describes the behavior when the GetUploadByID
@@ -420,14 +420,14 @@ type DBStoreGetUploadByIDFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreGetUploadByIDFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreGetUploadByIDFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreGetUploadByIDFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c DBStoreGetUploadByIDFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // DBStoreInsertUploadFunc describes the behavior when the InsertUpload
@@ -529,14 +529,14 @@ type DBStoreInsertUploadFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreInsertUploadFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreInsertUploadFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreInsertUploadFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreInsertUploadFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreMarkFailedFunc describes the behavior when the MarkFailed method
@@ -637,14 +637,14 @@ type DBStoreMarkFailedFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreMarkFailedFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c DBStoreMarkFailedFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreMarkFailedFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c DBStoreMarkFailedFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // DBStoreMarkQueuedFunc describes the behavior when the MarkQueued method
@@ -745,14 +745,14 @@ type DBStoreMarkQueuedFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreMarkQueuedFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c DBStoreMarkQueuedFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreMarkQueuedFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c DBStoreMarkQueuedFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // DBStoreTransactFunc describes the behavior when the Transact method of
@@ -850,12 +850,12 @@ type DBStoreTransactFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreTransactFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c DBStoreTransactFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreTransactFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreTransactFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }

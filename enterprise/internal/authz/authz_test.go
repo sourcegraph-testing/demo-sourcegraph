@@ -493,7 +493,7 @@ func mustURLParse(t *testing.T, u string) *url.URL {
 	return parsed
 }
 
-func asJSON(t *testing.T, v interface{}) string {
+func asJSON(t *testing.T, v any) string {
 	b, err := json.MarshalIndent(v, "", "  ")
 	if err != nil {
 		t.Fatal(err)
@@ -509,7 +509,7 @@ type fakeStore struct {
 }
 
 func (s fakeStore) List(ctx context.Context, opt database.ExternalServicesListOptions) ([]*types.ExternalService, error) {
-	mustMarshalJSONString := func(v interface{}) string {
+	mustMarshalJSONString := func(v any) string {
 		str, err := jsoniter.MarshalToString(v)
 		if err != nil {
 			panic(err)

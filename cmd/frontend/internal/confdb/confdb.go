@@ -172,6 +172,6 @@ func parseQueryRows(ctx context.Context, rows *sql.Rows) ([]*SiteConfig, error) 
 // queryable allows us to reuse the same logic for certain operations both
 // inside and outside an explicit transaction.
 type queryable interface {
-	QueryContext(ctx context.Context, query string, args ...interface{}) (*sql.Rows, error)
-	QueryRowContext(ctx context.Context, query string, args ...interface{}) *sql.Row
+	QueryContext(ctx context.Context, query string, args ...any) (*sql.Rows, error)
+	QueryRowContext(ctx context.Context, query string, args ...any) *sql.Row
 }

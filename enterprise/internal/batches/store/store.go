@@ -133,7 +133,7 @@ func (s *Store) queryCount(ctx context.Context, q *sqlf.Query) (int, error) {
 
 // scanner captures the Scan method of sql.Rows and sql.Row
 type scanner interface {
-	Scan(dst ...interface{}) error
+	Scan(dst ...any) error
 }
 
 // a scanFunc scans one or more rows from a scanner, returning
@@ -152,7 +152,7 @@ func scanAll(rows *sql.Rows, scan scanFunc) (err error) {
 	return rows.Err()
 }
 
-func jsonbColumn(metadata interface{}) (msg json.RawMessage, err error) {
+func jsonbColumn(metadata any) (msg json.RawMessage, err error) {
 	switch m := metadata.(type) {
 	case nil:
 		msg = json.RawMessage("{}")

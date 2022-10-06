@@ -119,7 +119,7 @@ func DoMigrate(m *migrate.Migrate) (err error) {
 
 type stdoutLogger struct{}
 
-func (stdoutLogger) Printf(format string, v ...interface{}) {
+func (stdoutLogger) Printf(format string, v ...any) {
 	fmt.Printf(format, v...)
 }
 func (logger stdoutLogger) Verbose() bool {

@@ -28,7 +28,7 @@ func Event(dataset string) *libhoney.Event {
 
 // EventWithFields creates an event for logging to the given dataset. The given
 // fields are assigned to the event.
-func EventWithFields(dataset string, fields map[string]interface{}) *libhoney.Event {
+func EventWithFields(dataset string, fields map[string]any) *libhoney.Event {
 	ev := Event(dataset)
 	for key, value := range fields {
 		ev.AddField(key, value)

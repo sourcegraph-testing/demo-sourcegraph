@@ -21,7 +21,7 @@ func InitGitserverClient() (*gitserver.Client, error) {
 	return conn.(*gitserver.Client), err
 }
 
-var initGitserverClient = shared.NewMemoizedConstructor(func() (interface{}, error) {
+var initGitserverClient = shared.NewMemoizedConstructor(func() (any, error) {
 	observationContext := &observation.Context{
 		Logger:     log15.Root(),
 		Tracer:     &trace.Tracer{Tracer: opentracing.GlobalTracer()},

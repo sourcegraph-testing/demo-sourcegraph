@@ -33,7 +33,7 @@ mutation CreateSearchContext($input: SearchContextInput!, $repositories: [Search
 	}
 }
 `
-	variables := map[string]interface{}{
+	variables := map[string]any{
 		"input":        input,
 		"repositories": repositories,
 	}
@@ -84,7 +84,7 @@ query GetSearchContext($id: ID!) {
 	}
 }
 `
-	variables := map[string]interface{}{
+	variables := map[string]any{
 		"id": id,
 	}
 	var resp struct {
@@ -117,7 +117,7 @@ mutation UpdateSearchContext($id: ID!, $input: SearchContextEditInput!, $reposit
 	}
 }
 `
-	variables := map[string]interface{}{
+	variables := map[string]any{
 		"id":           id,
 		"input":        input,
 		"repositories": repos,
@@ -146,7 +146,7 @@ mutation DeleteSearchContext($id: ID!) {
 	}
 }
 `
-	variables := map[string]interface{}{
+	variables := map[string]any{
 		"id": id,
 	}
 	err := c.GraphQL("", query, variables, nil)
@@ -225,7 +225,7 @@ query ListSearchContexts(
 		orderBy = *options.OrderBy
 	}
 
-	variables := map[string]interface{}{
+	variables := map[string]any{
 		"first":      options.First,
 		"after":      options.After,
 		"query":      options.Query,

@@ -164,7 +164,7 @@ func queryDefinitions(ctx context.Context, location Location) (locations []Locat
 		}
 	`
 
-	variables := map[string]interface{}{
+	variables := map[string]any{
 		"repository": location.Repo,
 		"commit":     location.Rev,
 		"path":       location.Path,
@@ -235,7 +235,7 @@ func queryReferences(ctx context.Context, location Location) (locations []Locati
 
 	endCursor := ""
 	for {
-		variables := map[string]interface{}{
+		variables := map[string]any{
 			"repository": location.Repo,
 			"commit":     location.Rev,
 			"path":       location.Path,

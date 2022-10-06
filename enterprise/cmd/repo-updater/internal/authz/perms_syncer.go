@@ -264,7 +264,7 @@ func (s *PermsSyncer) syncUserPerms(ctx context.Context, userID int32, noPerms b
 
 	byURN := s.providersByURNs()
 
-	var accountsOrServices []interface{}
+	var accountsOrServices []any
 	for i := range accts {
 		accountsOrServices = append(accountsOrServices, accts[i])
 	}
@@ -770,10 +770,10 @@ type scheduledRepo struct {
 }
 
 // schedule computes schedule four lists in the following order:
-//   1. Users with no permissions, because they can't do anything meaningful (e.g. not able to search).
-//   2. Private repositories with no permissions, because those can't be viewed by anyone except site admins.
-//   3. Rolling updating user permissions over time from oldest ones.
-//   4. Rolling updating repository permissions over time from oldest ones.
+//  1. Users with no permissions, because they can't do anything meaningful (e.g. not able to search).
+//  2. Private repositories with no permissions, because those can't be viewed by anyone except site admins.
+//  3. Rolling updating user permissions over time from oldest ones.
+//  4. Rolling updating repository permissions over time from oldest ones.
 func (s *PermsSyncer) schedule(ctx context.Context) (*schedule, error) {
 	schedule := new(schedule)
 
@@ -861,7 +861,7 @@ func (s *PermsSyncer) runSchedule(ctx context.Context) {
 }
 
 // DebugDump returns the state of the permissions syncer for debugging.
-func (s *PermsSyncer) DebugDump() interface{} {
+func (s *PermsSyncer) DebugDump() any {
 	type requestInfo struct {
 		Meta     *requestMeta
 		Acquired bool

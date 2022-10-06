@@ -149,7 +149,7 @@ func TestSubjects(t *testing.T) {
 }
 
 func jsonDeepEqual(a, b string) bool {
-	var va, vb interface{}
+	var va, vb any
 	if err := json.Unmarshal([]byte(a), &va); err != nil {
 		panic(err)
 	}

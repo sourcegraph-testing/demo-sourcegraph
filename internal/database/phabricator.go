@@ -40,7 +40,7 @@ func (s *PhabricatorStore) Transact(ctx context.Context) (*PhabricatorStore, err
 }
 
 type errPhabricatorRepoNotFound struct {
-	args []interface{}
+	args []any
 }
 
 func (err errPhabricatorRepoNotFound) Error() string {
@@ -95,7 +95,7 @@ func (p *PhabricatorStore) CreateIfNotExists(ctx context.Context, callsign strin
 	return repo, nil
 }
 
-func (p *PhabricatorStore) getBySQL(ctx context.Context, query string, args ...interface{}) ([]*types.PhabricatorRepo, error) {
+func (p *PhabricatorStore) getBySQL(ctx context.Context, query string, args ...any) ([]*types.PhabricatorRepo, error) {
 	rows, err := p.Handle().DB().QueryContext(ctx, "SELECT id, callsign, repo_name, url FROM phabricator_repos "+query, args...)
 	if err != nil {
 		return nil, err
@@ -117,7 +117,7 @@ func (p *PhabricatorStore) getBySQL(ctx context.Context, query string, args ...i
 	return repos, nil
 }
 
-func (p *PhabricatorStore) getOneBySQL(ctx context.Context, query string, args ...interface{}) (*types.PhabricatorRepo, error) {
+func (p *PhabricatorStore) getOneBySQL(ctx context.Context, query string, args ...any) (*types.PhabricatorRepo, error) {
 	rows, err := p.getBySQL(ctx, query, args...)
 	if err != nil {
 		return nil, err

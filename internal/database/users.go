@@ -93,7 +93,7 @@ func (u *UserStore) ensureStore() {
 
 // userNotFoundErr is the error that is returned when a user is not found.
 type userNotFoundErr struct {
-	args []interface{}
+	args []any
 }
 
 func (err userNotFoundErr) Error() string {
@@ -107,7 +107,7 @@ func (err userNotFoundErr) NotFound() bool {
 // NewUserNotFoundError returns a new error indicating that the user with the given user ID was not
 // found.
 func NewUserNotFoundError(userID int32) error {
-	return userNotFoundErr{args: []interface{}{"userID", userID}}
+	return userNotFoundErr{args: []any{"userID", userID}}
 }
 
 // errCannotCreateUser is the error that is returned when
@@ -175,7 +175,7 @@ type NewUser struct {
 // username/email and password. If no password is given, a non-builtin auth provider must be used to
 // sign into the account.
 //
-// CREATION OF SITE ADMINS
+// # CREATION OF SITE ADMINS
 //
 // The new user is made to be a site admin if the following are both true: (1) this user would be
 // the first and only user on the server, and (2) the site has not yet been initialized. Otherwise,
@@ -485,7 +485,7 @@ func (u *UserStore) Update(ctx context.Context, id int32, update UserUpdate) (er
 		return err
 	}
 	if nrows == 0 {
-		return userNotFoundErr{args: []interface{}{id}}
+		return userNotFoundErr{args: []any{id}}
 	}
 	return nil
 }
@@ -512,7 +512,7 @@ func (u *UserStore) Delete(ctx context.Context, id int32) (err error) {
 		return err
 	}
 	if rows == 0 {
-		return userNotFoundErr{args: []interface{}{id}}
+		return userNotFoundErr{args: []any{id}}
 	}
 
 	// Release the username so it can be used by another user or org.
@@ -607,7 +607,7 @@ func (u *UserStore) HardDelete(ctx context.Context, id int32) (err error) {
 		return err
 	}
 	if rows == 0 {
-		return userNotFoundErr{args: []interface{}{id}}
+		return userNotFoundErr{args: []any{id}}
 	}
 
 	logUserDeletionEvent(ctx, u.Handle().DB(), id, SecurityEventNameAccountNuked)
@@ -774,7 +774,7 @@ func (u *UserStore) InvalidateSessionsByID(ctx context.Context, id int32) (err e
 		return err
 	}
 	if nrows == 0 {
-		return userNotFoundErr{args: []interface{}{id}}
+		return userNotFoundErr{args: []any{id}}
 	}
 	return nil
 }
@@ -1201,7 +1201,7 @@ func (u *UserStore) SetTag(ctx context.Context, userID int32, tag string, presen
 		return err
 	}
 	if nrows == 0 {
-		return userNotFoundErr{args: []interface{}{userID}}
+		return userNotFoundErr{args: []any{userID}}
 	}
 	return nil
 }
@@ -1218,7 +1218,7 @@ func (u *UserStore) HasTag(ctx context.Context, userID int32, tag string) (bool,
 	err := u.QueryRow(ctx, sqlf.Sprintf("SELECT tags FROM users WHERE id = %s", userID)).Scan(pq.Array(&tags))
 	if err != nil {
 		if err == sql.ErrNoRows {
-			return false, userNotFoundErr{[]interface{}{userID}}
+			return false, userNotFoundErr{[]any{userID}}
 		}
 		return false, err
 	}
@@ -1242,7 +1242,7 @@ func (u *UserStore) Tags(ctx context.Context, userID int32) (map[string]bool, er
 	err := u.QueryRow(ctx, sqlf.Sprintf("SELECT tags FROM users WHERE id = %s", userID)).Scan(pq.Array(&tags))
 	if err != nil {
 		if err == sql.ErrNoRows {
-			return nil, userNotFoundErr{[]interface{}{userID}}
+			return nil, userNotFoundErr{[]any{userID}}
 		}
 		return nil, err
 	}

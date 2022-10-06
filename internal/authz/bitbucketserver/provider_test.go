@@ -300,7 +300,7 @@ func testProviderFetchRepoPerms(f *fixtures, cli *bitbucketserver.Client) func(*
 	}
 }
 
-func marshalJSON(v interface{}) []byte {
+func marshalJSON(v any) []byte {
 	bs, err := json.Marshal(v)
 	if err != nil {
 		panic(err)

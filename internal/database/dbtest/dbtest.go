@@ -20,7 +20,9 @@ import (
 // transaction if an error didn't occur.
 //
 // After opening this transaction, it executes the query
-//     SET CONSTRAINTS ALL DEFERRED
+//
+//	SET CONSTRAINTS ALL DEFERRED
+//
 // which aids in testing.
 func NewTx(t testing.TB, db *sql.DB) *sql.Tx {
 	tx, err := db.Begin()
@@ -169,7 +171,7 @@ func dbConn(t testing.TB, cfg *url.URL) *sql.DB {
 	return db
 }
 
-func dbExec(t testing.TB, db *sql.DB, q string, args ...interface{}) {
+func dbExec(t testing.TB, db *sql.DB, q string, args ...any) {
 	t.Helper()
 	_, err := db.Exec(q, args...)
 	if err != nil {

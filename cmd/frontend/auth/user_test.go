@@ -399,8 +399,8 @@ func TestGetAndSaveUser(t *testing.T) {
 						userID, safeErr, err := GetAndSaveUser(ctx, db, op)
 						for _, v := range []struct {
 							label string
-							got   interface{}
-							want  interface{}
+							got   any
+							want  any
 						}{
 							{"userID", userID, c.expUserID},
 							{"safeErr", safeErr, c.expSafeErr},

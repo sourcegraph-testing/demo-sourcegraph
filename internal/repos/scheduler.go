@@ -269,13 +269,12 @@ var configuredLimiter = func() *mutablelimiter.Limiter {
 // possible. We treat repos differently depending on which part of the
 // diff they are:
 //
-//
-//   Deleted    - remove from scheduler and queue.
-//   Added      - new repo, enqueue for asap clone.
-//   Modified   - likely new url or name. May also be a sign of new
-//                commits. Enqueue for asap clone (or fetch).
-//   Unmodified - we likely already have this cloned. Just rely on
-//                the scheduler and do not enqueue.
+//	Deleted    - remove from scheduler and queue.
+//	Added      - new repo, enqueue for asap clone.
+//	Modified   - likely new url or name. May also be a sign of new
+//	             commits. Enqueue for asap clone (or fetch).
+//	Unmodified - we likely already have this cloned. Just rely on
+//	             the scheduler and do not enqueue.
 func (s *updateScheduler) UpdateFromDiff(diff Diff) {
 	for _, r := range diff.Deleted {
 		s.remove(r)
@@ -377,7 +376,7 @@ func (s *updateScheduler) UpdateOnce(id api.RepoID, name api.RepoName) {
 }
 
 // DebugDump returns the state of the update scheduler for debugging.
-func (s *updateScheduler) DebugDump(ctx context.Context, db dbutil.DB) interface{} {
+func (s *updateScheduler) DebugDump(ctx context.Context, db dbutil.DB) any {
 	data := struct {
 		Name        string
 		UpdateQueue []*repoUpdate
@@ -627,7 +626,7 @@ func (q *updateQueue) Swap(i, j int) {
 	q.heap[j].Index = j
 }
 
-func (q *updateQueue) Push(x interface{}) {
+func (q *updateQueue) Push(x any) {
 	n := len(q.heap)
 	item := x.(*repoUpdate)
 	item.Index = n
@@ -636,7 +635,7 @@ func (q *updateQueue) Push(x interface{}) {
 	q.index[item.Repo.ID] = item
 }
 
-func (q *updateQueue) Pop() interface{} {
+func (q *updateQueue) Pop() any {
 	n := len(q.heap)
 	item := q.heap[n-1]
 	item.Index = -1 // for safety
@@ -871,7 +870,7 @@ func (s *schedule) Swap(i, j int) {
 	s.heap[j].Index = j
 }
 
-func (s *schedule) Push(x interface{}) {
+func (s *schedule) Push(x any) {
 	n := len(s.heap)
 	item := x.(*scheduledRepoUpdate)
 	item.Index = n
@@ -880,7 +879,7 @@ func (s *schedule) Push(x interface{}) {
 	schedKnownRepos.Inc()
 }
 
-func (s *schedule) Pop() interface{} {
+func (s *schedule) Pop() any {
 	n := len(s.heap)
 	item := s.heap[n-1]
 	item.Index = -1 // for safety

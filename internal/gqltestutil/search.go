@@ -60,7 +60,7 @@ query Search($query: String!) {
 	}
 }
 `
-	variables := map[string]interface{}{
+	variables := map[string]any{
 		"query": query,
 	}
 	var resp struct {
@@ -152,7 +152,7 @@ query Search($query: String!) {
 	}
 }
 `
-	variables := map[string]interface{}{
+	variables := map[string]any{
 		"query": query,
 	}
 	var resp struct {
@@ -196,7 +196,7 @@ query Search($query: String!) {
 	}
 }
 `
-	variables := map[string]interface{}{
+	variables := map[string]any{
 		"query": query,
 	}
 	var resp struct {
@@ -217,7 +217,7 @@ query Search($query: String!) {
 }
 
 type AnyResult struct {
-	Inner interface{}
+	Inner any
 }
 
 func (r *AnyResult) UnmarshalJSON(b []byte) error {
@@ -262,7 +262,7 @@ type FileResult struct {
 	LineMatches []struct {
 		OffsetAndLengths [][2]int32 `json:"offsetAndLengths"`
 	} `json:"lineMatches"`
-	Symbols []interface{} `json:"symbols"`
+	Symbols []any `json:"symbols"`
 }
 
 type CommitResult struct {
@@ -307,7 +307,7 @@ query Search($query: String!) {
 	}
 }
 `
-	variables := map[string]interface{}{
+	variables := map[string]any{
 		"query": query,
 	}
 	var resp struct {
@@ -348,7 +348,7 @@ query SearchResultsStats($query: String!) {
 	}
 }
 `
-	variables := map[string]interface{}{
+	variables := map[string]any{
 		"query": query,
 	}
 	var resp struct {
@@ -367,7 +367,7 @@ query SearchResultsStats($query: String!) {
 }
 
 type SearchSuggestionsResult struct {
-	inner interface{}
+	inner any
 }
 
 func (srr *SearchSuggestionsResult) UnmarshalJSON(data []byte) error {
@@ -502,7 +502,7 @@ query SearchSuggestions($query: String!) {
 	}
 }`
 
-	variables := map[string]interface{}{
+	variables := map[string]any{
 		"query": query,
 	}
 
@@ -606,7 +606,7 @@ func (s *SearchStreamClient) SearchFiles(query string) (*SearchFileResults, erro
 	return &results, err
 }
 func (s *SearchStreamClient) SearchAll(query string) ([]*AnyResult, error) {
-	var results []interface{}
+	var results []any
 	err := s.search(query, streamhttp.Decoder{
 		OnMatches: func(matches []streamhttp.EventMatch) {
 			for _, m := range matches {
@@ -639,7 +639,7 @@ func (s *SearchStreamClient) SearchAll(query string) ([]*AnyResult, error) {
 					var r FileResult
 					r.File.Path = v.Path
 					r.Repository.Name = v.Repository
-					r.Symbols = make([]interface{}, len(v.Symbols))
+					r.Symbols = make([]any, len(v.Symbols))
 					results = append(results, &r)
 
 				case *streamhttp.EventCommitMatch:

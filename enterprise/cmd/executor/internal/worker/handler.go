@@ -207,7 +207,7 @@ func scriptNameFromJobStep(job executor.Job, i int) string {
 }
 
 func createHoneyEvent(ctx context.Context, job executor.Job, err error, duration time.Duration) *libhoney.Event {
-	fields := map[string]interface{}{
+	fields := map[string]any{
 		"duration_ms":    duration.Milliseconds(),
 		"recordID":       job.RecordID(),
 		"repositoryName": job.RepositoryName,

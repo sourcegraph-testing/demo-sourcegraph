@@ -153,9 +153,9 @@ var deeplyMergedSettingsFields = map[string]int{
 // deeplyMergedSettingsFields.
 func mergeSettings(jsonSettingsStrings []string) ([]byte, error) {
 	var errs []error
-	merged := map[string]interface{}{}
+	merged := map[string]any{}
 	for _, s := range jsonSettingsStrings {
-		var o map[string]interface{}
+		var o map[string]any
 		if err := jsonc.Unmarshal(s, &o); err != nil {
 			errs = append(errs, err)
 		}
@@ -174,16 +174,16 @@ func mergeSettings(jsonSettingsStrings []string) ([]byte, error) {
 	return out, errors.Errorf("errors merging settings: %q", errs)
 }
 
-func mergeSettingsValues(dst map[string]interface{}, field string, value interface{}, depth int) {
+func mergeSettingsValues(dst map[string]any, field string, value any, depth int) {
 	// Try to deeply merge this field.
 	if depth > 0 {
-		if mv, ok := dst[field].([]interface{}); dst[field] == nil || ok {
-			if cv, ok := value.([]interface{}); dst[field] != nil || (value != nil && ok) {
+		if mv, ok := dst[field].([]any); dst[field] == nil || ok {
+			if cv, ok := value.([]any); dst[field] != nil || (value != nil && ok) {
 				dst[field] = append(mv, cv...)
 				return
 			}
-		} else if mv, ok := dst[field].(map[string]interface{}); dst[field] == nil || ok {
-			if cv, ok := value.(map[string]interface{}); dst[field] != nil || (value != nil && ok) {
+		} else if mv, ok := dst[field].(map[string]any); dst[field] == nil || ok {
+			if cv, ok := value.(map[string]any); dst[field] != nil || (value != nil && ok) {
 				for key, value := range cv {
 					mergeSettingsValues(mv, key, value, depth-1)
 				}

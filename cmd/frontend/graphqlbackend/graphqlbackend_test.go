@@ -78,7 +78,7 @@ func TestResolverTo(t *testing.T) {
 	// run. The To* resolvers are stored in a map in our graphql
 	// implementation => the order we call them is non deterministic =>
 	// codecov coverage reports are noisy.
-	resolvers := []interface{}{
+	resolvers := []any{
 		&FileMatchResolver{db: db},
 		&GitTreeEntryResolver{db: db},
 		&NamespaceResolver{},
@@ -301,7 +301,7 @@ func TestAffiliatedRepositories(t *testing.T) {
 			ExpectedResult: `null`,
 			ExpectedErrors: []*gqlerrors.QueryError{
 				{
-					Path:          []interface{}{"affiliatedRepositories"},
+					Path:          []any{"affiliatedRepositories"},
 					Message:       "Must be authenticated as user with id 1",
 					ResolverError: &backend.InsufficientAuthorizationError{Message: fmt.Sprintf("Must be authenticated as user with id %d", 1)},
 				},
@@ -410,7 +410,7 @@ func TestAffiliatedRepositories(t *testing.T) {
 			ExpectedResult: `null`,
 			ExpectedErrors: []*gqlerrors.QueryError{
 				{
-					Path:          []interface{}{"affiliatedRepositories", "nodes"},
+					Path:          []any{"affiliatedRepositories", "nodes"},
 					Message:       "failed to fetch from any code host",
 					ResolverError: errors.New("failed to fetch from any code host"),
 				},

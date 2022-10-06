@@ -104,7 +104,7 @@ func (c *Client) Repos(ctx context.Context, pageToken *PageToken, accountName st
 	return repos, next, err
 }
 
-func (c *Client) page(ctx context.Context, path string, qry url.Values, token *PageToken, results interface{}) (*PageToken, error) {
+func (c *Client) page(ctx context.Context, path string, qry url.Values, token *PageToken, results any) (*PageToken, error) {
 	if qry == nil {
 		qry = make(url.Values)
 	}
@@ -122,7 +122,7 @@ func (c *Client) page(ctx context.Context, path string, qry url.Values, token *P
 // API 2.0 pagination renders the full link of next page in the response.
 // See more at https://developer.atlassian.com/bitbucket/api/2/reference/meta/pagination
 // However, for the very first request, use method page instead.
-func (c *Client) reqPage(ctx context.Context, url string, results interface{}) (*PageToken, error) {
+func (c *Client) reqPage(ctx context.Context, url string, results any) (*PageToken, error) {
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, err
@@ -131,7 +131,7 @@ func (c *Client) reqPage(ctx context.Context, url string, results interface{}) (
 	var next PageToken
 	err = c.do(ctx, req, &struct {
 		*PageToken
-		Values interface{} `json:"values"`
+		Values any `json:"values"`
 	}{
 		PageToken: &next,
 		Values:    results,
@@ -144,7 +144,7 @@ func (c *Client) reqPage(ctx context.Context, url string, results interface{}) (
 	return &next, nil
 }
 
-func (c *Client) do(ctx context.Context, req *http.Request, result interface{}) error {
+func (c *Client) do(ctx context.Context, req *http.Request, result any) error {
 	req.URL = c.URL.ResolveReference(req.URL)
 	req.Header.Set("Content-Type", "application/json; charset=utf-8")
 

@@ -130,7 +130,7 @@ func emailNotifySubscribeUnsubscribe(ctx context.Context, recipient *recipient, 
 	})
 }
 
-func sendEmail(ctx context.Context, userID int32, eventType string, template txtypes.Templates, data interface{}) error {
+func sendEmail(ctx context.Context, userID int32, eventType string, template txtypes.Templates, data any) error {
 	email, err := api.InternalClient.UserEmailsGetEmail(ctx, userID)
 	if err != nil {
 		return errors.Wrap(err, fmt.Sprintf("InternalClient.UserEmailsGetEmail for userID=%d", userID))

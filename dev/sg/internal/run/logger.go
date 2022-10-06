@@ -26,7 +26,7 @@ type cmdLogger struct {
 	done   chan struct{}
 }
 
-func nameToColor(s string, v ...interface{}) output.Style {
+func nameToColor(s string, v ...any) output.Style {
 	h := fnv.New32()
 	h.Write([]byte(s))
 	// We don't use 256 colors because some of those are too dark/bright and hard to read

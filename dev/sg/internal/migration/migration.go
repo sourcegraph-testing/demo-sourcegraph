@@ -625,7 +625,7 @@ type mLogger struct {
 	prefix string
 }
 
-func (m mLogger) Printf(f string, i ...interface{}) {
+func (m mLogger) Printf(f string, i ...any) {
 	m.block.Writef(m.prefix+strings.TrimSpace(f), i...)
 }
 func (mLogger) Verbose() bool {

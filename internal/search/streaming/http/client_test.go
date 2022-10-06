@@ -12,7 +12,7 @@ import (
 func TestDecoder(t *testing.T) {
 	type Event struct {
 		Name  string
-		Value interface{}
+		Value any
 	}
 
 	want := []Event{{

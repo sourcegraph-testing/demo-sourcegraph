@@ -23,7 +23,7 @@ type Value struct {
 }
 
 // Value returns the value as an interface{}.
-func (v *Value) Value() interface{} {
+func (v *Value) Value() any {
 	switch {
 	case v.String != nil:
 		return *v.String

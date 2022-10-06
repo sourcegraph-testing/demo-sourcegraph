@@ -133,12 +133,12 @@ type LoaderLoadAllFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c LoaderLoadAllFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c LoaderLoadAllFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c LoaderLoadAllFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c LoaderLoadAllFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }

@@ -206,7 +206,7 @@ func (c *Client) Heartbeat(ctx context.Context, queueName string, jobIDs []int) 
 	return knownIDs, nil
 }
 
-func (c *Client) makeRequest(method, path string, payload interface{}) (*http.Request, error) {
+func (c *Client) makeRequest(method, path string, payload any) (*http.Request, error) {
 	u, err := makeURL(
 		c.options.EndpointOptions.URL,
 		c.options.EndpointOptions.Username,
