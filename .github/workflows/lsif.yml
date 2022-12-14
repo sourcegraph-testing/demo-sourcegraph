@@ -5,7 +5,7 @@ jobs:
   lsif-go-root:
     if: github.repository == 'sourcegraph/sourcegraph'
     runs-on: ubuntu-latest
-    container: sourcegraph/lsif-go
+    container: sourcegraph/scip-go
     steps:
       - uses: actions/checkout@v2
       - name: Generate LSIF data
@@ -20,7 +20,7 @@ jobs:
   lsif-go-lib:
     if: github.repository == 'sourcegraph/sourcegraph'
     runs-on: ubuntu-latest
-    container: sourcegraph/lsif-go
+    container: sourcegraph/scip-go
     steps:
       - uses: actions/checkout@v2
       - name: Generate LSIF data
