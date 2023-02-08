@@ -192,7 +192,7 @@ docker-compose -f db-only-migrate.docker-compose.yaml up -d
 3. Copy the database files into the containers
 
 ```bash
-docker cp sourcegraph_db.out pgsql:/tmp/sourecgraph_db.out
+docker cp sourcegraph_db.out pgsql:/tmp/sourcegraph_db.out
 docker cp codeintel_db.out codeintel-db:/tmp/codeintel_db.out
 ```
 
@@ -260,7 +260,7 @@ docker-compose -f db-only-migrate.docker-compose.yaml up -d
 3. Copy the database files into the containers
 
 ```bash
-docker cp sourcegraph_db.out pgsql:/tmp/sourecgraph_db.out
+docker cp sourcegraph_db.out pgsql:/tmp/sourcegraph_db.out
 docker cp codeintel_db.out codeintel-db:/tmp/codeintel_db.out
 ```
 
