@@ -141,14 +141,14 @@ type WithHooksPostHandleFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c WithHooksPostHandleFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c WithHooksPostHandleFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c WithHooksPostHandleFuncCall) Results() []interface{} {
-	return []interface{}{}
+func (c WithHooksPostHandleFuncCall) Results() []any {
+	return []any{}
 }
 
 // WithHooksPreHandleFunc describes the behavior when the PreHandle method
@@ -243,12 +243,12 @@ type WithHooksPreHandleFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c WithHooksPreHandleFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c WithHooksPreHandleFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c WithHooksPreHandleFuncCall) Results() []interface{} {
-	return []interface{}{}
+func (c WithHooksPreHandleFuncCall) Results() []any {
+	return []any{}
 }

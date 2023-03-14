@@ -421,7 +421,7 @@ func (e *ExternalServiceStore) validatePerforceConnection(ctx context.Context, i
 
 // validateDuplicateRateLimits returns an error if given config has duplicated non-default rate limit
 // with another external service for the same code host.
-func (e *ExternalServiceStore) validateDuplicateRateLimits(ctx context.Context, id int64, kind string, parsedConfig interface{}) error {
+func (e *ExternalServiceStore) validateDuplicateRateLimits(ctx context.Context, id int64, kind string, parsedConfig any) error {
 	// Check if rate limit is already defined for this code host on another external service
 	rlc, err := extsvc.GetLimitFromConfig(kind, parsedConfig)
 	if err != nil {
@@ -1132,8 +1132,8 @@ ORDER BY es.id, essj.finished_at DESC
 // If no namespace is given, it returns all external services.
 //
 // 🚨 SECURITY: The caller must ensure one of the following:
-// 	- The actor is a site admin
-// 	- The opt.NamespaceUserID is same as authenticated user ID (i.e. actor.UID)
+//   - The actor is a site admin
+//   - The opt.NamespaceUserID is same as authenticated user ID (i.e. actor.UID)
 func (e *ExternalServiceStore) List(ctx context.Context, opt ExternalServicesListOptions) ([]*types.ExternalService, error) {
 	if Mocks.ExternalServices.List != nil {
 		return Mocks.ExternalServices.List(opt)

@@ -2,8 +2,8 @@
 //
 // Usage:
 //
-//    pipeline := buildkite.Pipeline{}
-//    pipeline.AddStep("check_mark", buildkite.Cmd("./dev/check/all.sh"))
+//	pipeline := buildkite.Pipeline{}
+//	pipeline.AddStep("check_mark", buildkite.Cmd("./dev/check/all.sh"))
 package buildkite
 
 import (
@@ -14,32 +14,32 @@ import (
 
 type Pipeline struct {
 	Env   map[string]string `json:"env,omitempty"`
-	Steps []interface{}     `json:"steps"`
+	Steps []any             `json:"steps"`
 }
 
 type BuildOptions struct {
-	Message  string                 `json:"message,omitempty"`
-	Commit   string                 `json:"commit,omitempty"`
-	Branch   string                 `json:"branch,omitempty"`
-	MetaData map[string]interface{} `json:"meta_data,omitempty"`
-	Env      map[string]string      `json:"env,omitempty"`
+	Message  string            `json:"message,omitempty"`
+	Commit   string            `json:"commit,omitempty"`
+	Branch   string            `json:"branch,omitempty"`
+	MetaData map[string]any    `json:"meta_data,omitempty"`
+	Env      map[string]string `json:"env,omitempty"`
 }
 
 type Step struct {
-	Label            string                 `json:"label"`
-	Command          []string               `json:"command,omitempty"`
-	TimeoutInMinutes string                 `json:"timeout_in_minutes,omitempty"`
-	Trigger          string                 `json:"trigger,omitempty"`
-	Async            bool                   `json:"async,omitempty"`
-	Build            *BuildOptions          `json:"build,omitempty"`
-	Env              map[string]string      `json:"env,omitempty"`
-	Plugins          map[string]interface{} `json:"plugins,omitempty"`
-	ArtifactPaths    string                 `json:"artifact_paths,omitempty"`
-	ConcurrencyGroup string                 `json:"concurrency_group,omitempty"`
-	Concurrency      int                    `json:"concurrency,omitempty"`
-	SoftFail         bool                   `json:"soft_fail,omitempty"`
-	Retry            *RetryOptions          `json:"retry,omitempty"`
-	Agents           map[string]string      `json:"agents,omitempty"`
+	Label            string            `json:"label"`
+	Command          []string          `json:"command,omitempty"`
+	TimeoutInMinutes string            `json:"timeout_in_minutes,omitempty"`
+	Trigger          string            `json:"trigger,omitempty"`
+	Async            bool              `json:"async,omitempty"`
+	Build            *BuildOptions     `json:"build,omitempty"`
+	Env              map[string]string `json:"env,omitempty"`
+	Plugins          map[string]any    `json:"plugins,omitempty"`
+	ArtifactPaths    string            `json:"artifact_paths,omitempty"`
+	ConcurrencyGroup string            `json:"concurrency_group,omitempty"`
+	Concurrency      int               `json:"concurrency,omitempty"`
+	SoftFail         bool              `json:"soft_fail,omitempty"`
+	Retry            *RetryOptions     `json:"retry,omitempty"`
+	Agents           map[string]string `json:"agents,omitempty"`
 }
 
 type RetryOptions struct {
@@ -50,7 +50,7 @@ type AutomaticRetryOptions struct {
 	Limit int `json:"limit,omitempty"`
 }
 
-var Plugins = make(map[string]interface{})
+var Plugins = make(map[string]any)
 
 // BeforeEveryStepOpts are e.g. commands that are run before every AddStep, similar to
 // Plugins.

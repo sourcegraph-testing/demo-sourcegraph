@@ -128,16 +128,16 @@ func (c *V3Client) RateLimitMonitor() *ratelimit.Monitor {
 	return c.rateLimitMonitor
 }
 
-func (c *V3Client) requestGet(ctx context.Context, requestURI string, result interface{}) error {
+func (c *V3Client) requestGet(ctx context.Context, requestURI string, result any) error {
 	_, err := c.get(ctx, requestURI, result)
 	return err
 }
 
-func (c *V3Client) requestGetWithHeader(ctx context.Context, requestURI string, result interface{}) (http.Header, error) {
+func (c *V3Client) requestGetWithHeader(ctx context.Context, requestURI string, result any) (http.Header, error) {
 	return c.get(ctx, requestURI, result)
 }
 
-func (c *V3Client) get(ctx context.Context, requestURI string, result interface{}) (http.Header, error) {
+func (c *V3Client) get(ctx context.Context, requestURI string, result any) (http.Header, error) {
 	req, err := http.NewRequest("GET", requestURI, nil)
 	if err != nil {
 		return nil, err
@@ -219,7 +219,7 @@ func (c *V3Client) GetVersion(ctx context.Context) (string, error) {
 		return "unknown", nil
 	}
 
-	var empty interface{}
+	var empty any
 
 	header, err := c.requestGetWithHeader(ctx, "/", &empty)
 	if err != nil {

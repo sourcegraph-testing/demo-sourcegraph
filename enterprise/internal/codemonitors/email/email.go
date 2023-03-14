@@ -87,7 +87,7 @@ func NewTestTemplateDataForNewSearchResults(ctx context.Context, monitorDescript
 	}
 }
 
-func sendEmail(ctx context.Context, userID int32, template txtypes.Templates, data interface{}) error {
+func sendEmail(ctx context.Context, userID int32, template txtypes.Templates, data any) error {
 	email, err := api.InternalClient.UserEmailsGetEmail(ctx, userID)
 	if err != nil {
 		return errors.Errorf("InternalClient.UserEmailsGetEmail for userID=%d: %w", userID, err)

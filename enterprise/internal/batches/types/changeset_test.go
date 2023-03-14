@@ -93,7 +93,7 @@ func TestChangeset_DiffStat(t *testing.T) {
 
 func TestChangeset_SetMetadata(t *testing.T) {
 	for name, tc := range map[string]struct {
-		meta interface{}
+		meta any
 		want *Changeset
 	}{
 		"bitbucketserver": {
@@ -153,7 +153,7 @@ func TestChangeset_SetMetadata(t *testing.T) {
 
 func TestChangeset_Title(t *testing.T) {
 	want := "foo"
-	for name, meta := range map[string]interface{}{
+	for name, meta := range map[string]any{
 		"bitbucketserver": &bitbucketserver.PullRequest{
 			Title: want,
 		},
@@ -186,7 +186,7 @@ func TestChangeset_Title(t *testing.T) {
 
 func TestChangeset_ExternalCreatedAt(t *testing.T) {
 	want := time.Unix(10, 0)
-	for name, meta := range map[string]interface{}{
+	for name, meta := range map[string]any{
 		"bitbucketserver": &bitbucketserver.PullRequest{
 			CreatedDate: 10 * 1000,
 		},
@@ -216,7 +216,7 @@ func TestChangeset_ExternalCreatedAt(t *testing.T) {
 
 func TestChangeset_Body(t *testing.T) {
 	want := "foo"
-	for name, meta := range map[string]interface{}{
+	for name, meta := range map[string]any{
 		"bitbucketserver": &bitbucketserver.PullRequest{
 			Description: want,
 		},
@@ -249,7 +249,7 @@ func TestChangeset_Body(t *testing.T) {
 
 func TestChangeset_URL(t *testing.T) {
 	want := "foo"
-	for name, meta := range map[string]interface{}{
+	for name, meta := range map[string]any{
 		"bitbucketserver": &bitbucketserver.PullRequest{
 			Links: struct {
 				Self []struct {
@@ -290,7 +290,7 @@ func TestChangeset_URL(t *testing.T) {
 
 func TestChangeset_HeadRefOid(t *testing.T) {
 	for name, tc := range map[string]struct {
-		meta interface{}
+		meta any
 		want string
 	}{
 		"bitbucketserver": {
@@ -330,7 +330,7 @@ func TestChangeset_HeadRefOid(t *testing.T) {
 
 func TestChangeset_HeadRef(t *testing.T) {
 	for name, tc := range map[string]struct {
-		meta interface{}
+		meta any
 		want string
 	}{
 		"bitbucketserver": {
@@ -372,7 +372,7 @@ func TestChangeset_HeadRef(t *testing.T) {
 
 func TestChangeset_BaseRefOid(t *testing.T) {
 	for name, tc := range map[string]struct {
-		meta interface{}
+		meta any
 		want string
 	}{
 		"bitbucketserver": {
@@ -412,7 +412,7 @@ func TestChangeset_BaseRefOid(t *testing.T) {
 
 func TestChangeset_BaseRef(t *testing.T) {
 	for name, tc := range map[string]struct {
-		meta interface{}
+		meta any
 		want string
 	}{
 		"bitbucketserver": {
@@ -454,7 +454,7 @@ func TestChangeset_BaseRef(t *testing.T) {
 
 func TestChangeset_Labels(t *testing.T) {
 	for name, tc := range map[string]struct {
-		meta interface{}
+		meta any
 		want []ChangesetLabel
 	}{
 		"bitbucketserver": {

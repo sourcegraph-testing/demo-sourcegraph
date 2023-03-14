@@ -169,7 +169,7 @@ func Lock() {
 		}
 	}
 
-	expvar.Publish("env", expvar.Func(func() interface{} {
+	expvar.Publish("env", expvar.Func(func() any {
 		return env
 	}))
 }

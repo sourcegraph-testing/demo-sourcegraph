@@ -17,8 +17,8 @@ import (
 
 type changesetEventUpdateMismatchError struct {
 	field    string
-	original interface{}
-	revised  interface{}
+	original any
+	revised  any
 }
 
 func (e *changesetEventUpdateMismatchError) Error() string {
@@ -90,7 +90,7 @@ type ChangesetEvent struct {
 	Key         string // Deduplication key
 	CreatedAt   time.Time
 	UpdatedAt   time.Time
-	Metadata    interface{}
+	Metadata    any
 }
 
 // Clone returns a clone of a ChangesetEvent.

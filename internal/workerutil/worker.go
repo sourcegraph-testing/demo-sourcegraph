@@ -275,7 +275,7 @@ func (w *Worker) handle(ctx context.Context, record Record) (err error) {
 }
 
 // preDequeueHook invokes the handler's pre-dequeue hook if it exists.
-func (w *Worker) preDequeueHook() (dequeueable bool, extraDequeueArguments interface{}, err error) {
+func (w *Worker) preDequeueHook() (dequeueable bool, extraDequeueArguments any, err error) {
 	if o, ok := w.handler.(WithPreDequeue); ok {
 		return o.PreDequeue(w.ctx)
 	}

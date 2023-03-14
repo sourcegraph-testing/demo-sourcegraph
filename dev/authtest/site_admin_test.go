@@ -80,7 +80,7 @@ func TestSiteAdminEndpoints(t *testing.T) {
 		type gqlTest struct {
 			name      string
 			query     string
-			variables map[string]interface{}
+			variables map[string]any
 		}
 		tests := []gqlTest{
 			{
@@ -185,7 +185,7 @@ mutation CreateAccessToken($userID: ID!) {
 		id
 	}
 }`,
-				variables: map[string]interface{}{
+				variables: map[string]any{
 					"userID": userClient.AuthenticatedUserID(),
 				},
 			}, {

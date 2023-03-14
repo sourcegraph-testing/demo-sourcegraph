@@ -2,48 +2,48 @@
 //
 // High-level ideas:
 //
-//     - Each service creates an observation Context that carries a root logger, tracer,
-//       and a metrics registerer as its context.
+//   - Each service creates an observation Context that carries a root logger, tracer,
+//     and a metrics registerer as its context.
 //
-//     - An observation Context can create an observation Operation which represents a
-//       section of code that can be invoked many times. An observation Operation is
-//       configured with state that applies to all invocation of the code.
+//   - An observation Context can create an observation Operation which represents a
+//     section of code that can be invoked many times. An observation Operation is
+//     configured with state that applies to all invocation of the code.
 //
-//     - An observation Operation can wrap a an invocation of a section of code by calling its
-//       With method. This prepares a trace and some state to be reconciled after the invocation
-//       has completed. The With method returns a function that, when deferred, will emit metrics,
-//       additional logs, and finalize the trace span.
+//   - An observation Operation can wrap a an invocation of a section of code by calling its
+//     With method. This prepares a trace and some state to be reconciled after the invocation
+//     has completed. The With method returns a function that, when deferred, will emit metrics,
+//     additional logs, and finalize the trace span.
 //
 // Sample usage:
 //
-//     observationContext := observation.NewContex(
-//         log15.Root(),
-//         &trace.Tracer{Tracer: opentracing.GlobalTracer()},
-//         prometheus.DefaultRegisterer,
-//     )
+//	observationContext := observation.NewContex(
+//	    log15.Root(),
+//	    &trace.Tracer{Tracer: opentracing.GlobalTracer()},
+//	    prometheus.DefaultRegisterer,
+//	)
 //
-//     metrics := metrics.NewOperationMetrics(
-//         observationContext.Registerer,
-//         "thing",
-//         metrics.WithLabels("op"),
-//     )
+//	metrics := metrics.NewOperationMetrics(
+//	    observationContext.Registerer,
+//	    "thing",
+//	    metrics.WithLabels("op"),
+//	)
 //
-//     operation := observationContext.Operation(observation.Op{
-//         Name:         "Thing.SomeOperation",
-//         MetricLabels: []string{"some_operation"},
-//         Metrics:      metrics,
-//     })
+//	operation := observationContext.Operation(observation.Op{
+//	    Name:         "Thing.SomeOperation",
+//	    MetricLabels: []string{"some_operation"},
+//	    Metrics:      metrics,
+//	})
 //
-//     function SomeOperation(ctx context.Context) (err error) {
-//         // logs and metrics may be available before or after the operation, so they
-//         // can be supplied either at the start of the operation, or after in the
-//         // defer of endObservation.
+//	function SomeOperation(ctx context.Context) (err error) {
+//	    // logs and metrics may be available before or after the operation, so they
+//	    // can be supplied either at the start of the operation, or after in the
+//	    // defer of endObservation.
 //
-//         ctx, endObservation := operation.With(ctx, &err, observation.Args{ /* logs and metrics */ })
-//         defer func() { endObservation(1, observation.Args{ /* additional logs and metrics */ }) }()
+//	    ctx, endObservation := operation.With(ctx, &err, observation.Args{ /* logs and metrics */ })
+//	    defer func() { endObservation(1, observation.Args{ /* additional logs and metrics */ }) }()
 //
-//         // ...
-//     }
+//	    // ...
+//	}
 //
 // Log fields and metric labels can be supplied at construction of an Operation, at invocation
 // of an operation (the With function), or after the invocation completes but before the observation
@@ -140,8 +140,8 @@ type Args struct {
 
 // LogFieldMap returns a string-to-interface map containing the contents of this Arg value's
 // log fields.
-func (args Args) LogFieldMap() map[string]interface{} {
-	fields := make(map[string]interface{}, len(args.LogFields))
+func (args Args) LogFieldMap() map[string]any {
+	fields := make(map[string]any, len(args.LogFields))
 	for _, field := range args.LogFields {
 		fields[field.Key()] = field.Value()
 	}
@@ -151,8 +151,8 @@ func (args Args) LogFieldMap() map[string]interface{} {
 
 // LogFieldPairs returns a slice of key, value, key, value, ... pairs containing the contents
 // of this Arg value's log fields.
-func (args Args) LogFieldPairs() []interface{} {
-	pairs := make([]interface{}, 0, len(args.LogFields)*2)
+func (args Args) LogFieldPairs() []any {
+	pairs := make([]any, 0, len(args.LogFields)*2)
 	for _, field := range args.LogFields {
 		pairs = append(pairs, field.Key(), field.Value())
 	}
@@ -217,7 +217,7 @@ func (op *Operation) emitErrorLogs(err *error, logFields []log.Field) {
 		return
 	}
 
-	var kvs []interface{}
+	var kvs []any
 	for _, field := range logFields {
 		kvs = append(kvs, field.Key(), field.Value())
 	}

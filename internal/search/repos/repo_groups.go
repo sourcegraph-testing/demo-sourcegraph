@@ -88,7 +88,7 @@ func ResolveRepoGroupsFromSettings(settings *schema.Settings) map[string][]RepoG
 			switch path := value.(type) {
 			case string:
 				repos = append(repos, RepoPath(path))
-			case map[string]interface{}:
+			case map[string]any:
 				if stringRegex, ok := path["regex"].(string); ok {
 					repos = append(repos, RepoRegexpPattern(stringRegex))
 				} else {

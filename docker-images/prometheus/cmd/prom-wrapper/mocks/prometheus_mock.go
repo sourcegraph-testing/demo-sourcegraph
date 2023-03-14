@@ -324,14 +324,14 @@ type APIAlertManagersFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c APIAlertManagersFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c APIAlertManagersFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c APIAlertManagersFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c APIAlertManagersFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // APIAlertsFunc describes the behavior when the Alerts method of the parent
@@ -429,14 +429,14 @@ type APIAlertsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c APIAlertsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c APIAlertsFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c APIAlertsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c APIAlertsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // APICleanTombstonesFunc describes the behavior when the CleanTombstones
@@ -532,14 +532,14 @@ type APICleanTombstonesFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c APICleanTombstonesFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c APICleanTombstonesFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c APICleanTombstonesFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c APICleanTombstonesFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // APIConfigFunc describes the behavior when the Config method of the parent
@@ -637,14 +637,14 @@ type APIConfigFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c APIConfigFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c APIConfigFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c APIConfigFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c APIConfigFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // APIDeleteSeriesFunc describes the behavior when the DeleteSeries method
@@ -748,14 +748,14 @@ type APIDeleteSeriesFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c APIDeleteSeriesFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
+func (c APIDeleteSeriesFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c APIDeleteSeriesFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c APIDeleteSeriesFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // APIFlagsFunc describes the behavior when the Flags method of the parent
@@ -853,14 +853,14 @@ type APIFlagsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c APIFlagsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c APIFlagsFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c APIFlagsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c APIFlagsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // APILabelNamesFunc describes the behavior when the LabelNames method of
@@ -967,14 +967,14 @@ type APILabelNamesFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c APILabelNamesFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c APILabelNamesFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c APILabelNamesFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c APILabelNamesFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // APILabelValuesFunc describes the behavior when the LabelValues method of
@@ -1084,14 +1084,14 @@ type APILabelValuesFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c APILabelValuesFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
+func (c APILabelValuesFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c APILabelValuesFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c APILabelValuesFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // APIMetadataFunc describes the behavior when the Metadata method of the
@@ -1195,14 +1195,14 @@ type APIMetadataFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c APIMetadataFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c APIMetadataFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c APIMetadataFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c APIMetadataFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // APIQueryFunc describes the behavior when the Query method of the parent
@@ -1309,14 +1309,14 @@ type APIQueryFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c APIQueryFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c APIQueryFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c APIQueryFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c APIQueryFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // APIQueryRangeFunc describes the behavior when the QueryRange method of
@@ -1423,14 +1423,14 @@ type APIQueryRangeFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c APIQueryRangeFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c APIQueryRangeFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c APIQueryRangeFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c APIQueryRangeFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // APIRulesFunc describes the behavior when the Rules method of the parent
@@ -1528,14 +1528,14 @@ type APIRulesFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c APIRulesFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c APIRulesFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c APIRulesFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c APIRulesFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // APIRuntimeinfoFunc describes the behavior when the Runtimeinfo method of
@@ -1633,14 +1633,14 @@ type APIRuntimeinfoFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c APIRuntimeinfoFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c APIRuntimeinfoFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c APIRuntimeinfoFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c APIRuntimeinfoFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // APISeriesFunc describes the behavior when the Series method of the parent
@@ -1750,14 +1750,14 @@ type APISeriesFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c APISeriesFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
+func (c APISeriesFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c APISeriesFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c APISeriesFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // APISnapshotFunc describes the behavior when the Snapshot method of the
@@ -1858,14 +1858,14 @@ type APISnapshotFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c APISnapshotFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c APISnapshotFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c APISnapshotFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c APISnapshotFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // APITSDBFunc describes the behavior when the TSDB method of the parent
@@ -1963,14 +1963,14 @@ type APITSDBFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c APITSDBFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c APITSDBFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c APITSDBFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c APITSDBFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // APITargetsFunc describes the behavior when the Targets method of the
@@ -2068,14 +2068,14 @@ type APITargetsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c APITargetsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c APITargetsFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c APITargetsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c APITargetsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // APITargetsMetadataFunc describes the behavior when the TargetsMetadata
@@ -2183,12 +2183,12 @@ type APITargetsMetadataFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c APITargetsMetadataFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
+func (c APITargetsMetadataFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c APITargetsMetadataFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c APITargetsMetadataFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }

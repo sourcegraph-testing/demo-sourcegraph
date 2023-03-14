@@ -173,14 +173,14 @@ type PositionAdjusterAdjustPathFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c PositionAdjusterAdjustPathFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
+func (c PositionAdjusterAdjustPathFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c PositionAdjusterAdjustPathFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c PositionAdjusterAdjustPathFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // PositionAdjusterAdjustPositionFunc describes the behavior when the
@@ -299,14 +299,14 @@ type PositionAdjusterAdjustPositionFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c PositionAdjusterAdjustPositionFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
+func (c PositionAdjusterAdjustPositionFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c PositionAdjusterAdjustPositionFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2, c.Result3}
+func (c PositionAdjusterAdjustPositionFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2, c.Result3}
 }
 
 // PositionAdjusterAdjustRangeFunc describes the behavior when the
@@ -424,12 +424,12 @@ type PositionAdjusterAdjustRangeFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c PositionAdjusterAdjustRangeFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
+func (c PositionAdjusterAdjustRangeFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c PositionAdjusterAdjustRangeFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2, c.Result3}
+func (c PositionAdjusterAdjustRangeFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2, c.Result3}
 }

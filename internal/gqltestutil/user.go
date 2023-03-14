@@ -18,7 +18,7 @@ mutation CreateUser($username: String!, $email: String) {
 	}
 }
 `
-	variables := map[string]interface{}{
+	variables := map[string]any{
 		"username": username,
 		"email":    email,
 	}
@@ -50,7 +50,7 @@ mutation DeleteUser($user: ID!, $hard: Boolean) {
 	}
 }
 `
-	variables := map[string]interface{}{
+	variables := map[string]any{
 		"user": id,
 		"hard": hard,
 	}
@@ -74,7 +74,7 @@ query User($username: String) {
 	}
 }
 `
-	variables := map[string]interface{}{
+	variables := map[string]any{
 		"username": username,
 	}
 	var resp struct {

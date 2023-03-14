@@ -46,7 +46,7 @@ func (h *handler) Handle(ctx context.Context, record workerutil.Record) error {
 	return err
 }
 
-func (h *handler) PreDequeue(ctx context.Context) (bool, interface{}, error) {
+func (h *handler) PreDequeue(ctx context.Context) (bool, any, error) {
 	if !h.enableBudget {
 		return true, nil, nil
 	}
@@ -280,7 +280,7 @@ func isUniqueConstraintViolation(err error) bool {
 }
 
 func createHoneyEvent(ctx context.Context, upload store.Upload, err error, duration time.Duration) *libhoney.Event {
-	fields := map[string]interface{}{
+	fields := map[string]any{
 		"duration_ms":    duration.Milliseconds(),
 		"uploadID":       upload.ID,
 		"repositoryID":   upload.RepositoryID,

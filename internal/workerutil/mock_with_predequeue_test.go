@@ -22,7 +22,7 @@ type MockWithPreDequeue struct {
 func NewMockWithPreDequeue() *MockWithPreDequeue {
 	return &MockWithPreDequeue{
 		PreDequeueFunc: &WithPreDequeuePreDequeueFunc{
-			defaultHook: func(context.Context) (bool, interface{}, error) {
+			defaultHook: func(context.Context) (bool, any, error) {
 				return false, nil, nil
 			},
 		},
@@ -43,15 +43,15 @@ func NewMockWithPreDequeueFrom(i WithPreDequeue) *MockWithPreDequeue {
 // WithPreDequeuePreDequeueFunc describes the behavior when the PreDequeue
 // method of the parent MockWithPreDequeue instance is invoked.
 type WithPreDequeuePreDequeueFunc struct {
-	defaultHook func(context.Context) (bool, interface{}, error)
-	hooks       []func(context.Context) (bool, interface{}, error)
+	defaultHook func(context.Context) (bool, any, error)
+	hooks       []func(context.Context) (bool, any, error)
 	history     []WithPreDequeuePreDequeueFuncCall
 	mutex       sync.Mutex
 }
 
 // PreDequeue delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
-func (m *MockWithPreDequeue) PreDequeue(v0 context.Context) (bool, interface{}, error) {
+func (m *MockWithPreDequeue) PreDequeue(v0 context.Context) (bool, any, error) {
 	r0, r1, r2 := m.PreDequeueFunc.nextHook()(v0)
 	m.PreDequeueFunc.appendCall(WithPreDequeuePreDequeueFuncCall{v0, r0, r1, r2})
 	return r0, r1, r2
@@ -60,7 +60,7 @@ func (m *MockWithPreDequeue) PreDequeue(v0 context.Context) (bool, interface{}, 
 // SetDefaultHook sets function that is called when the PreDequeue method of
 // the parent MockWithPreDequeue instance is invoked and the hook queue is
 // empty.
-func (f *WithPreDequeuePreDequeueFunc) SetDefaultHook(hook func(context.Context) (bool, interface{}, error)) {
+func (f *WithPreDequeuePreDequeueFunc) SetDefaultHook(hook func(context.Context) (bool, any, error)) {
 	f.defaultHook = hook
 }
 
@@ -68,7 +68,7 @@ func (f *WithPreDequeuePreDequeueFunc) SetDefaultHook(hook func(context.Context)
 // PreDequeue method of the parent MockWithPreDequeue instance invokes the
 // hook at the front of the queue and discards it. After the queue is empty,
 // the default hook function is invoked for any future action.
-func (f *WithPreDequeuePreDequeueFunc) PushHook(hook func(context.Context) (bool, interface{}, error)) {
+func (f *WithPreDequeuePreDequeueFunc) PushHook(hook func(context.Context) (bool, any, error)) {
 	f.mutex.Lock()
 	f.hooks = append(f.hooks, hook)
 	f.mutex.Unlock()
@@ -76,21 +76,21 @@ func (f *WithPreDequeuePreDequeueFunc) PushHook(hook func(context.Context) (bool
 
 // SetDefaultReturn calls SetDefaultDefaultHook with a function that returns
 // the given values.
-func (f *WithPreDequeuePreDequeueFunc) SetDefaultReturn(r0 bool, r1 interface{}, r2 error) {
-	f.SetDefaultHook(func(context.Context) (bool, interface{}, error) {
+func (f *WithPreDequeuePreDequeueFunc) SetDefaultReturn(r0 bool, r1 any, r2 error) {
+	f.SetDefaultHook(func(context.Context) (bool, any, error) {
 		return r0, r1, r2
 	})
 }
 
 // PushReturn calls PushDefaultHook with a function that returns the given
 // values.
-func (f *WithPreDequeuePreDequeueFunc) PushReturn(r0 bool, r1 interface{}, r2 error) {
-	f.PushHook(func(context.Context) (bool, interface{}, error) {
+func (f *WithPreDequeuePreDequeueFunc) PushReturn(r0 bool, r1 any, r2 error) {
+	f.PushHook(func(context.Context) (bool, any, error) {
 		return r0, r1, r2
 	})
 }
 
-func (f *WithPreDequeuePreDequeueFunc) nextHook() func(context.Context) (bool, interface{}, error) {
+func (f *WithPreDequeuePreDequeueFunc) nextHook() func(context.Context) (bool, any, error) {
 	f.mutex.Lock()
 	defer f.mutex.Unlock()
 
@@ -131,7 +131,7 @@ type WithPreDequeuePreDequeueFuncCall struct {
 	Result0 bool
 	// Result1 is the value of the 2nd result returned from this method
 	// invocation.
-	Result1 interface{}
+	Result1 any
 	// Result2 is the value of the 3rd result returned from this method
 	// invocation.
 	Result2 error
@@ -139,12 +139,12 @@ type WithPreDequeuePreDequeueFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c WithPreDequeuePreDequeueFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c WithPreDequeuePreDequeueFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c WithPreDequeuePreDequeueFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c WithPreDequeuePreDequeueFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }

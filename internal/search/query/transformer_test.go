@@ -10,10 +10,10 @@ import (
 	"github.com/hexops/autogold"
 )
 
-func toJSON(node Node) interface{} {
+func toJSON(node Node) any {
 	switch n := node.(type) {
 	case Operator:
-		var jsons []interface{}
+		var jsons []any
 		for _, o := range n.Operands {
 			jsons = append(jsons, toJSON(o))
 		}
@@ -21,19 +21,19 @@ func toJSON(node Node) interface{} {
 		switch n.Kind {
 		case And:
 			return struct {
-				And []interface{} `json:"and"`
+				And []any `json:"and"`
 			}{
 				And: jsons,
 			}
 		case Or:
 			return struct {
-				Or []interface{} `json:"or"`
+				Or []any `json:"or"`
 			}{
 				Or: jsons,
 			}
 		case Concat:
 			return struct {
-				Concat []interface{} `json:"concat"`
+				Concat []any `json:"concat"`
 			}{
 				Concat: jsons,
 			}
@@ -64,7 +64,7 @@ func toJSON(node Node) interface{} {
 }
 
 func nodesToJSON(nodes []Node) string {
-	var jsons []interface{}
+	var jsons []any
 	for _, node := range nodes {
 		jsons = append(jsons, toJSON(node))
 	}

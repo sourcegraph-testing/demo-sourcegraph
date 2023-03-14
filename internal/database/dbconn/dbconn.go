@@ -326,7 +326,7 @@ var postgresBulkInsertRowsPattern = lazyregexp.New(`(\([$\d,\s]+\)[,\s]*)+`)
 var postgresBulkInsertRowsReplacement = []byte("(...) ")
 
 // Before implements sqlhooks.Hooks
-func (h *hook) Before(ctx context.Context, query string, args ...interface{}) (context.Context, error) {
+func (h *hook) Before(ctx context.Context, query string, args ...any) (context.Context, error) {
 	if BulkInsertion(ctx) {
 		query = string(postgresBulkInsertRowsPattern.ReplaceAll([]byte(query), postgresBulkInsertRowsReplacement))
 	}
@@ -361,7 +361,7 @@ func (h *hook) Before(ctx context.Context, query string, args ...interface{}) (c
 }
 
 // After implements sqlhooks.Hooks
-func (h *hook) After(ctx context.Context, query string, args ...interface{}) (context.Context, error) {
+func (h *hook) After(ctx context.Context, query string, args ...any) (context.Context, error) {
 	if tr := trace.TraceFromContext(ctx); tr != nil {
 		tr.Finish()
 	}
@@ -369,7 +369,7 @@ func (h *hook) After(ctx context.Context, query string, args ...interface{}) (co
 }
 
 // OnError implements sqlhooks.OnError
-func (h *hook) OnError(ctx context.Context, err error, query string, args ...interface{}) error {
+func (h *hook) OnError(ctx context.Context, err error, query string, args ...any) error {
 	if tr := trace.TraceFromContext(ctx); tr != nil {
 		tr.SetError(err)
 		tr.Finish()

@@ -120,7 +120,7 @@ type enqueuePayload struct {
 // `src lsif upload` command will cause one of two sequences of requests to occur. For uploads that
 // are small enough repos (that can be uploaded in one-shot), only one request will be made:
 //
-//    - POST `/upload?repositoryId,commit,root,indexerName`
+//   - POST `/upload?repositoryId,commit,root,indexerName`
 //
 // For larger uploads, the requests are broken up into a setup request, a serires of upload requests,
 // and a finalization request:
@@ -135,7 +135,7 @@ type enqueuePayload struct {
 //   - handleEnqueueMultipartSetup
 //   - handleEnqueueMultipartUpload
 //   - handleEnqueueMultipartFinalize
-func (h *UploadHandler) handleEnqueueErr(w http.ResponseWriter, r *http.Request, repositoryID int) (interface{}, error) {
+func (h *UploadHandler) handleEnqueueErr(w http.ResponseWriter, r *http.Request, repositoryID int) (any, error) {
 	ctx := r.Context()
 
 	uploadArgs := UploadArgs{
@@ -187,7 +187,7 @@ func (h *UploadHandler) handleEnqueueErr(w http.ResponseWriter, r *http.Request,
 
 // handleEnqueueSinglePayload handles a non-multipart upload. This creates an upload record
 // with state 'queued', proxies the data to the bundle manager, and returns the generated ID.
-func (h *UploadHandler) handleEnqueueSinglePayload(r *http.Request, uploadArgs UploadArgs) (interface{}, error) {
+func (h *UploadHandler) handleEnqueueSinglePayload(r *http.Request, uploadArgs UploadArgs) (any, error) {
 	ctx := r.Context()
 
 	if uploadArgs.Indexer == "" {
@@ -243,7 +243,7 @@ func (h *UploadHandler) handleEnqueueSinglePayload(r *http.Request, uploadArgs U
 // handleEnqueueMultipartSetup handles the first request in a multipart upload. This creates a
 // new upload record with state 'uploading' and returns the generated ID to be used in subsequent
 // requests for the same upload.
-func (h *UploadHandler) handleEnqueueMultipartSetup(r *http.Request, uploadArgs UploadArgs, numParts int) (interface{}, error) {
+func (h *UploadHandler) handleEnqueueMultipartSetup(r *http.Request, uploadArgs UploadArgs, numParts int) (any, error) {
 	ctx := r.Context()
 
 	id, err := h.dbStore.InsertUpload(ctx, store.Upload{
@@ -273,7 +273,7 @@ func (h *UploadHandler) handleEnqueueMultipartSetup(r *http.Request, uploadArgs 
 
 // handleEnqueueMultipartUpload handles a partial upload in a multipart upload. This proxies the
 // data to the bundle manager and marks the part index in the upload record.
-func (h *UploadHandler) handleEnqueueMultipartUpload(r *http.Request, upload store.Upload, partIndex int) (interface{}, error) {
+func (h *UploadHandler) handleEnqueueMultipartUpload(r *http.Request, upload store.Upload, partIndex int) (any, error) {
 	ctx := r.Context()
 	if _, err := h.uploadStore.Upload(ctx, fmt.Sprintf("upload-%d.%d.lsif.gz", upload.ID, partIndex), r.Body); err != nil {
 		h.markUploadAsFailed(context.Background(), h.dbStore, upload.ID, err)
@@ -290,7 +290,7 @@ func (h *UploadHandler) handleEnqueueMultipartUpload(r *http.Request, upload sto
 // handleEnqueueMultipartFinalize handles the final request of a multipart upload. This transitions the
 // upload from 'uploading' to 'queued', then instructs the bundle manager to concatenate all of the part
 // files together.
-func (h *UploadHandler) handleEnqueueMultipartFinalize(r *http.Request, upload store.Upload) (interface{}, error) {
+func (h *UploadHandler) handleEnqueueMultipartFinalize(r *http.Request, upload store.Upload) (any, error) {
 	ctx := r.Context()
 
 	if len(upload.UploadedParts) != upload.NumParts {

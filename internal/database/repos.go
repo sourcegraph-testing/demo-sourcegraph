@@ -1140,7 +1140,7 @@ func nullStringColumn(s string) *string {
 	return &s
 }
 
-func metadataColumn(metadata interface{}) (msg json.RawMessage, err error) {
+func metadataColumn(metadata any) (msg json.RawMessage, err error) {
 	switch m := metadata.(type) {
 	case nil:
 		msg = json.RawMessage("{}")

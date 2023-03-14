@@ -26,8 +26,8 @@ type GraphQLError struct {
 // GraphQL query and helps e.g. a site admin know where such a query may be coming from. Importantly,
 // unnamed queries (empty string) are considered to be unknown end-user API requests and as such will
 // have the entire GraphQL request logged by the frontend, and cannot be uniquely identified in monitoring.
-func QueryGraphQL(ctx context.Context, endpoint, queryName string, token, query string, variables map[string]interface{}, target interface{}) error {
-	body, err := json.Marshal(map[string]interface{}{
+func QueryGraphQL(ctx context.Context, endpoint, queryName string, token, query string, variables map[string]any, target any) error {
+	body, err := json.Marshal(map[string]any{
 		"query":     query,
 		"variables": variables,
 	})

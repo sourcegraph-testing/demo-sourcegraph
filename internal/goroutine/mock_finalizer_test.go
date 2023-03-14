@@ -120,12 +120,12 @@ type FinalizerOnShutdownFuncCall struct{}
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c FinalizerOnShutdownFuncCall) Args() []interface{} {
-	return []interface{}{}
+func (c FinalizerOnShutdownFuncCall) Args() []any {
+	return []any{}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c FinalizerOnShutdownFuncCall) Results() []interface{} {
-	return []interface{}{}
+func (c FinalizerOnShutdownFuncCall) Results() []any {
+	return []any{}
 }

@@ -223,7 +223,7 @@ func seriesPointsQuery(opts SeriesPointsOpts) *sqlf.Query {
 	)
 }
 
-//values constructs a SQL values statement out of an array of repository ids
+// values constructs a SQL values statement out of an array of repository ids
 func values(ids []api.RepoID) string {
 	if len(ids) == 0 {
 		return ""
@@ -311,7 +311,7 @@ type RecordSeriesPointArgs struct {
 	//
 	// See the DB schema comments for intended use cases. This should generally be small,
 	// low-cardinality data to avoid inflating the table.
-	Metadata interface{}
+	Metadata any
 }
 
 // RecordSeriesPoint records a data point for the specfied series ID (which is a unique ID for the
@@ -423,7 +423,7 @@ func (s *Store) query(ctx context.Context, q *sqlf.Query, sc scanFunc) error {
 
 // scanner captures the Scan method of sql.Rows and sql.Row
 type scanner interface {
-	Scan(dst ...interface{}) error
+	Scan(dst ...any) error
 }
 
 // a scanFunc scans one or more rows from a scanner, returning

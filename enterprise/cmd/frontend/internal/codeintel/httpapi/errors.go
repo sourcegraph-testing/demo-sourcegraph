@@ -10,6 +10,6 @@ func (e *ClientError) Error() string {
 	return e.err.Error()
 }
 
-func clientError(message string, vals ...interface{}) error {
+func clientError(message string, vals ...any) error {
 	return &ClientError{err: errors.Errorf(message, vals...)}
 }

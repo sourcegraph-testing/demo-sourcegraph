@@ -264,14 +264,14 @@ type WorkerStoreAddExecutionLogEntryFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c WorkerStoreAddExecutionLogEntryFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
+func (c WorkerStoreAddExecutionLogEntryFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c WorkerStoreAddExecutionLogEntryFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c WorkerStoreAddExecutionLogEntryFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // WorkerStoreDequeueFunc describes the behavior when the Dequeue method of
@@ -379,14 +379,14 @@ type WorkerStoreDequeueFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c WorkerStoreDequeueFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c WorkerStoreDequeueFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c WorkerStoreDequeueFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c WorkerStoreDequeueFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // WorkerStoreHandleFunc describes the behavior when the Handle method of
@@ -478,14 +478,14 @@ type WorkerStoreHandleFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c WorkerStoreHandleFuncCall) Args() []interface{} {
-	return []interface{}{}
+func (c WorkerStoreHandleFuncCall) Args() []any {
+	return []any{}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c WorkerStoreHandleFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c WorkerStoreHandleFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // WorkerStoreHeartbeatFunc describes the behavior when the Heartbeat method
@@ -590,14 +590,14 @@ type WorkerStoreHeartbeatFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c WorkerStoreHeartbeatFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c WorkerStoreHeartbeatFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c WorkerStoreHeartbeatFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c WorkerStoreHeartbeatFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // WorkerStoreMarkCompleteFunc describes the behavior when the MarkComplete
@@ -702,14 +702,14 @@ type WorkerStoreMarkCompleteFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c WorkerStoreMarkCompleteFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c WorkerStoreMarkCompleteFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c WorkerStoreMarkCompleteFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c WorkerStoreMarkCompleteFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // WorkerStoreMarkErroredFunc describes the behavior when the MarkErrored
@@ -817,14 +817,14 @@ type WorkerStoreMarkErroredFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c WorkerStoreMarkErroredFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
+func (c WorkerStoreMarkErroredFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c WorkerStoreMarkErroredFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c WorkerStoreMarkErroredFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // WorkerStoreMarkFailedFunc describes the behavior when the MarkFailed
@@ -932,14 +932,14 @@ type WorkerStoreMarkFailedFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c WorkerStoreMarkFailedFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
+func (c WorkerStoreMarkFailedFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c WorkerStoreMarkFailedFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c WorkerStoreMarkFailedFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // WorkerStoreQueuedCountFunc describes the behavior when the QueuedCount
@@ -1041,14 +1041,14 @@ type WorkerStoreQueuedCountFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c WorkerStoreQueuedCountFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c WorkerStoreQueuedCountFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c WorkerStoreQueuedCountFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c WorkerStoreQueuedCountFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // WorkerStoreRequeueFunc describes the behavior when the Requeue method of
@@ -1150,14 +1150,14 @@ type WorkerStoreRequeueFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c WorkerStoreRequeueFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c WorkerStoreRequeueFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c WorkerStoreRequeueFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c WorkerStoreRequeueFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // WorkerStoreResetStalledFunc describes the behavior when the ResetStalled
@@ -1259,14 +1259,14 @@ type WorkerStoreResetStalledFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c WorkerStoreResetStalledFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c WorkerStoreResetStalledFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c WorkerStoreResetStalledFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c WorkerStoreResetStalledFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // WorkerStoreUpdateExecutionLogEntryFunc describes the behavior when the
@@ -1377,12 +1377,12 @@ type WorkerStoreUpdateExecutionLogEntryFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c WorkerStoreUpdateExecutionLogEntryFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
+func (c WorkerStoreUpdateExecutionLogEntryFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c WorkerStoreUpdateExecutionLogEntryFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c WorkerStoreUpdateExecutionLogEntryFuncCall) Results() []any {
+	return []any{c.Result0}
 }

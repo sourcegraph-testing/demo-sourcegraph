@@ -20,7 +20,7 @@ import (
 //
 // TODO(sqs): Also validate it against the JSON Schema.
 func validateExtensionManifest(text string) error {
-	var o interface{}
+	var o any
 	return jsonc.Unmarshal(text, &o)
 }
 
@@ -80,7 +80,7 @@ func getLatestForBatch(ctx context.Context, vs []*dbExtension) (map[int32]*dbRel
 // the date that the release was published.
 func prepReleaseManifest(extensionID string, release *dbRelease) error {
 	// Add URL to bundle if necessary.
-	o := make(map[string]interface{})
+	o := make(map[string]any)
 	if err := json.Unmarshal([]byte(release.Manifest), &o); err != nil {
 		return err
 	}

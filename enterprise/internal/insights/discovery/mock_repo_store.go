@@ -140,12 +140,12 @@ type RepoStoreListFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c RepoStoreListFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c RepoStoreListFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c RepoStoreListFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c RepoStoreListFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }

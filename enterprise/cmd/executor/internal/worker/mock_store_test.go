@@ -49,7 +49,7 @@ func NewMockStore() *MockStore {
 			},
 		},
 		DequeueFunc: &StoreDequeueFunc{
-			defaultHook: func(context.Context, string, interface{}) (workerutil.Record, bool, error) {
+			defaultHook: func(context.Context, string, any) (workerutil.Record, bool, error) {
 				return nil, false, nil
 			},
 		},
@@ -74,7 +74,7 @@ func NewMockStore() *MockStore {
 			},
 		},
 		QueuedCountFunc: &StoreQueuedCountFunc{
-			defaultHook: func(context.Context, interface{}) (int, error) {
+			defaultHook: func(context.Context, any) (int, error) {
 				return 0, nil
 			},
 		},
@@ -219,28 +219,28 @@ type StoreAddExecutionLogEntryFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c StoreAddExecutionLogEntryFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c StoreAddExecutionLogEntryFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c StoreAddExecutionLogEntryFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c StoreAddExecutionLogEntryFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // StoreDequeueFunc describes the behavior when the Dequeue method of the
 // parent MockStore instance is invoked.
 type StoreDequeueFunc struct {
-	defaultHook func(context.Context, string, interface{}) (workerutil.Record, bool, error)
-	hooks       []func(context.Context, string, interface{}) (workerutil.Record, bool, error)
+	defaultHook func(context.Context, string, any) (workerutil.Record, bool, error)
+	hooks       []func(context.Context, string, any) (workerutil.Record, bool, error)
 	history     []StoreDequeueFuncCall
 	mutex       sync.Mutex
 }
 
 // Dequeue delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
-func (m *MockStore) Dequeue(v0 context.Context, v1 string, v2 interface{}) (workerutil.Record, bool, error) {
+func (m *MockStore) Dequeue(v0 context.Context, v1 string, v2 any) (workerutil.Record, bool, error) {
 	r0, r1, r2 := m.DequeueFunc.nextHook()(v0, v1, v2)
 	m.DequeueFunc.appendCall(StoreDequeueFuncCall{v0, v1, v2, r0, r1, r2})
 	return r0, r1, r2
@@ -248,7 +248,7 @@ func (m *MockStore) Dequeue(v0 context.Context, v1 string, v2 interface{}) (work
 
 // SetDefaultHook sets function that is called when the Dequeue method of
 // the parent MockStore instance is invoked and the hook queue is empty.
-func (f *StoreDequeueFunc) SetDefaultHook(hook func(context.Context, string, interface{}) (workerutil.Record, bool, error)) {
+func (f *StoreDequeueFunc) SetDefaultHook(hook func(context.Context, string, any) (workerutil.Record, bool, error)) {
 	f.defaultHook = hook
 }
 
@@ -256,7 +256,7 @@ func (f *StoreDequeueFunc) SetDefaultHook(hook func(context.Context, string, int
 // Dequeue method of the parent MockStore instance invokes the hook at the
 // front of the queue and discards it. After the queue is empty, the default
 // hook function is invoked for any future action.
-func (f *StoreDequeueFunc) PushHook(hook func(context.Context, string, interface{}) (workerutil.Record, bool, error)) {
+func (f *StoreDequeueFunc) PushHook(hook func(context.Context, string, any) (workerutil.Record, bool, error)) {
 	f.mutex.Lock()
 	f.hooks = append(f.hooks, hook)
 	f.mutex.Unlock()
@@ -265,7 +265,7 @@ func (f *StoreDequeueFunc) PushHook(hook func(context.Context, string, interface
 // SetDefaultReturn calls SetDefaultDefaultHook with a function that returns
 // the given values.
 func (f *StoreDequeueFunc) SetDefaultReturn(r0 workerutil.Record, r1 bool, r2 error) {
-	f.SetDefaultHook(func(context.Context, string, interface{}) (workerutil.Record, bool, error) {
+	f.SetDefaultHook(func(context.Context, string, any) (workerutil.Record, bool, error) {
 		return r0, r1, r2
 	})
 }
@@ -273,12 +273,12 @@ func (f *StoreDequeueFunc) SetDefaultReturn(r0 workerutil.Record, r1 bool, r2 er
 // PushReturn calls PushDefaultHook with a function that returns the given
 // values.
 func (f *StoreDequeueFunc) PushReturn(r0 workerutil.Record, r1 bool, r2 error) {
-	f.PushHook(func(context.Context, string, interface{}) (workerutil.Record, bool, error) {
+	f.PushHook(func(context.Context, string, any) (workerutil.Record, bool, error) {
 		return r0, r1, r2
 	})
 }
 
-func (f *StoreDequeueFunc) nextHook() func(context.Context, string, interface{}) (workerutil.Record, bool, error) {
+func (f *StoreDequeueFunc) nextHook() func(context.Context, string, any) (workerutil.Record, bool, error) {
 	f.mutex.Lock()
 	defer f.mutex.Unlock()
 
@@ -319,7 +319,7 @@ type StoreDequeueFuncCall struct {
 	Arg1 string
 	// Arg2 is the value of the 3rd argument passed to this method
 	// invocation.
-	Arg2 interface{}
+	Arg2 any
 	// Result0 is the value of the 1st result returned from this method
 	// invocation.
 	Result0 workerutil.Record
@@ -333,14 +333,14 @@ type StoreDequeueFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c StoreDequeueFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c StoreDequeueFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c StoreDequeueFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c StoreDequeueFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // StoreHeartbeatFunc describes the behavior when the Heartbeat method of
@@ -441,14 +441,14 @@ type StoreHeartbeatFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c StoreHeartbeatFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c StoreHeartbeatFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c StoreHeartbeatFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c StoreHeartbeatFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // StoreMarkCompleteFunc describes the behavior when the MarkComplete method
@@ -549,14 +549,14 @@ type StoreMarkCompleteFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c StoreMarkCompleteFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c StoreMarkCompleteFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c StoreMarkCompleteFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c StoreMarkCompleteFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // StoreMarkErroredFunc describes the behavior when the MarkErrored method
@@ -660,14 +660,14 @@ type StoreMarkErroredFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c StoreMarkErroredFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c StoreMarkErroredFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c StoreMarkErroredFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c StoreMarkErroredFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // StoreMarkFailedFunc describes the behavior when the MarkFailed method of
@@ -771,28 +771,28 @@ type StoreMarkFailedFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c StoreMarkFailedFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c StoreMarkFailedFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c StoreMarkFailedFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c StoreMarkFailedFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // StoreQueuedCountFunc describes the behavior when the QueuedCount method
 // of the parent MockStore instance is invoked.
 type StoreQueuedCountFunc struct {
-	defaultHook func(context.Context, interface{}) (int, error)
-	hooks       []func(context.Context, interface{}) (int, error)
+	defaultHook func(context.Context, any) (int, error)
+	hooks       []func(context.Context, any) (int, error)
 	history     []StoreQueuedCountFuncCall
 	mutex       sync.Mutex
 }
 
 // QueuedCount delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
-func (m *MockStore) QueuedCount(v0 context.Context, v1 interface{}) (int, error) {
+func (m *MockStore) QueuedCount(v0 context.Context, v1 any) (int, error) {
 	r0, r1 := m.QueuedCountFunc.nextHook()(v0, v1)
 	m.QueuedCountFunc.appendCall(StoreQueuedCountFuncCall{v0, v1, r0, r1})
 	return r0, r1
@@ -800,7 +800,7 @@ func (m *MockStore) QueuedCount(v0 context.Context, v1 interface{}) (int, error)
 
 // SetDefaultHook sets function that is called when the QueuedCount method
 // of the parent MockStore instance is invoked and the hook queue is empty.
-func (f *StoreQueuedCountFunc) SetDefaultHook(hook func(context.Context, interface{}) (int, error)) {
+func (f *StoreQueuedCountFunc) SetDefaultHook(hook func(context.Context, any) (int, error)) {
 	f.defaultHook = hook
 }
 
@@ -808,7 +808,7 @@ func (f *StoreQueuedCountFunc) SetDefaultHook(hook func(context.Context, interfa
 // QueuedCount method of the parent MockStore instance invokes the hook at
 // the front of the queue and discards it. After the queue is empty, the
 // default hook function is invoked for any future action.
-func (f *StoreQueuedCountFunc) PushHook(hook func(context.Context, interface{}) (int, error)) {
+func (f *StoreQueuedCountFunc) PushHook(hook func(context.Context, any) (int, error)) {
 	f.mutex.Lock()
 	f.hooks = append(f.hooks, hook)
 	f.mutex.Unlock()
@@ -817,7 +817,7 @@ func (f *StoreQueuedCountFunc) PushHook(hook func(context.Context, interface{}) 
 // SetDefaultReturn calls SetDefaultDefaultHook with a function that returns
 // the given values.
 func (f *StoreQueuedCountFunc) SetDefaultReturn(r0 int, r1 error) {
-	f.SetDefaultHook(func(context.Context, interface{}) (int, error) {
+	f.SetDefaultHook(func(context.Context, any) (int, error) {
 		return r0, r1
 	})
 }
@@ -825,12 +825,12 @@ func (f *StoreQueuedCountFunc) SetDefaultReturn(r0 int, r1 error) {
 // PushReturn calls PushDefaultHook with a function that returns the given
 // values.
 func (f *StoreQueuedCountFunc) PushReturn(r0 int, r1 error) {
-	f.PushHook(func(context.Context, interface{}) (int, error) {
+	f.PushHook(func(context.Context, any) (int, error) {
 		return r0, r1
 	})
 }
 
-func (f *StoreQueuedCountFunc) nextHook() func(context.Context, interface{}) (int, error) {
+func (f *StoreQueuedCountFunc) nextHook() func(context.Context, any) (int, error) {
 	f.mutex.Lock()
 	defer f.mutex.Unlock()
 
@@ -868,7 +868,7 @@ type StoreQueuedCountFuncCall struct {
 	Arg0 context.Context
 	// Arg1 is the value of the 2nd argument passed to this method
 	// invocation.
-	Arg1 interface{}
+	Arg1 any
 	// Result0 is the value of the 1st result returned from this method
 	// invocation.
 	Result0 int
@@ -879,14 +879,14 @@ type StoreQueuedCountFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c StoreQueuedCountFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c StoreQueuedCountFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c StoreQueuedCountFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c StoreQueuedCountFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // StoreUpdateExecutionLogEntryFunc describes the behavior when the
@@ -992,12 +992,12 @@ type StoreUpdateExecutionLogEntryFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c StoreUpdateExecutionLogEntryFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
+func (c StoreUpdateExecutionLogEntryFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c StoreUpdateExecutionLogEntryFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c StoreUpdateExecutionLogEntryFuncCall) Results() []any {
+	return []any{c.Result0}
 }

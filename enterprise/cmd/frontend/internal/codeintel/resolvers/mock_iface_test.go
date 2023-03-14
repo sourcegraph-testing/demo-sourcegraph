@@ -365,14 +365,14 @@ type DBStoreCommitGraphMetadataFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreCommitGraphMetadataFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreCommitGraphMetadataFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreCommitGraphMetadataFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c DBStoreCommitGraphMetadataFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // DBStoreDefinitionDumpsFunc describes the behavior when the
@@ -474,14 +474,14 @@ type DBStoreDefinitionDumpsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreDefinitionDumpsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreDefinitionDumpsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreDefinitionDumpsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreDefinitionDumpsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreDeleteIndexByIDFunc describes the behavior when the
@@ -583,14 +583,14 @@ type DBStoreDeleteIndexByIDFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreDeleteIndexByIDFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreDeleteIndexByIDFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreDeleteIndexByIDFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreDeleteIndexByIDFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreDeleteUploadByIDFunc describes the behavior when the
@@ -692,14 +692,14 @@ type DBStoreDeleteUploadByIDFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreDeleteUploadByIDFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreDeleteUploadByIDFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreDeleteUploadByIDFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreDeleteUploadByIDFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreFindClosestDumpsFunc describes the behavior when the
@@ -813,14 +813,14 @@ type DBStoreFindClosestDumpsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreFindClosestDumpsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4, c.Arg5}
+func (c DBStoreFindClosestDumpsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4, c.Arg5}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreFindClosestDumpsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreFindClosestDumpsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreFindClosestDumpsFromGraphFragmentFunc describes the behavior when
@@ -941,14 +941,14 @@ type DBStoreFindClosestDumpsFromGraphFragmentFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreFindClosestDumpsFromGraphFragmentFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4, c.Arg5, c.Arg6}
+func (c DBStoreFindClosestDumpsFromGraphFragmentFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4, c.Arg5, c.Arg6}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreFindClosestDumpsFromGraphFragmentFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreFindClosestDumpsFromGraphFragmentFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreGetDumpsByIDsFunc describes the behavior when the GetDumpsByIDs
@@ -1050,14 +1050,14 @@ type DBStoreGetDumpsByIDsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreGetDumpsByIDsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreGetDumpsByIDsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreGetDumpsByIDsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreGetDumpsByIDsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreGetIndexByIDFunc describes the behavior when the GetIndexByID
@@ -1162,14 +1162,14 @@ type DBStoreGetIndexByIDFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreGetIndexByIDFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreGetIndexByIDFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreGetIndexByIDFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c DBStoreGetIndexByIDFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // DBStoreGetIndexConfigurationByRepositoryIDFunc describes the behavior
@@ -1279,14 +1279,14 @@ type DBStoreGetIndexConfigurationByRepositoryIDFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreGetIndexConfigurationByRepositoryIDFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreGetIndexConfigurationByRepositoryIDFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreGetIndexConfigurationByRepositoryIDFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c DBStoreGetIndexConfigurationByRepositoryIDFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // DBStoreGetIndexesFunc describes the behavior when the GetIndexes method
@@ -1390,14 +1390,14 @@ type DBStoreGetIndexesFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreGetIndexesFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreGetIndexesFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreGetIndexesFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c DBStoreGetIndexesFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // DBStoreGetIndexesByIDsFunc describes the behavior when the
@@ -1501,19 +1501,19 @@ type DBStoreGetIndexesByIDsFuncCall struct {
 // invocation. The variadic slice argument is flattened in this array such
 // that one positional argument and three variadic arguments would result in
 // a slice of four, not two.
-func (c DBStoreGetIndexesByIDsFuncCall) Args() []interface{} {
-	trailing := []interface{}{}
+func (c DBStoreGetIndexesByIDsFuncCall) Args() []any {
+	trailing := []any{}
 	for _, val := range c.Arg1 {
 		trailing = append(trailing, val)
 	}
 
-	return append([]interface{}{c.Arg0}, trailing...)
+	return append([]any{c.Arg0}, trailing...)
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreGetIndexesByIDsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreGetIndexesByIDsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreGetUploadByIDFunc describes the behavior when the GetUploadByID
@@ -1618,14 +1618,14 @@ type DBStoreGetUploadByIDFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreGetUploadByIDFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreGetUploadByIDFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreGetUploadByIDFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c DBStoreGetUploadByIDFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // DBStoreGetUploadsFunc describes the behavior when the GetUploads method
@@ -1729,14 +1729,14 @@ type DBStoreGetUploadsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreGetUploadsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreGetUploadsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreGetUploadsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c DBStoreGetUploadsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // DBStoreGetUploadsByIDsFunc describes the behavior when the
@@ -1840,19 +1840,19 @@ type DBStoreGetUploadsByIDsFuncCall struct {
 // invocation. The variadic slice argument is flattened in this array such
 // that one positional argument and three variadic arguments would result in
 // a slice of four, not two.
-func (c DBStoreGetUploadsByIDsFuncCall) Args() []interface{} {
-	trailing := []interface{}{}
+func (c DBStoreGetUploadsByIDsFuncCall) Args() []any {
+	trailing := []any{}
 	for _, val := range c.Arg1 {
 		trailing = append(trailing, val)
 	}
 
-	return append([]interface{}{c.Arg0}, trailing...)
+	return append([]any{c.Arg0}, trailing...)
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreGetUploadsByIDsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreGetUploadsByIDsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreHasCommitFunc describes the behavior when the HasCommit method of
@@ -1956,14 +1956,14 @@ type DBStoreHasCommitFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreHasCommitFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c DBStoreHasCommitFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreHasCommitFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreHasCommitFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreHasRepositoryFunc describes the behavior when the HasRepository
@@ -2065,14 +2065,14 @@ type DBStoreHasRepositoryFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreHasRepositoryFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreHasRepositoryFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreHasRepositoryFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreHasRepositoryFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreMarkRepositoryAsDirtyFunc describes the behavior when the
@@ -2172,14 +2172,14 @@ type DBStoreMarkRepositoryAsDirtyFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreMarkRepositoryAsDirtyFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreMarkRepositoryAsDirtyFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreMarkRepositoryAsDirtyFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c DBStoreMarkRepositoryAsDirtyFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // DBStoreReferenceIDsAndFiltersFunc describes the behavior when the
@@ -2298,14 +2298,14 @@ type DBStoreReferenceIDsAndFiltersFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreReferenceIDsAndFiltersFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4, c.Arg5}
+func (c DBStoreReferenceIDsAndFiltersFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4, c.Arg5}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreReferenceIDsAndFiltersFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c DBStoreReferenceIDsAndFiltersFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // DBStoreRepoNameFunc describes the behavior when the RepoName method of
@@ -2406,14 +2406,14 @@ type DBStoreRepoNameFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreRepoNameFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreRepoNameFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreRepoNameFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreRepoNameFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreUpdateIndexConfigurationByRepositoryIDFunc describes the behavior
@@ -2520,14 +2520,14 @@ type DBStoreUpdateIndexConfigurationByRepositoryIDFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreUpdateIndexConfigurationByRepositoryIDFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c DBStoreUpdateIndexConfigurationByRepositoryIDFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreUpdateIndexConfigurationByRepositoryIDFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c DBStoreUpdateIndexConfigurationByRepositoryIDFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // MockEnqueuerDBStore is a mock implementation of the EnqueuerDBStore
@@ -2742,14 +2742,14 @@ type EnqueuerDBStoreDirtyRepositoriesFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c EnqueuerDBStoreDirtyRepositoriesFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c EnqueuerDBStoreDirtyRepositoriesFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c EnqueuerDBStoreDirtyRepositoriesFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c EnqueuerDBStoreDirtyRepositoriesFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // EnqueuerDBStoreDoneFunc describes the behavior when the Done method of
@@ -2845,14 +2845,14 @@ type EnqueuerDBStoreDoneFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c EnqueuerDBStoreDoneFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c EnqueuerDBStoreDoneFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c EnqueuerDBStoreDoneFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c EnqueuerDBStoreDoneFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // EnqueuerDBStoreGetIndexConfigurationByRepositoryIDFunc describes the
@@ -2963,14 +2963,14 @@ type EnqueuerDBStoreGetIndexConfigurationByRepositoryIDFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c EnqueuerDBStoreGetIndexConfigurationByRepositoryIDFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c EnqueuerDBStoreGetIndexConfigurationByRepositoryIDFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c EnqueuerDBStoreGetIndexConfigurationByRepositoryIDFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c EnqueuerDBStoreGetIndexConfigurationByRepositoryIDFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // EnqueuerDBStoreGetRepositoriesWithIndexConfigurationFunc describes the
@@ -3075,14 +3075,14 @@ type EnqueuerDBStoreGetRepositoriesWithIndexConfigurationFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c EnqueuerDBStoreGetRepositoriesWithIndexConfigurationFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c EnqueuerDBStoreGetRepositoriesWithIndexConfigurationFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c EnqueuerDBStoreGetRepositoriesWithIndexConfigurationFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c EnqueuerDBStoreGetRepositoriesWithIndexConfigurationFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // EnqueuerDBStoreHandleFunc describes the behavior when the Handle method
@@ -3175,14 +3175,14 @@ type EnqueuerDBStoreHandleFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c EnqueuerDBStoreHandleFuncCall) Args() []interface{} {
-	return []interface{}{}
+func (c EnqueuerDBStoreHandleFuncCall) Args() []any {
+	return []any{}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c EnqueuerDBStoreHandleFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c EnqueuerDBStoreHandleFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // EnqueuerDBStoreInsertIndexFunc describes the behavior when the
@@ -3284,14 +3284,14 @@ type EnqueuerDBStoreInsertIndexFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c EnqueuerDBStoreInsertIndexFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c EnqueuerDBStoreInsertIndexFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c EnqueuerDBStoreInsertIndexFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c EnqueuerDBStoreInsertIndexFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // EnqueuerDBStoreIsQueuedFunc describes the behavior when the IsQueued
@@ -3396,14 +3396,14 @@ type EnqueuerDBStoreIsQueuedFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c EnqueuerDBStoreIsQueuedFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c EnqueuerDBStoreIsQueuedFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c EnqueuerDBStoreIsQueuedFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c EnqueuerDBStoreIsQueuedFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // EnqueuerDBStoreTransactFunc describes the behavior when the Transact
@@ -3502,14 +3502,14 @@ type EnqueuerDBStoreTransactFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c EnqueuerDBStoreTransactFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c EnqueuerDBStoreTransactFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c EnqueuerDBStoreTransactFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c EnqueuerDBStoreTransactFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // MockEnqueuerGitserverClient is a mock implementation of the
@@ -3698,14 +3698,14 @@ type EnqueuerGitserverClientFileExistsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c EnqueuerGitserverClientFileExistsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
+func (c EnqueuerGitserverClientFileExistsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c EnqueuerGitserverClientFileExistsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c EnqueuerGitserverClientFileExistsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // EnqueuerGitserverClientHeadFunc describes the behavior when the Head
@@ -3810,14 +3810,14 @@ type EnqueuerGitserverClientHeadFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c EnqueuerGitserverClientHeadFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c EnqueuerGitserverClientHeadFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c EnqueuerGitserverClientHeadFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c EnqueuerGitserverClientHeadFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // EnqueuerGitserverClientListFilesFunc describes the behavior when the
@@ -3928,14 +3928,14 @@ type EnqueuerGitserverClientListFilesFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c EnqueuerGitserverClientListFilesFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
+func (c EnqueuerGitserverClientListFilesFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c EnqueuerGitserverClientListFilesFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c EnqueuerGitserverClientListFilesFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // EnqueuerGitserverClientRawContentsFunc describes the behavior when the
@@ -4046,14 +4046,14 @@ type EnqueuerGitserverClientRawContentsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c EnqueuerGitserverClientRawContentsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
+func (c EnqueuerGitserverClientRawContentsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c EnqueuerGitserverClientRawContentsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c EnqueuerGitserverClientRawContentsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // EnqueuerGitserverClientResolveRevisionFunc describes the behavior when
@@ -4162,14 +4162,14 @@ type EnqueuerGitserverClientResolveRevisionFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c EnqueuerGitserverClientResolveRevisionFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c EnqueuerGitserverClientResolveRevisionFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c EnqueuerGitserverClientResolveRevisionFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c EnqueuerGitserverClientResolveRevisionFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // MockGitserverClient is a mock implementation of the GitserverClient
@@ -4320,14 +4320,14 @@ type GitserverClientCommitExistsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c GitserverClientCommitExistsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c GitserverClientCommitExistsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c GitserverClientCommitExistsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c GitserverClientCommitExistsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // GitserverClientCommitGraphFunc describes the behavior when the
@@ -4432,14 +4432,14 @@ type GitserverClientCommitGraphFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c GitserverClientCommitGraphFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c GitserverClientCommitGraphFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c GitserverClientCommitGraphFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c GitserverClientCommitGraphFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // MockIndexEnqueuer is a mock implementation of the IndexEnqueuer interface
@@ -4587,14 +4587,14 @@ type IndexEnqueuerForceQueueIndexesForRepositoryFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c IndexEnqueuerForceQueueIndexesForRepositoryFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c IndexEnqueuerForceQueueIndexesForRepositoryFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c IndexEnqueuerForceQueueIndexesForRepositoryFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c IndexEnqueuerForceQueueIndexesForRepositoryFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // IndexEnqueuerInferIndexConfigurationFunc describes the behavior when the
@@ -4700,14 +4700,14 @@ type IndexEnqueuerInferIndexConfigurationFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c IndexEnqueuerInferIndexConfigurationFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c IndexEnqueuerInferIndexConfigurationFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c IndexEnqueuerInferIndexConfigurationFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c IndexEnqueuerInferIndexConfigurationFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // MockLSIFStore is a mock implementation of the LSIFStore interface (from
@@ -5000,14 +5000,14 @@ type LSIFStoreBulkMonikerResultsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c LSIFStoreBulkMonikerResultsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4, c.Arg5}
+func (c LSIFStoreBulkMonikerResultsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4, c.Arg5}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c LSIFStoreBulkMonikerResultsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c LSIFStoreBulkMonikerResultsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // LSIFStoreDefinitionsFunc describes the behavior when the Definitions
@@ -5127,14 +5127,14 @@ type LSIFStoreDefinitionsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c LSIFStoreDefinitionsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4, c.Arg5, c.Arg6}
+func (c LSIFStoreDefinitionsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4, c.Arg5, c.Arg6}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c LSIFStoreDefinitionsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c LSIFStoreDefinitionsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // LSIFStoreDiagnosticsFunc describes the behavior when the Diagnostics
@@ -5248,14 +5248,14 @@ type LSIFStoreDiagnosticsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c LSIFStoreDiagnosticsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
+func (c LSIFStoreDiagnosticsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c LSIFStoreDiagnosticsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c LSIFStoreDiagnosticsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // LSIFStoreDocumentationAtPositionFunc describes the behavior when the
@@ -5369,14 +5369,14 @@ type LSIFStoreDocumentationAtPositionFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c LSIFStoreDocumentationAtPositionFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
+func (c LSIFStoreDocumentationAtPositionFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c LSIFStoreDocumentationAtPositionFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c LSIFStoreDocumentationAtPositionFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // LSIFStoreDocumentationDefinitionsFunc describes the behavior when the
@@ -5493,14 +5493,14 @@ type LSIFStoreDocumentationDefinitionsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c LSIFStoreDocumentationDefinitionsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
+func (c LSIFStoreDocumentationDefinitionsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c LSIFStoreDocumentationDefinitionsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c LSIFStoreDocumentationDefinitionsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // LSIFStoreDocumentationPageFunc describes the behavior when the
@@ -5605,14 +5605,14 @@ type LSIFStoreDocumentationPageFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c LSIFStoreDocumentationPageFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c LSIFStoreDocumentationPageFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c LSIFStoreDocumentationPageFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c LSIFStoreDocumentationPageFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // LSIFStoreDocumentationPathInfoFunc describes the behavior when the
@@ -5719,14 +5719,14 @@ type LSIFStoreDocumentationPathInfoFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c LSIFStoreDocumentationPathInfoFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c LSIFStoreDocumentationPathInfoFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c LSIFStoreDocumentationPathInfoFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c LSIFStoreDocumentationPathInfoFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // LSIFStoreDocumentationReferencesFunc describes the behavior when the
@@ -5843,14 +5843,14 @@ type LSIFStoreDocumentationReferencesFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c LSIFStoreDocumentationReferencesFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
+func (c LSIFStoreDocumentationReferencesFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c LSIFStoreDocumentationReferencesFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c LSIFStoreDocumentationReferencesFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // LSIFStoreExistsFunc describes the behavior when the Exists method of the
@@ -5954,14 +5954,14 @@ type LSIFStoreExistsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c LSIFStoreExistsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c LSIFStoreExistsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c LSIFStoreExistsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c LSIFStoreExistsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // LSIFStoreHoverFunc describes the behavior when the Hover method of the
@@ -6077,14 +6077,14 @@ type LSIFStoreHoverFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c LSIFStoreHoverFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
+func (c LSIFStoreHoverFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c LSIFStoreHoverFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2, c.Result3}
+func (c LSIFStoreHoverFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2, c.Result3}
 }
 
 // LSIFStoreMonikersByPositionFunc describes the behavior when the
@@ -6196,14 +6196,14 @@ type LSIFStoreMonikersByPositionFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c LSIFStoreMonikersByPositionFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
+func (c LSIFStoreMonikersByPositionFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c LSIFStoreMonikersByPositionFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c LSIFStoreMonikersByPositionFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // LSIFStorePackageInformationFunc describes the behavior when the
@@ -6315,14 +6315,14 @@ type LSIFStorePackageInformationFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c LSIFStorePackageInformationFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
+func (c LSIFStorePackageInformationFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c LSIFStorePackageInformationFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c LSIFStorePackageInformationFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // LSIFStoreRangesFunc describes the behavior when the Ranges method of the
@@ -6432,14 +6432,14 @@ type LSIFStoreRangesFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c LSIFStoreRangesFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
+func (c LSIFStoreRangesFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c LSIFStoreRangesFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c LSIFStoreRangesFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // LSIFStoreReferencesFunc describes the behavior when the References method
@@ -6558,14 +6558,14 @@ type LSIFStoreReferencesFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c LSIFStoreReferencesFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4, c.Arg5, c.Arg6}
+func (c LSIFStoreReferencesFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4, c.Arg5, c.Arg6}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c LSIFStoreReferencesFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c LSIFStoreReferencesFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // MockRepoUpdaterClient is a mock implementation of the RepoUpdaterClient
@@ -6704,12 +6704,12 @@ type RepoUpdaterClientEnqueueRepoUpdateFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c RepoUpdaterClientEnqueueRepoUpdateFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c RepoUpdaterClientEnqueueRepoUpdateFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c RepoUpdaterClientEnqueueRepoUpdateFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c RepoUpdaterClientEnqueueRepoUpdateFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }

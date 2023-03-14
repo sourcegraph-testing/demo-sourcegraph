@@ -254,7 +254,7 @@ func getAndMarshalCodeHostVersionsJSON(ctx context.Context, db dbutil.DB) (_ jso
 	return json.Marshal(versions)
 }
 
-func getDependencyVersions(ctx context.Context, db dbutil.DB, logFunc func(string, ...interface{})) (json.RawMessage, error) {
+func getDependencyVersions(ctx context.Context, db dbutil.DB, logFunc func(string, ...any)) (json.RawMessage, error) {
 	var (
 		err error
 		dv  dependencyVersions

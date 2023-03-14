@@ -19,7 +19,7 @@ func TestServer_handleGet(t *testing.T) {
 			Url:             "https://phab.mycompany.com",
 		},
 	}}
-	api.MockExternalServiceConfigs = func(kind string, result interface{}) error {
+	api.MockExternalServiceConfigs = func(kind string, result any) error {
 		buf, err := json.Marshal(conn)
 		if err != nil {
 			return err
@@ -62,7 +62,7 @@ func TestServer_handleGet_invalid(t *testing.T) {
 			CallsignCommand: `echo "Something went wrong this is not a valid callsign"`,
 		},
 	}}
-	api.MockExternalServiceConfigs = func(kind string, result interface{}) error {
+	api.MockExternalServiceConfigs = func(kind string, result any) error {
 		buf, err := json.Marshal(conn)
 		if err != nil {
 			return err

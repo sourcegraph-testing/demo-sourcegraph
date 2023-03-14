@@ -144,24 +144,26 @@ AND permission = %s
 // and `repo_permissions` tables.
 //
 // Example input:
-// &UserPermissions{
-//     UserID: 1,
-//     Perm: authz.Read,
-//     Type: authz.PermRepos,
-//     IDs: bitmap{1, 2},
-// }
+//
+//	&UserPermissions{
+//	    UserID: 1,
+//	    Perm: authz.Read,
+//	    Type: authz.PermRepos,
+//	    IDs: bitmap{1, 2},
+//	}
 //
 // Table states for input:
-// 	"user_permissions":
-//   user_id | permission | object_type | object_ids_ints | updated_at | synced_at
-//  ---------+------------+-------------+-----------------+------------+-----------
-//         1 |       read |       repos |          {1, 2} |      NOW() |     NOW()
 //
-//  "repo_permissions":
-//   repo_id | permission | user_ids_ints | updated_at |  synced_at
-//  ---------+------------+---------------+------------+-------------
-//         1 |       read |           {1} |      NOW() | <Unchanged>
-//         2 |       read |           {1} |      NOW() | <Unchanged>
+//		"user_permissions":
+//	  user_id | permission | object_type | object_ids_ints | updated_at | synced_at
+//	 ---------+------------+-------------+-----------------+------------+-----------
+//	        1 |       read |       repos |          {1, 2} |      NOW() |     NOW()
+//
+//	 "repo_permissions":
+//	  repo_id | permission | user_ids_ints | updated_at |  synced_at
+//	 ---------+------------+---------------+------------+-------------
+//	        1 |       read |           {1} |      NOW() | <Unchanged>
+//	        2 |       read |           {1} |      NOW() | <Unchanged>
 func (s *PermsStore) SetUserPermissions(ctx context.Context, p *authz.UserPermissions) (err error) {
 	if Mocks.Perms.SetUserPermissions != nil {
 		return Mocks.Perms.SetUserPermissions(ctx, p)
@@ -264,23 +266,25 @@ DO UPDATE SET
 // This method starts its own transaction for update consistency if the caller hasn't started one already.
 //
 // Example input:
-// &RepoPermissions{
-//     RepoID: 1,
-//     Perm: authz.Read,
-//     UserIDs: bitmap{1, 2},
-// }
+//
+//	&RepoPermissions{
+//	    RepoID: 1,
+//	    Perm: authz.Read,
+//	    UserIDs: bitmap{1, 2},
+//	}
 //
 // Table states for input:
-// 	"user_permissions":
-//   user_id | permission | object_type | object_ids_ints | updated_at |  synced_at
-//  ---------+------------+-------------+-----------------+------------+-------------
-//         1 |       read |       repos |             {1} |      NOW() | <Unchanged>
-//         2 |       read |       repos |             {1} |      NOW() | <Unchanged>
 //
-//  "repo_permissions":
-//   repo_id | permission | user_ids_ints | updated_at | synced_at
-//  ---------+------------+---------------+------------+-----------
-//         1 |       read |        {1, 2} |      NOW() |     NOW()
+//		"user_permissions":
+//	  user_id | permission | object_type | object_ids_ints | updated_at |  synced_at
+//	 ---------+------------+-------------+-----------------+------------+-------------
+//	        1 |       read |       repos |             {1} |      NOW() | <Unchanged>
+//	        2 |       read |       repos |             {1} |      NOW() | <Unchanged>
+//
+//	 "repo_permissions":
+//	  repo_id | permission | user_ids_ints | updated_at | synced_at
+//	 ---------+------------+---------------+------------+-----------
+//	        1 |       read |        {1, 2} |      NOW() |     NOW()
 func (s *PermsStore) SetRepoPermissions(ctx context.Context, p *authz.RepoPermissions) (err error) {
 	if Mocks.Perms.SetRepoPermissions != nil {
 		return Mocks.Perms.SetRepoPermissions(ctx, p)
@@ -521,27 +525,29 @@ AND bind_id = %s
 // This method starts its own transaction for update consistency if the caller hasn't started one already.
 //
 // Example input:
-//  &extsvc.Accounts{
-//      ServiceType: "sourcegraph",
-//      ServiceID:   "https://sourcegraph.com/",
-//      AccountIDs:  []string{"alice", "bob"},
-//  }
-//  &authz.RepoPermissions{
-//      RepoID: 1,
-//      Perm: authz.Read,
-//  }
+//
+//	&extsvc.Accounts{
+//	    ServiceType: "sourcegraph",
+//	    ServiceID:   "https://sourcegraph.com/",
+//	    AccountIDs:  []string{"alice", "bob"},
+//	}
+//	&authz.RepoPermissions{
+//	    RepoID: 1,
+//	    Perm: authz.Read,
+//	}
 //
 // Table states for input:
-// 	"user_pending_permissions":
-//   id | service_type |        service_id        | bind_id | permission | object_type | object_ids_ints | updated_at
-//  ----+--------------+--------------------------+---------+------------+-------------+-----------------+-----------
-//    1 | sourcegraph  | https://sourcegraph.com/ |   alice |       read |       repos |             {1} | <DateTime>
-//    2 | sourcegraph  | https://sourcegraph.com/ |     bob |       read |       repos |             {1} | <DateTime>
 //
-//  "repo_pending_permissions":
-//   repo_id | permission | user_ids_ints | updated_at
-//  ---------+------------+---------------+------------
-//         1 |       read |        {1, 2} | <DateTime>
+//		"user_pending_permissions":
+//	  id | service_type |        service_id        | bind_id | permission | object_type | object_ids_ints | updated_at
+//	 ----+--------------+--------------------------+---------+------------+-------------+-----------------+-----------
+//	   1 | sourcegraph  | https://sourcegraph.com/ |   alice |       read |       repos |             {1} | <DateTime>
+//	   2 | sourcegraph  | https://sourcegraph.com/ |     bob |       read |       repos |             {1} | <DateTime>
+//
+//	 "repo_pending_permissions":
+//	  repo_id | permission | user_ids_ints | updated_at
+//	 ---------+------------+---------------+------------
+//	        1 |       read |        {1, 2} | <DateTime>
 func (s *PermsStore) SetRepoPendingPermissions(ctx context.Context, accounts *extsvc.Accounts, p *authz.RepoPermissions) (err error) {
 	if Mocks.Perms.SetRepoPendingPermissions != nil {
 		return Mocks.Perms.SetRepoPendingPermissions(ctx, accounts, p)
@@ -1016,7 +1022,7 @@ AND bind_id IN (%s)`,
 	return nil
 }
 
-func (s *PermsStore) execute(ctx context.Context, q *sqlf.Query, vs ...interface{}) (err error) {
+func (s *PermsStore) execute(ctx context.Context, q *sqlf.Query, vs ...any) (err error) {
 	ctx, save := s.observe(ctx, "execute", "")
 	defer func() { save(&err, otlog.Object("q", q)) }()
 

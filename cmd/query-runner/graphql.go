@@ -17,8 +17,8 @@ import (
 )
 
 type graphQLQuery struct {
-	Query     string      `json:"query"`
-	Variables interface{} `json:"variables"`
+	Query     string `json:"query"`
+	Variables any    `json:"variables"`
 }
 
 const gqlSearchQuery = `query Search(
@@ -113,11 +113,11 @@ type gqlSearchResponse struct {
 				ApproximateResultCount string
 				Cloning                []*api.Repo
 				Timedout               []*api.Repo
-				Results                []interface{}
+				Results                []any
 			}
 		}
 	}
-	Errors []interface{}
+	Errors []any
 }
 
 func search(ctx context.Context, query string) (*gqlSearchResponse, error) {
@@ -162,7 +162,7 @@ func gqlURL(queryName string) (string, error) {
 }
 
 // extractTime extracts the time from the given search result.
-func extractTime(result interface{}) (t *time.Time, err error) {
+func extractTime(result any) (t *time.Time, err error) {
 	// Use recover because we assume the data structure here a lot, for less
 	// error checking.
 	defer func() {
@@ -176,12 +176,12 @@ func extractTime(result interface{}) (t *time.Time, err error) {
 		err = errors.Errorf("failed to extract time from search result")
 	}()
 
-	m := result.(map[string]interface{})
+	m := result.(map[string]any)
 	typeName := m["__typename"].(string)
 	switch typeName {
 	case "CommitSearchResult":
-		commit := m["commit"].(map[string]interface{})
-		author := commit["author"].(map[string]interface{})
+		commit := m["commit"].(map[string]any)
+		author := commit["author"].(map[string]any)
 		date := author["date"].(string)
 
 		// For now, our graphql API commit authorship date is in Go default time format.

@@ -186,7 +186,7 @@ func waitForRedis(s *redistore.RediStore) {
 // session exists, a new session is created.
 //
 // The value is JSON-encoded before being stored.
-func SetData(w http.ResponseWriter, r *http.Request, key string, value interface{}) error {
+func SetData(w http.ResponseWriter, r *http.Request, key string, value any) error {
 	session, err := sessionStore.Get(r, cookieName)
 	if err != nil {
 		return errors.WithMessage(err, "getting session")
@@ -206,7 +206,7 @@ func SetData(w http.ResponseWriter, r *http.Request, key string, value interface
 // be a pointer).
 //
 // The value is JSON-decoded from the raw bytes stored by the call to SetData.
-func GetData(r *http.Request, key string, value interface{}) error {
+func GetData(r *http.Request, key string, value any) error {
 	session, err := sessionStore.Get(r, cookieName)
 	if err != nil {
 		return errors.WithMessage(err, "getting session")
@@ -303,9 +303,9 @@ func CookieMiddleware(next http.Handler) http.Handler {
 //
 // - The request originates from the same origin. -OR-
 //
-// - The request is cross-origin but passed the CORS preflight check (because otherwise the
-//   preflight OPTIONS response from secureHeadersMiddleware would have caused the browser to refuse
-//   to send this HTTP request).
+//   - The request is cross-origin but passed the CORS preflight check (because otherwise the
+//     preflight OPTIONS response from secureHeadersMiddleware would have caused the browser to refuse
+//     to send this HTTP request).
 //
 // To determine if it's a non-simple CORS request, it checks for the presence of either
 // "Content-Type: application/json; charset=utf-8" or a non-empty HTTP request header whose name is

@@ -44,7 +44,7 @@ func copyAll(w http.ResponseWriter, r io.Reader) {
 
 // writeJSON writes the JSON-encoded payload to w and logs on write failure.
 // If there is an encoding error, then a 500-level status is written to w.
-func writeJSON(w http.ResponseWriter, payload interface{}) {
+func writeJSON(w http.ResponseWriter, payload any) {
 	data, err := json.Marshal(payload)
 	if err != nil {
 		log15.Error("Failed to serialize result", "error", err)

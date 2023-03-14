@@ -275,7 +275,7 @@ func lsTreeUncached(ctx context.Context, repo api.RepoName, commit api.CommitID,
 			}
 		}
 
-		var sys interface{}
+		var sys any
 		modeVal, err := strconv.ParseInt(info[0], 8, 32)
 		if err != nil {
 			return nil, err

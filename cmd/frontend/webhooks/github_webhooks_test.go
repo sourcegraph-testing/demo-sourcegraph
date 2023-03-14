@@ -28,7 +28,7 @@ var dsn = flag.String("dsn", "", "Database connection string to use in integrati
 func TestGithubWebhookDispatchSuccess(t *testing.T) {
 	h := GitHubWebhook{}
 	var called bool
-	h.Register(func(ctx context.Context, svc *types.ExternalService, payload interface{}) error {
+	h.Register(func(ctx context.Context, svc *types.ExternalService, payload any) error {
 		called = true
 		return nil
 	}, "test-event-1")
@@ -56,11 +56,11 @@ func TestGithubWebhookDispatchSuccessMultiple(t *testing.T) {
 		h      = GitHubWebhook{}
 		called = make(chan struct{}, 2)
 	)
-	h.Register(func(ctx context.Context, svc *types.ExternalService, payload interface{}) error {
+	h.Register(func(ctx context.Context, svc *types.ExternalService, payload any) error {
 		called <- struct{}{}
 		return nil
 	}, "test-event-1")
-	h.Register(func(ctx context.Context, svc *types.ExternalService, payload interface{}) error {
+	h.Register(func(ctx context.Context, svc *types.ExternalService, payload any) error {
 		called <- struct{}{}
 		return nil
 	}, "test-event-1")
@@ -79,11 +79,11 @@ func TestGithubWebhookDispatchError(t *testing.T) {
 		h      = GitHubWebhook{}
 		called = make(chan struct{}, 2)
 	)
-	h.Register(func(ctx context.Context, svc *types.ExternalService, payload interface{}) error {
+	h.Register(func(ctx context.Context, svc *types.ExternalService, payload any) error {
 		called <- struct{}{}
 		return errors.Errorf("oh no")
 	}, "test-event-1")
-	h.Register(func(ctx context.Context, svc *types.ExternalService, payload interface{}) error {
+	h.Register(func(ctx context.Context, svc *types.ExternalService, payload any) error {
 		called <- struct{}{}
 		return nil
 	}, "test-event-1")
@@ -138,7 +138,7 @@ func TestGithubWebhookExternalServices(t *testing.T) {
 	}
 
 	var called bool
-	hook.Register(func(ctx context.Context, extSvc *types.ExternalService, payload interface{}) error {
+	hook.Register(func(ctx context.Context, extSvc *types.ExternalService, payload any) error {
 		evt, ok := payload.(*gh.PublicEvent)
 		if !ok {
 			t.Errorf("Expected *gh.PublicEvent event, got %T", payload)
@@ -181,7 +181,7 @@ func TestGithubWebhookExternalServices(t *testing.T) {
 	}
 }
 
-func marshalJSON(t testing.TB, v interface{}) string {
+func marshalJSON(t testing.TB, v any) string {
 	t.Helper()
 
 	bs, err := json.Marshal(v)

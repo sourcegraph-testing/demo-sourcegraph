@@ -181,14 +181,14 @@ func initTest(nameSuffix string) error {
 // in tests that require the database handle but never call it.
 type MockDB struct{}
 
-func (db *MockDB) QueryContext(ctx context.Context, q string, args ...interface{}) (*sql.Rows, error) {
+func (db *MockDB) QueryContext(ctx context.Context, q string, args ...any) (*sql.Rows, error) {
 	panic("mock db methods are not supposed to be called")
 }
 
-func (db *MockDB) ExecContext(ctx context.Context, query string, args ...interface{}) (sql.Result, error) {
+func (db *MockDB) ExecContext(ctx context.Context, query string, args ...any) (sql.Result, error) {
 	panic("mock db methods are not supposed to be called")
 }
 
-func (db *MockDB) QueryRowContext(ctx context.Context, query string, args ...interface{}) *sql.Row {
+func (db *MockDB) QueryRowContext(ctx context.Context, query string, args ...any) *sql.Row {
 	panic("mock db methods are not supposed to be called")
 }

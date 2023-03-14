@@ -75,8 +75,8 @@ type BatchSpecStep struct {
 }
 
 type BatchChangeImportChangeset struct {
-	Repository  string        `json:"repository" yaml:"repository"`
-	ExternalIDs []interface{} `json:"externalIDs" yaml:"externalIDs"`
+	Repository  string `json:"repository" yaml:"repository"`
+	ExternalIDs []any  `json:"externalIDs" yaml:"externalIDs"`
 }
 
 type ChangesetTemplate struct {

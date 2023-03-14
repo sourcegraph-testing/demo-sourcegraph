@@ -47,7 +47,7 @@ func TestSettingsMutation_EditSettings(t *testing.T) {
 					}
 				}
 			`,
-			Variables: map[string]interface{}{"value": map[string]int{"x": 123}},
+			Variables: map[string]any{"value": map[string]int{"x": 123}},
 			ExpectedResult: `
 				{
 					"settingsMutation": {
@@ -94,7 +94,7 @@ func TestSettingsMutation_OverwriteSettings(t *testing.T) {
 					}
 				}
 			`,
-			Variables: map[string]interface{}{"contents": "x"},
+			Variables: map[string]any{"contents": "x"},
 			ExpectedResult: `
 				{
 					"settingsMutation": {

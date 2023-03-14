@@ -58,7 +58,7 @@ func (s *OrgInvitationStore) Transact(ctx context.Context) (*OrgInvitationStore,
 
 // OrgInvitationNotFoundError occurs when an org invitation is not found.
 type OrgInvitationNotFoundError struct {
-	args []interface{}
+	args []any
 }
 
 // NotFound implements errcode.NotFounder.
@@ -105,7 +105,7 @@ func (s *OrgInvitationStore) GetByID(ctx context.Context, id int64) (*OrgInvitat
 		return nil, err
 	}
 	if len(results) == 0 {
-		return nil, OrgInvitationNotFoundError{[]interface{}{id}}
+		return nil, OrgInvitationNotFoundError{[]any{id}}
 	}
 	return results[0], nil
 }
@@ -122,7 +122,7 @@ func (s *OrgInvitationStore) GetPending(ctx context.Context, orgID, recipientUse
 		return nil, err
 	}
 	if len(results) == 0 {
-		return nil, OrgInvitationNotFoundError{[]interface{}{fmt.Sprintf("pending for org %d recipient %d", orgID, recipientUserID)}}
+		return nil, OrgInvitationNotFoundError{[]any{fmt.Sprintf("pending for org %d recipient %d", orgID, recipientUserID)}}
 	}
 	return results[0], nil
 }
@@ -207,7 +207,7 @@ func (s *OrgInvitationStore) UpdateEmailSentTimestamp(ctx context.Context, id in
 		return err
 	}
 	if nrows == 0 {
-		return OrgInvitationNotFoundError{[]interface{}{id}}
+		return OrgInvitationNotFoundError{[]any{id}}
 	}
 	return nil
 }
@@ -217,7 +217,7 @@ func (s *OrgInvitationStore) UpdateEmailSentTimestamp(ctx context.Context, id in
 // OrgInvitationNotFoundError error is returned.
 func (s *OrgInvitationStore) Respond(ctx context.Context, id int64, recipientUserID int32, accept bool) (orgID int32, err error) {
 	if err := s.Handle().DB().QueryRowContext(ctx, "UPDATE org_invitations SET responded_at=now(), response_type=$3 WHERE id=$1 AND recipient_user_id=$2 AND responded_at IS NULL AND revoked_at IS NULL AND deleted_at IS NULL RETURNING org_id", id, recipientUserID, accept).Scan(&orgID); err == sql.ErrNoRows {
-		return 0, OrgInvitationNotFoundError{[]interface{}{fmt.Sprintf("id %d recipient %d", id, recipientUserID)}}
+		return 0, OrgInvitationNotFoundError{[]any{fmt.Sprintf("id %d recipient %d", id, recipientUserID)}}
 	} else if err != nil {
 		return 0, err
 	}
@@ -240,7 +240,7 @@ func (s *OrgInvitationStore) Revoke(ctx context.Context, id int64) error {
 		return err
 	}
 	if nrows == 0 {
-		return OrgInvitationNotFoundError{[]interface{}{id}}
+		return OrgInvitationNotFoundError{[]any{id}}
 	}
 	return nil
 }

@@ -159,14 +159,14 @@ type InterfaceCountDataFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c InterfaceCountDataFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c InterfaceCountDataFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c InterfaceCountDataFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c InterfaceCountDataFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // InterfaceRecordSeriesPointFunc describes the behavior when the
@@ -265,14 +265,14 @@ type InterfaceRecordSeriesPointFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c InterfaceRecordSeriesPointFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c InterfaceRecordSeriesPointFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c InterfaceRecordSeriesPointFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c InterfaceRecordSeriesPointFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // InterfaceSeriesPointsFunc describes the behavior when the SeriesPoints
@@ -374,12 +374,12 @@ type InterfaceSeriesPointsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c InterfaceSeriesPointsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c InterfaceSeriesPointsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c InterfaceSeriesPointsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c InterfaceSeriesPointsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }

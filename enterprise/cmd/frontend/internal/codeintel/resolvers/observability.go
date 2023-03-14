@@ -110,7 +110,7 @@ func lowSlowRequest(name string, duration time.Duration, err *error, observation
 }
 
 func createHoneyEvent(ctx context.Context, name string, observationArgs observation.Args, err *error, duration time.Duration) *libhoney.Event {
-	fields := map[string]interface{}{
+	fields := map[string]any{
 		"type":        name,
 		"duration_ms": duration.Milliseconds(),
 	}

@@ -90,7 +90,7 @@ func (c *client) TestNotification(ctx context.Context, savedSearch api.SavedQuer
 	}
 }
 
-func (c *client) post(path string, data interface{}) error {
+func (c *client) post(path string, data any) error {
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(data); err != nil {
 		return errors.Wrap(err, "Encoding request")

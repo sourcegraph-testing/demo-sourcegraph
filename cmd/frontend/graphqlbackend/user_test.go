@@ -89,7 +89,7 @@ func TestUser(t *testing.T) {
 						ExpectedResult: `{"user": null}`,
 						ExpectedErrors: []*gqlerrors.QueryError{
 							{
-								Path:          []interface{}{"user"},
+								Path:          []any{"user"},
 								Message:       wantErr,
 								ResolverError: errors.New(wantErr),
 							},

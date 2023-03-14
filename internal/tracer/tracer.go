@@ -205,7 +205,7 @@ func (t *switchableTracer) StartSpan(operationName string, opts ...opentracing.S
 	return t.tracer.StartSpan(operationName, opts...)
 }
 
-func (t *switchableTracer) Inject(sm opentracing.SpanContext, format interface{}, carrier interface{}) error {
+func (t *switchableTracer) Inject(sm opentracing.SpanContext, format any, carrier any) error {
 	t.mu.RLock()
 	defer t.mu.RUnlock()
 	if t.log {
@@ -214,7 +214,7 @@ func (t *switchableTracer) Inject(sm opentracing.SpanContext, format interface{}
 	return t.tracer.Inject(sm, format, carrier)
 }
 
-func (t *switchableTracer) Extract(format interface{}, carrier interface{}) (opentracing.SpanContext, error) {
+func (t *switchableTracer) Extract(format any, carrier any) (opentracing.SpanContext, error) {
 	t.mu.RLock()
 	defer t.mu.RUnlock()
 	if t.log {

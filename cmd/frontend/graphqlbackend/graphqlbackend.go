@@ -50,7 +50,7 @@ type prometheusTracer struct {
 	trace.OpenTracingTracer
 }
 
-func (t *prometheusTracer) TraceQuery(ctx context.Context, queryString string, operationName string, variables map[string]interface{}, varTypes map[string]*introspection.Type) (context.Context, trace.TraceQueryFinishFunc) {
+func (t *prometheusTracer) TraceQuery(ctx context.Context, queryString string, operationName string, variables map[string]any, varTypes map[string]*introspection.Type) (context.Context, trace.TraceQueryFinishFunc) {
 	start := time.Now()
 	var finish trace.TraceQueryFinishFunc
 	if ot.ShouldTrace(ctx) {
@@ -121,7 +121,7 @@ VARIABLES
 	}
 }
 
-func (prometheusTracer) TraceField(ctx context.Context, label, typeName, fieldName string, trivial bool, args map[string]interface{}) (context.Context, trace.TraceFieldFinishFunc) {
+func (prometheusTracer) TraceField(ctx context.Context, label, typeName, fieldName string, trivial bool, args map[string]any) (context.Context, trace.TraceFieldFinishFunc) {
 	start := time.Now()
 	return ctx, func(err *gqlerrors.QueryError) {
 		isErrStr := strconv.FormatBool(err != nil)
@@ -312,8 +312,7 @@ var blocklistedPrometheusTypeNames = map[string]struct{}{
 // not worth tracking. You can find a complete list of the ones Prometheus is
 // currently tracking via:
 //
-// 	sum by (type)(src_graphql_field_seconds_count)
-//
+//	sum by (type)(src_graphql_field_seconds_count)
 func prometheusTypeName(typeName string) string {
 	if _, ok := blocklistedPrometheusTypeNames[typeName]; ok {
 		return "other"

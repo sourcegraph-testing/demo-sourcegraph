@@ -205,14 +205,14 @@ type DBStoreGetAutoindexDisabledRepositoriesFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreGetAutoindexDisabledRepositoriesFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c DBStoreGetAutoindexDisabledRepositoriesFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreGetAutoindexDisabledRepositoriesFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreGetAutoindexDisabledRepositoriesFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreGetRepositoriesWithIndexConfigurationFunc describes the behavior
@@ -316,14 +316,14 @@ type DBStoreGetRepositoriesWithIndexConfigurationFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreGetRepositoriesWithIndexConfigurationFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c DBStoreGetRepositoriesWithIndexConfigurationFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreGetRepositoriesWithIndexConfigurationFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreGetRepositoriesWithIndexConfigurationFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreGetUploadByIDFunc describes the behavior when the GetUploadByID
@@ -428,14 +428,14 @@ type DBStoreGetUploadByIDFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreGetUploadByIDFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreGetUploadByIDFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreGetUploadByIDFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c DBStoreGetUploadByIDFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // DBStoreGetUploadsFunc describes the behavior when the GetUploads method
@@ -539,14 +539,14 @@ type DBStoreGetUploadsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreGetUploadsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreGetUploadsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreGetUploadsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c DBStoreGetUploadsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // DBStoreReferencesForUploadFunc describes the behavior when the
@@ -648,14 +648,14 @@ type DBStoreReferencesForUploadFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreReferencesForUploadFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c DBStoreReferencesForUploadFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreReferencesForUploadFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c DBStoreReferencesForUploadFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // DBStoreWithFunc describes the behavior when the With method of the parent
@@ -750,14 +750,14 @@ type DBStoreWithFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c DBStoreWithFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c DBStoreWithFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c DBStoreWithFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c DBStoreWithFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // MockGitserverClient is a mock implementation of the GitserverClient
@@ -943,14 +943,14 @@ type GitserverClientFileExistsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c GitserverClientFileExistsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
+func (c GitserverClientFileExistsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c GitserverClientFileExistsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c GitserverClientFileExistsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // GitserverClientHeadFunc describes the behavior when the Head method of
@@ -1055,14 +1055,14 @@ type GitserverClientHeadFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c GitserverClientHeadFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c GitserverClientHeadFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c GitserverClientHeadFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c GitserverClientHeadFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // GitserverClientListFilesFunc describes the behavior when the ListFiles
@@ -1170,14 +1170,14 @@ type GitserverClientListFilesFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c GitserverClientListFilesFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
+func (c GitserverClientListFilesFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c GitserverClientListFilesFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c GitserverClientListFilesFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // GitserverClientRawContentsFunc describes the behavior when the
@@ -1285,14 +1285,14 @@ type GitserverClientRawContentsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c GitserverClientRawContentsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
+func (c GitserverClientRawContentsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c GitserverClientRawContentsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c GitserverClientRawContentsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // GitserverClientResolveRevisionFunc describes the behavior when the
@@ -1399,14 +1399,14 @@ type GitserverClientResolveRevisionFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c GitserverClientResolveRevisionFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c GitserverClientResolveRevisionFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c GitserverClientResolveRevisionFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c GitserverClientResolveRevisionFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // MockIndexEnqueuer is a mock implementation of the IndexEnqueuer interface
@@ -1553,14 +1553,14 @@ type IndexEnqueuerQueueIndexesForPackageFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c IndexEnqueuerQueueIndexesForPackageFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c IndexEnqueuerQueueIndexesForPackageFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c IndexEnqueuerQueueIndexesForPackageFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c IndexEnqueuerQueueIndexesForPackageFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // IndexEnqueuerQueueIndexesForRepositoryFunc describes the behavior when
@@ -1663,14 +1663,14 @@ type IndexEnqueuerQueueIndexesForRepositoryFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c IndexEnqueuerQueueIndexesForRepositoryFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c IndexEnqueuerQueueIndexesForRepositoryFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c IndexEnqueuerQueueIndexesForRepositoryFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c IndexEnqueuerQueueIndexesForRepositoryFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // MockIndexingRepoStore is a mock implementation of the IndexingRepoStore
@@ -1808,14 +1808,14 @@ type IndexingRepoStoreListRepoNamesFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c IndexingRepoStoreListRepoNamesFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c IndexingRepoStoreListRepoNamesFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c IndexingRepoStoreListRepoNamesFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c IndexingRepoStoreListRepoNamesFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // MockIndexingSettingStore is a mock implementation of the
@@ -1955,12 +1955,12 @@ type IndexingSettingStoreGetLastestSchemaSettingsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c IndexingSettingStoreGetLastestSchemaSettingsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c IndexingSettingStoreGetLastestSchemaSettingsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c IndexingSettingStoreGetLastestSchemaSettingsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c IndexingSettingStoreGetLastestSchemaSettingsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }

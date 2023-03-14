@@ -24,7 +24,7 @@ type HeartbeatOptions struct {
 	WorkerHostname string
 }
 
-func (o *HeartbeatOptions) ToSQLConds(formatQuery func(query string, args ...interface{}) *sqlf.Query) []*sqlf.Query {
+func (o *HeartbeatOptions) ToSQLConds(formatQuery func(query string, args ...any) *sqlf.Query) []*sqlf.Query {
 	conds := []*sqlf.Query{}
 	if o.WorkerHostname != "" {
 		conds = append(conds, formatQuery("{worker_hostname} = %s", o.WorkerHostname))
@@ -39,7 +39,7 @@ type ExecutionLogEntryOptions struct {
 	State string
 }
 
-func (o *ExecutionLogEntryOptions) ToSQLConds(formatQuery func(query string, args ...interface{}) *sqlf.Query) []*sqlf.Query {
+func (o *ExecutionLogEntryOptions) ToSQLConds(formatQuery func(query string, args ...any) *sqlf.Query) []*sqlf.Query {
 	conds := []*sqlf.Query{}
 	if o.WorkerHostname != "" {
 		conds = append(conds, formatQuery("{worker_hostname} = %s", o.WorkerHostname))
@@ -55,7 +55,7 @@ type MarkFinalOptions struct {
 	WorkerHostname string
 }
 
-func (o *MarkFinalOptions) ToSQLConds(formatQuery func(query string, args ...interface{}) *sqlf.Query) []*sqlf.Query {
+func (o *MarkFinalOptions) ToSQLConds(formatQuery func(query string, args ...any) *sqlf.Query) []*sqlf.Query {
 	conds := []*sqlf.Query{}
 	if o.WorkerHostname != "" {
 		conds = append(conds, formatQuery("{worker_hostname} = %s", o.WorkerHostname))
@@ -122,7 +122,7 @@ type Store interface {
 
 type ExecutionLogEntry workerutil.ExecutionLogEntry
 
-func (e *ExecutionLogEntry) Scan(value interface{}) error {
+func (e *ExecutionLogEntry) Scan(value any) error {
 	b, ok := value.([]byte)
 	if !ok {
 		return errors.Errorf("value is not []byte: %T", value)
@@ -760,7 +760,7 @@ WHERE {id} IN (SELECT {id} FROM stalled)
 RETURNING {id}
 `
 
-func (s *store) formatQuery(query string, args ...interface{}) *sqlf.Query {
+func (s *store) formatQuery(query string, args ...any) *sqlf.Query {
 	return sqlf.Sprintf(s.columnReplacer.Replace(query), args...)
 }
 

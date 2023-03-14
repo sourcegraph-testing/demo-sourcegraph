@@ -87,7 +87,7 @@ func TestBatchSpecResolver(t *testing.T) {
 	userAPIID := string(graphqlbackend.MarshalUserID(userID))
 	orgAPIID := string(graphqlbackend.MarshalOrgID(orgID))
 
-	var unmarshaled interface{}
+	var unmarshaled any
 	err = json.Unmarshal([]byte(spec.RawSpec), &unmarshaled)
 	if err != nil {
 		t.Fatal(err)
@@ -144,7 +144,7 @@ func TestBatchSpecResolver(t *testing.T) {
 		},
 	}
 
-	input := map[string]interface{}{"batchSpec": apiID}
+	input := map[string]any{"batchSpec": apiID}
 	{
 		var response struct{ Node apitest.BatchSpec }
 		apitest.MustExec(actor.WithActor(context.Background(), actor.FromUser(userID)), t, s, input, &response, queryBatchSpecNode)

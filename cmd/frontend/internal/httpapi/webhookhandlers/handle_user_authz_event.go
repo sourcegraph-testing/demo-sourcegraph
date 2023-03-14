@@ -21,8 +21,8 @@ import (
 
 // handleGitHubUserAuthzEvent handles a github webhook for the events described in webhookhandlers/handlers.go
 // extracting a user from the github event and scheduling it for a perms update in repo-updater
-func handleGitHubUserAuthzEvent(db dbutil.DB) func(ctx context.Context, extSvc *types.ExternalService, payload interface{}) error {
-	return func(ctx context.Context, extSvc *types.ExternalService, payload interface{}) error {
+func handleGitHubUserAuthzEvent(db dbutil.DB) func(ctx context.Context, extSvc *types.ExternalService, payload any) error {
+	return func(ctx context.Context, extSvc *types.ExternalService, payload any) error {
 		if !conf.ExperimentalFeatures().EnablePermissionsWebhooks {
 			return nil
 		}

@@ -429,7 +429,7 @@ func IsAbs(path string) bool {
 // the stack trace appended. Arguments are handled in the manner of
 // fmt.Printf. Arguments should format to a string which identifies what the
 // panic code was doing. Returns a non-nil error if it recovered from a panic.
-func Panicf(r interface{}, format string, v ...interface{}) error {
+func Panicf(r any, format string, v ...any) error {
 	if r != nil {
 		// Same as net/http
 		const size = 64 << 10

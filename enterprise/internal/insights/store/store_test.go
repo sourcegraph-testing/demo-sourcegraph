@@ -160,17 +160,17 @@ func TestCountData(t *testing.T) {
 			Point:    SeriesPoint{Time: timeValue("2020-03-01T00:00:00Z"), Value: 1.1},
 			RepoName: optionalString("repo1"),
 			RepoID:   optionalRepoID(3),
-			Metadata: map[string]interface{}{"some": "data"},
+			Metadata: map[string]any{"some": "data"},
 		},
 		{
 			SeriesID: "two",
 			Point:    SeriesPoint{Time: timeValue("2020-03-02T00:00:00Z"), Value: 2.2},
-			Metadata: []interface{}{"some", "data", "two"},
+			Metadata: []any{"some", "data", "two"},
 		},
 		{
 			SeriesID: "two",
 			Point:    SeriesPoint{Time: timeValue("2020-03-02T00:01:00Z"), Value: 2.2},
-			Metadata: []interface{}{"some", "data", "two"},
+			Metadata: []any{"some", "data", "two"},
 		},
 		{
 			SeriesID: "three",
@@ -245,14 +245,14 @@ func TestRecordSeriesPoints(t *testing.T) {
 			Point:    SeriesPoint{Time: current, Value: 1.1},
 			RepoName: optionalString("repo1"),
 			RepoID:   optionalRepoID(3),
-			Metadata: map[string]interface{}{"some": "data"},
+			Metadata: map[string]any{"some": "data"},
 		},
 		{
 			SeriesID: "one",
 			Point:    SeriesPoint{Time: current.Add(-time.Hour * 24 * 15), Value: 2.2},
 			RepoName: optionalString("repo1"),
 			RepoID:   optionalRepoID(3),
-			Metadata: []interface{}{"some", "data", "two"},
+			Metadata: []any{"some", "data", "two"},
 		},
 		{
 			SeriesID: "one",

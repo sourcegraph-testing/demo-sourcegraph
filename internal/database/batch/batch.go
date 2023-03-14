@@ -20,7 +20,7 @@ type Inserter struct {
 	db               dbutil.DB
 	numColumns       int
 	maxBatchSize     int
-	batch            []interface{}
+	batch            []any
 	queryPrefix      string
 	querySuffix      string
 	returningSuffix  string
@@ -33,7 +33,7 @@ type ReturningScanner func(rows *sql.Rows) error
 // column names, then reads from the given channel as if they specify values for a single row.
 // The inserter will be flushed and any error that occurred during insertion or flush will be
 // returned.
-func InsertValues(ctx context.Context, db dbutil.DB, tableName string, columnNames []string, values <-chan []interface{}) error {
+func InsertValues(ctx context.Context, db dbutil.DB, tableName string, columnNames []string, values <-chan []any) error {
 	return WithInserter(ctx, db, tableName, columnNames, func(inserter *Inserter) error {
 	outer:
 		for {
@@ -130,7 +130,7 @@ func NewInserterWithReturn(
 		db:               db,
 		numColumns:       numColumns,
 		maxBatchSize:     maxBatchSize,
-		batch:            make([]interface{}, 0, maxBatchSize),
+		batch:            make([]any, 0, maxBatchSize),
 		queryPrefix:      queryPrefix,
 		querySuffix:      querySuffix,
 		returningSuffix:  returningSuffix,
@@ -139,7 +139,7 @@ func NewInserterWithReturn(
 }
 
 // Insert submits a single row of values to be inserted on the next flush.
-func (i *Inserter) Insert(ctx context.Context, values ...interface{}) error {
+func (i *Inserter) Insert(ctx context.Context, values ...any) error {
 	if len(values) != i.numColumns {
 		return errors.Errorf("expected %d values, got %d", i.numColumns, len(values))
 	}
@@ -179,7 +179,7 @@ func (i *Inserter) Flush(ctx context.Context) (err error) {
 
 // pop removes and returns as many values from the current batch that can be attached to a single
 // insert statement. The returned values are the oldest values submitted to the batch (in order).
-func (i *Inserter) pop() (batch []interface{}) {
+func (i *Inserter) pop() (batch []any) {
 	if len(i.batch) < i.maxBatchSize {
 		batch, i.batch = i.batch, i.batch[:0]
 		return batch

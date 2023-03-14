@@ -45,7 +45,7 @@ type Test struct {
 	Schema         *graphql.Schema
 	Query          string
 	OperationName  string
-	Variables      map[string]interface{}
+	Variables      map[string]any
 	ExpectedResult string
 	ExpectedErrors []*gqlerrors.QueryError
 }
@@ -101,7 +101,7 @@ func RunTest(t *testing.T, test *Test) {
 }
 
 func formatJSON(data []byte) ([]byte, error) {
-	var v interface{}
+	var v any
 	if err := json.Unmarshal(data, &v); err != nil {
 		return nil, err
 	}

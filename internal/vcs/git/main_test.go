@@ -79,7 +79,7 @@ func init() {
 	}
 }
 
-func AsJSON(v interface{}) string {
+func AsJSON(v any) string {
 	b, err := json.MarshalIndent(v, "", "  ")
 	if err != nil {
 		panic(err)

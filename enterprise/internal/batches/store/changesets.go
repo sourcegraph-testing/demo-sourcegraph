@@ -152,7 +152,7 @@ func (s *Store) changesetWriteQuery(q string, includeID bool, c *btypes.Changese
 		uiPublicationState = nullStringColumn(string(*state))
 	}
 
-	vars := []interface{}{
+	vars := []any{
 		sqlf.Join(changesetInsertColumns, ", "),
 		c.RepoID,
 		c.CreatedAt,
@@ -740,7 +740,7 @@ func updateChangesetCodeHostStateQuery(c *btypes.Changeset) (*sqlf.Query, error)
 	// Not being able to find a title is fine, we just have a NULL in the database then.
 	title, _ := c.Title()
 
-	vars := []interface{}{
+	vars := []any{
 		sqlf.Join(changesetCodeHostStateInsertColumns, ", "),
 		c.UpdatedAt,
 		metadata,
@@ -976,7 +976,7 @@ type jsonBatchChangeChangesetSet struct {
 }
 
 // Scan implements the Scanner interface.
-func (n *jsonBatchChangeChangesetSet) Scan(value interface{}) error {
+func (n *jsonBatchChangeChangesetSet) Scan(value any) error {
 	m := make(map[int64]btypes.BatchChangeAssoc)
 
 	switch value := value.(type) {

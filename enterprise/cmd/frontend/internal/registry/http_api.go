@@ -186,7 +186,7 @@ func handleRegistry(w http.ResponseWriter, r *http.Request) (err error) {
 	}
 
 	const extensionsPath = "/registry/extensions"
-	var result interface{}
+	var result any
 	switch {
 	case urlPath == extensionsPath:
 		operation = "list"

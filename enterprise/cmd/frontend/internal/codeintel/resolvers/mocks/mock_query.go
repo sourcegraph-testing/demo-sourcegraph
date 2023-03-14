@@ -245,14 +245,14 @@ type QueryResolverDefinitionsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c QueryResolverDefinitionsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c QueryResolverDefinitionsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c QueryResolverDefinitionsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c QueryResolverDefinitionsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // QueryResolverDiagnosticsFunc describes the behavior when the Diagnostics
@@ -357,14 +357,14 @@ type QueryResolverDiagnosticsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c QueryResolverDiagnosticsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c QueryResolverDiagnosticsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c QueryResolverDiagnosticsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c QueryResolverDiagnosticsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // QueryResolverDocumentationFunc describes the behavior when the
@@ -469,14 +469,14 @@ type QueryResolverDocumentationFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c QueryResolverDocumentationFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c QueryResolverDocumentationFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c QueryResolverDocumentationFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c QueryResolverDocumentationFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // QueryResolverDocumentationDefinitionsFunc describes the behavior when the
@@ -582,14 +582,14 @@ type QueryResolverDocumentationDefinitionsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c QueryResolverDocumentationDefinitionsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c QueryResolverDocumentationDefinitionsFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c QueryResolverDocumentationDefinitionsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c QueryResolverDocumentationDefinitionsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // QueryResolverDocumentationPageFunc describes the behavior when the
@@ -693,14 +693,14 @@ type QueryResolverDocumentationPageFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c QueryResolverDocumentationPageFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c QueryResolverDocumentationPageFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c QueryResolverDocumentationPageFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c QueryResolverDocumentationPageFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // QueryResolverDocumentationPathInfoFunc describes the behavior when the
@@ -805,14 +805,14 @@ type QueryResolverDocumentationPathInfoFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c QueryResolverDocumentationPathInfoFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c QueryResolverDocumentationPathInfoFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c QueryResolverDocumentationPathInfoFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c QueryResolverDocumentationPathInfoFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // QueryResolverDocumentationReferencesFunc describes the behavior when the
@@ -927,14 +927,14 @@ type QueryResolverDocumentationReferencesFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c QueryResolverDocumentationReferencesFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
+func (c QueryResolverDocumentationReferencesFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c QueryResolverDocumentationReferencesFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c QueryResolverDocumentationReferencesFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }
 
 // QueryResolverHoverFunc describes the behavior when the Hover method of
@@ -1044,14 +1044,14 @@ type QueryResolverHoverFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c QueryResolverHoverFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c QueryResolverHoverFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c QueryResolverHoverFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2, c.Result3}
+func (c QueryResolverHoverFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2, c.Result3}
 }
 
 // QueryResolverRangesFunc describes the behavior when the Ranges method of
@@ -1155,14 +1155,14 @@ type QueryResolverRangesFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c QueryResolverRangesFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c QueryResolverRangesFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c QueryResolverRangesFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c QueryResolverRangesFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // QueryResolverReferencesFunc describes the behavior when the References
@@ -1276,12 +1276,12 @@ type QueryResolverReferencesFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c QueryResolverReferencesFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
+func (c QueryResolverReferencesFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2, c.Arg3, c.Arg4}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c QueryResolverReferencesFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1, c.Result2}
+func (c QueryResolverReferencesFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1, c.Result2}
 }

@@ -189,19 +189,19 @@ type StoreComposeFuncCall struct {
 // invocation. The variadic slice argument is flattened in this array such
 // that one positional argument and three variadic arguments would result in
 // a slice of four, not two.
-func (c StoreComposeFuncCall) Args() []interface{} {
-	trailing := []interface{}{}
+func (c StoreComposeFuncCall) Args() []any {
+	trailing := []any{}
 	for _, val := range c.Arg2 {
 		trailing = append(trailing, val)
 	}
 
-	return append([]interface{}{c.Arg0, c.Arg1}, trailing...)
+	return append([]any{c.Arg0, c.Arg1}, trailing...)
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c StoreComposeFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c StoreComposeFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // StoreDeleteFunc describes the behavior when the Delete method of the
@@ -299,14 +299,14 @@ type StoreDeleteFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c StoreDeleteFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c StoreDeleteFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c StoreDeleteFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c StoreDeleteFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // StoreGetFunc describes the behavior when the Get method of the parent
@@ -407,14 +407,14 @@ type StoreGetFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c StoreGetFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c StoreGetFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c StoreGetFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c StoreGetFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // StoreInitFunc describes the behavior when the Init method of the parent
@@ -509,14 +509,14 @@ type StoreInitFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c StoreInitFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c StoreInitFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c StoreInitFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c StoreInitFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // StoreUploadFunc describes the behavior when the Upload method of the
@@ -620,12 +620,12 @@ type StoreUploadFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c StoreUploadFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c StoreUploadFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c StoreUploadFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c StoreUploadFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }

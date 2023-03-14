@@ -141,14 +141,14 @@ type GcsAPIBucketFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c GcsAPIBucketFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c GcsAPIBucketFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c GcsAPIBucketFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c GcsAPIBucketFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // MockGcsBucketHandle is a mock implementation of the gcsBucketHandle
@@ -325,14 +325,14 @@ type GcsBucketHandleAttrsFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c GcsBucketHandleAttrsFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c GcsBucketHandleAttrsFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c GcsBucketHandleAttrsFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c GcsBucketHandleAttrsFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // GcsBucketHandleCreateFunc describes the behavior when the Create method
@@ -434,14 +434,14 @@ type GcsBucketHandleCreateFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c GcsBucketHandleCreateFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c GcsBucketHandleCreateFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c GcsBucketHandleCreateFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c GcsBucketHandleCreateFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // GcsBucketHandleObjectFunc describes the behavior when the Object method
@@ -537,14 +537,14 @@ type GcsBucketHandleObjectFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c GcsBucketHandleObjectFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c GcsBucketHandleObjectFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c GcsBucketHandleObjectFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c GcsBucketHandleObjectFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // GcsBucketHandleUpdateFunc describes the behavior when the Update method
@@ -643,14 +643,14 @@ type GcsBucketHandleUpdateFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c GcsBucketHandleUpdateFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1}
+func (c GcsBucketHandleUpdateFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c GcsBucketHandleUpdateFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c GcsBucketHandleUpdateFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // MockGcsComposer is a mock implementation of the gcsComposer interface
@@ -789,14 +789,14 @@ type GcsComposerRunFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c GcsComposerRunFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c GcsComposerRunFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c GcsComposerRunFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c GcsComposerRunFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // MockGcsObjectHandle is a mock implementation of the gcsObjectHandle
@@ -973,19 +973,19 @@ type GcsObjectHandleComposerFromFuncCall struct {
 // invocation. The variadic slice argument is flattened in this array such
 // that one positional argument and three variadic arguments would result in
 // a slice of four, not two.
-func (c GcsObjectHandleComposerFromFuncCall) Args() []interface{} {
-	trailing := []interface{}{}
+func (c GcsObjectHandleComposerFromFuncCall) Args() []any {
+	trailing := []any{}
 	for _, val := range c.Arg0 {
 		trailing = append(trailing, val)
 	}
 
-	return append([]interface{}{}, trailing...)
+	return append([]any{}, trailing...)
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c GcsObjectHandleComposerFromFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c GcsObjectHandleComposerFromFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // GcsObjectHandleDeleteFunc describes the behavior when the Delete method
@@ -1081,14 +1081,14 @@ type GcsObjectHandleDeleteFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c GcsObjectHandleDeleteFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c GcsObjectHandleDeleteFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c GcsObjectHandleDeleteFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c GcsObjectHandleDeleteFuncCall) Results() []any {
+	return []any{c.Result0}
 }
 
 // GcsObjectHandleNewRangeReaderFunc describes the behavior when the
@@ -1195,14 +1195,14 @@ type GcsObjectHandleNewRangeReaderFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c GcsObjectHandleNewRangeReaderFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0, c.Arg1, c.Arg2}
+func (c GcsObjectHandleNewRangeReaderFuncCall) Args() []any {
+	return []any{c.Arg0, c.Arg1, c.Arg2}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c GcsObjectHandleNewRangeReaderFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0, c.Result1}
+func (c GcsObjectHandleNewRangeReaderFuncCall) Results() []any {
+	return []any{c.Result0, c.Result1}
 }
 
 // GcsObjectHandleNewWriterFunc describes the behavior when the NewWriter
@@ -1298,12 +1298,12 @@ type GcsObjectHandleNewWriterFuncCall struct {
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
-func (c GcsObjectHandleNewWriterFuncCall) Args() []interface{} {
-	return []interface{}{c.Arg0}
+func (c GcsObjectHandleNewWriterFuncCall) Args() []any {
+	return []any{c.Arg0}
 }
 
 // Results returns an interface slice containing the results of this
 // invocation.
-func (c GcsObjectHandleNewWriterFuncCall) Results() []interface{} {
-	return []interface{}{c.Result0}
+func (c GcsObjectHandleNewWriterFuncCall) Results() []any {
+	return []any{c.Result0}
 }

@@ -24,7 +24,7 @@ func TestIndexSchedulerUpdate(t *testing.T) {
 
 	mockSettingStore := NewMockIndexingSettingStore()
 	mockSettingStore.GetLastestSchemaSettingsFunc.SetDefaultReturn(&schema.Settings{
-		SearchRepositoryGroups: map[string][]interface{}{},
+		SearchRepositoryGroups: map[string][]any{},
 	}, nil)
 
 	mockRepoStore := NewMockIndexingRepoStore()
@@ -71,7 +71,7 @@ func TestDisabledAutoindexConfiguration(t *testing.T) {
 
 	mockSettingStore := NewMockIndexingSettingStore()
 	mockSettingStore.GetLastestSchemaSettingsFunc.SetDefaultReturn(&schema.Settings{
-		SearchRepositoryGroups: map[string][]interface{}{},
+		SearchRepositoryGroups: map[string][]any{},
 	}, nil)
 
 	mockRepoStore := NewMockIndexingRepoStore()

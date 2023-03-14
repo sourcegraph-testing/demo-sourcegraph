@@ -104,7 +104,7 @@ func TestChangesetApplyPreviewResolver(t *testing.T) {
 
 	apiID := string(marshalBatchSpecRandID(batchSpec.RandID))
 
-	input := map[string]interface{}{"batchSpec": apiID}
+	input := map[string]any{"batchSpec": apiID}
 	var response struct{ Node apitest.BatchSpec }
 	apitest.MustExec(ctx, t, s, input, &response, queryChangesetApplyPreview)
 

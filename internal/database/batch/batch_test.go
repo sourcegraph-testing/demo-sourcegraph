@@ -31,7 +31,7 @@ func TestBatchInserter(t *testing.T) {
 	}
 	defer rows.Close()
 
-	var values [][]interface{}
+	var values [][]any
 	for rows.Next() {
 		var v1, v2, v3, v4 int
 		var v5 string
@@ -39,7 +39,7 @@ func TestBatchInserter(t *testing.T) {
 			t.Fatalf("unexpected error scanning data: %s", err)
 		}
 
-		values = append(values, []interface{}{v1, v2, v3, v4, v5})
+		values = append(values, []any{v1, v2, v3, v4, v5})
 	}
 
 	if diff := cmp.Diff(expectedValues, values); diff != "" {
@@ -114,10 +114,10 @@ func setupTestTable(t testing.TB, db *sql.DB) {
 	})
 }
 
-func makeTestValues(tableSizeFactor, payloadSize int) [][]interface{} {
-	var expectedValues [][]interface{}
+func makeTestValues(tableSizeFactor, payloadSize int) [][]any {
+	var expectedValues [][]any
 	for i := 0; i < maxNumParameters*tableSizeFactor; i++ {
-		expectedValues = append(expectedValues, []interface{}{
+		expectedValues = append(expectedValues, []any{
 			i,
 			i + 1,
 			i + 2,
@@ -138,7 +138,7 @@ func makePayload(size int) string {
 	return string(s)
 }
 
-func testInsert(t testing.TB, db *sql.DB, expectedValues [][]interface{}) {
+func testInsert(t testing.TB, db *sql.DB, expectedValues [][]any) {
 	ctx := context.Background()
 
 	inserter := NewInserter(ctx, db, "batch_inserter_test", "col1", "col2", "col3", "col4", "col5")
@@ -153,7 +153,7 @@ func testInsert(t testing.TB, db *sql.DB, expectedValues [][]interface{}) {
 	}
 }
 
-func testInsertWithReturn(t testing.TB, db *sql.DB, expectedValues [][]interface{}) (insertedIDs []int) {
+func testInsertWithReturn(t testing.TB, db *sql.DB, expectedValues [][]any) (insertedIDs []int) {
 	ctx := context.Background()
 
 	inserter := NewInserterWithReturn(

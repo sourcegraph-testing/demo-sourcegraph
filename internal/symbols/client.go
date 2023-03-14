@@ -102,7 +102,7 @@ func (c *Client) Search(ctx context.Context, args search.SymbolsParameters) (res
 	return result, err
 }
 
-func (c *Client) httpPost(ctx context.Context, method string, key key, payload interface{}) (resp *http.Response, err error) {
+func (c *Client) httpPost(ctx context.Context, method string, key key, payload any) (resp *http.Response, err error) {
 	span, ctx := ot.StartSpanFromContext(ctx, "symbols.Client.httpPost")
 	defer func() {
 		if err != nil {
