@@ -227,3 +227,4 @@ Use this process to create a source code zip to attach to a Firefox add-on submi
 cd client/browser
 yarn run create-source-zip
 ```
+Hello Hello!
