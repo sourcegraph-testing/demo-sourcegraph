@@ -50,3 +50,4 @@ Logs are rotated every 10 mb.
 search-blitz calls the GraphQL API with a token of a dedicated user.
 
 Credentials: 1password.
+Hello Hello!

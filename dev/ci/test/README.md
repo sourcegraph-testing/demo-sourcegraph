@@ -66,3 +66,4 @@ All commands should be wrapped into a bach script, which is run as part of the `
       cd /sourcegraph
       ./dev/ci/test/new-vagrant-test/test.sh
 ```
+Hello Hello!
