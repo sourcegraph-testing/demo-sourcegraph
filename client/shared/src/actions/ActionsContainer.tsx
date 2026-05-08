@@ -1,7 +1,6 @@
 import * as H from 'history'
 import React, { useMemo } from 'react'
-import { from } from 'rxjs'
-import { switchMap } from 'rxjs/operators'
+import { from, switchMap } from 'rxjs'
 
 import { wrapRemoteObservable } from '../api/client/api/common'
 import { ContributionOptions } from '../api/extension/extensionHostApi'

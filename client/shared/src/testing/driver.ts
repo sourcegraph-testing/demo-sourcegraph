@@ -20,8 +20,18 @@ import puppeteer, {
     RevisionInfo,
 } from 'puppeteer'
 import puppeteerFirefox from 'puppeteer-firefox'
-import { from, fromEvent, merge, Subscription } from 'rxjs'
-import { filter, map, concatAll, mergeMap, mergeAll, takeUntil } from 'rxjs/operators'
+import {
+    from,
+    fromEvent,
+    merge,
+    Subscription,
+    filter,
+    map,
+    concatAll,
+    mergeMap,
+    mergeAll,
+    takeUntil,
+} from 'rxjs'
 import { Key } from 'ts-key-enum'
 import webExt from 'web-ext'
 

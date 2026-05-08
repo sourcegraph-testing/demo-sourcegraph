@@ -1,8 +1,7 @@
 import { parseISO } from 'date-fns'
 import React, { useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { Observable } from 'rxjs'
-import { catchError, map } from 'rxjs/operators'
+import { Observable, catchError, map } from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import { gql, dataOrThrowErrors } from '@sourcegraph/shared/src/graphql/graphql'

@@ -1,5 +1,4 @@
-import { Observable, of, zip, OperatorFunction } from 'rxjs'
-import { catchError, map, switchMap } from 'rxjs/operators'
+import { Observable, of, zip, OperatorFunction, catchError, map, switchMap } from 'rxjs'
 import { Omit } from 'utility-types'
 
 import { DiffPart, DOMFunctions as CodeIntellifyDOMFuncions, PositionAdjuster } from '@sourcegraph/codeintellify'

@@ -53,7 +53,7 @@ interface Mocks
 const NOOP_MOCKS: Mocks = {
     settings: of({ final: {}, subjects: [] }),
     updateSettings: () => Promise.reject(new Error('Mocks#updateSettings not implemented')),
-    requestGraphQL: () => throwError(new Error('Mocks#queryGraphQL not implemented')),
+    requestGraphQL: () => throwError(() => new Error('Mocks#queryGraphQL not implemented')),
     getScriptURLForExtension: () => undefined,
     clientApplication: 'sourcegraph',
     sideloadedExtensionURL: new BehaviorSubject<string | null>(null),

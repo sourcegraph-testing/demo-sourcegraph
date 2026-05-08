@@ -2,8 +2,13 @@ import classNames from 'classnames'
 import * as H from 'history'
 import { uniq } from 'lodash'
 import * as React from 'react'
-import { combineLatest, merge, Observable, of, Subject, Subscription } from 'rxjs'
 import {
+    combineLatest,
+    merge,
+    Observable,
+    of,
+    Subject,
+    Subscription,
     catchError,
     debounceTime,
     delay,
@@ -17,7 +22,7 @@ import {
     tap,
     scan,
     share,
-} from 'rxjs/operators'
+} from 'rxjs'
 
 import { Form } from '@sourcegraph/branded/src/components/Form'
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'

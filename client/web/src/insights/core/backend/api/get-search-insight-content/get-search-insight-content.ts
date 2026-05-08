@@ -1,7 +1,6 @@
 import { formatISO, isAfter, startOfDay, sub, Duration } from 'date-fns'
 import escapeRegExp from 'lodash/escapeRegExp'
-import { defer } from 'rxjs'
-import { retry } from 'rxjs/operators'
+import { defer, retry, lastValueFrom } from 'rxjs'
 import type { LineChartContent } from 'sourcegraph'
 
 import { EMPTY_DATA_POINT_VALUE } from '../../../../components/insight-view-content/chart-view-content/charts/line/constants'
@@ -66,11 +65,10 @@ export async function getSearchInsightContent(insight: SearchInsightSettings): P
         }))
     )
 
-    const rawSearchResults = await defer(() => fetchRawSearchInsightResults(searchQueries.map(search => search.query)))
+    const rawSearchResults = await lastValueFrom(defer(() => fetchRawSearchInsightResults(searchQueries.map(search => search.query)))
         // The bulk search may timeout, but a retry is then likely faster
         // because caches are warm
-        .pipe(retry(3))
-        .toPromise()
+        .pipe(retry(3)))
 
     const searchResults = Object.entries(rawSearchResults).map(([field, result]) => {
         const index = +field.slice('search'.length)
@@ -139,7 +137,7 @@ async function determineCommitsToSearch(dates: Date[], repo: string): Promise<Se
         return `repo:^${escapeRegExp(repo)}$ type:commit before:${before} count:1`
     })
 
-    const commitResults = await fetchSearchInsightCommits(commitQueries).toPromise()
+    const commitResults = await lastValueFrom(fetchSearchInsightCommits(commitQueries))
 
     return Object.entries(commitResults).map(([name, search], index) => {
         const index_ = +name.slice('search'.length)

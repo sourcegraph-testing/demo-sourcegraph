@@ -1,5 +1,12 @@
-import { concat, Observable, ReplaySubject } from 'rxjs'
-import { map, publishReplay, refCount } from 'rxjs/operators'
+import {
+    concat,
+    Observable,
+    ReplaySubject,
+    map,
+    publishReplay,
+    refCount,
+    lastValueFrom,
+} from 'rxjs'
 
 import { Tooltip } from '@sourcegraph/branded/src/components/tooltip/Tooltip'
 import { createExtensionHost } from '@sourcegraph/shared/src/api/extension/worker'
@@ -53,13 +60,13 @@ export function createPlatformContext(): PlatformContext {
                 if (asError(error).message.includes('version mismatch')) {
                     // The user probably edited the settings in another tab, so
                     // try once more.
-                    updatedSettings.next(await fetchViewerSettings().toPromise())
+                    updatedSettings.next(await lastValueFrom(fetchViewerSettings()))
                     await updateSettings(context, subject, edit, mutateSettings)
                 } else {
                     throw error
                 }
             }
-            updatedSettings.next(await fetchViewerSettings().toPromise())
+            updatedSettings.next(await lastValueFrom(fetchViewerSettings()))
         },
         requestGraphQL: ({ request, variables }) => requestGraphQL(request, variables),
         forceUpdateTooltip: () => Tooltip.forceUpdate(),

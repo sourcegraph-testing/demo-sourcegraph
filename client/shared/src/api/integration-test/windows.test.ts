@@ -1,6 +1,5 @@
 import { pick } from 'lodash'
-import { from, of } from 'rxjs'
-import { switchMap, take, toArray, first } from 'rxjs/operators'
+import { from, of, switchMap, take, toArray, first, lastValueFrom } from 'rxjs'
 import { ViewComponent, Window } from 'sourcegraph'
 
 import { wrapRemoteObservable } from '../client/api/common'
@@ -161,13 +160,12 @@ describe('Windows (integration)', () => {
                     viewers: [],
                 })
 
-                const viewers = from(extensionAPI.app.activeWindowChanges)
+                const viewers = lastValueFrom(from(extensionAPI.app.activeWindowChanges)
                     .pipe(
                         switchMap(activeWindow => (activeWindow ? activeWindow.activeViewComponentChanges : of(null))),
                         take(4),
                         toArray()
-                    )
-                    .toPromise()
+                    ))
 
                 await extensionHostAPI.addTextDocumentIfNotExists({ uri: 'foo', languageId: 'l1', text: 't1' })
                 await extensionHostAPI.addTextDocumentIfNotExists({ uri: 'bar', languageId: 'l2', text: 't2' })
@@ -195,7 +193,7 @@ describe('Windows (integration)', () => {
 
         test('Window#showNotification', async () => {
             const { extensionAPI, extensionHostAPI } = await integrationTestContext()
-            const value = wrapRemoteObservable(extensionHostAPI.getPlainNotifications()).pipe(first()).toPromise()
+            const value = lastValueFrom(wrapRemoteObservable(extensionHostAPI.getPlainNotifications()).pipe(first()))
             extensionAPI.app.activeWindow!.showNotification('a', NotificationType.Info)
             expect(await value).toEqual({ message: 'a', type: NotificationType.Info })
         })

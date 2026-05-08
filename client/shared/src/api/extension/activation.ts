@@ -1,6 +1,16 @@
 import { Remote } from 'comlink'
-import { BehaviorSubject, combineLatest, from, Observable, Subscription } from 'rxjs'
-import { catchError, concatMap, distinctUntilChanged, map, tap } from 'rxjs/operators'
+import {
+    BehaviorSubject,
+    combineLatest,
+    from,
+    Observable,
+    Subscription,
+    catchError,
+    concatMap,
+    distinctUntilChanged,
+    map,
+    tap,
+} from 'rxjs'
 import sourcegraph from 'sourcegraph'
 
 import { ConfiguredExtension, getScriptURLFromExtensionManifest, splitExtensionID } from '../../extensions/extension'

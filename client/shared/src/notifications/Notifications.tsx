@@ -1,7 +1,6 @@
 import { uniqueId } from 'lodash'
 import * as React from 'react'
-import { from, merge, Subscription } from 'rxjs'
-import { delay, map, mergeMap, switchMap, takeWhile } from 'rxjs/operators'
+import { from, merge, Subscription, delay, map, mergeMap, switchMap, takeWhile } from 'rxjs'
 
 import { wrapRemoteObservable } from '../api/client/api/common'
 import { NotificationType } from '../api/extension/extensionHostApi'

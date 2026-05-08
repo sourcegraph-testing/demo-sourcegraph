@@ -1,5 +1,4 @@
-import { from } from 'rxjs'
-import { distinctUntilChanged, filter, switchMap } from 'rxjs/operators'
+import { from, distinctUntilChanged, filter, switchMap } from 'rxjs'
 
 import { isDefined, isTaggedUnionMember } from '../../util/types'
 

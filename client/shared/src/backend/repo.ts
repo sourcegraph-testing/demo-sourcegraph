@@ -1,5 +1,4 @@
-import { from, Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { from, Observable, map } from 'rxjs'
 
 import { dataOrThrowErrors, gql } from '../graphql/graphql'
 import * as GQL from '../graphql/schema'

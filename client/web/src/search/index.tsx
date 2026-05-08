@@ -1,6 +1,5 @@
 import { escapeRegExp } from 'lodash'
-import { Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { Observable, map } from 'rxjs'
 
 import { SearchPatternType } from '@sourcegraph/shared/src/graphql-operations'
 import { ISavedSearch } from '@sourcegraph/shared/src/graphql/schema'

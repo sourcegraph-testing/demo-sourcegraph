@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs'
-import { debounceTime, map } from 'rxjs/operators'
+import { Observable, debounceTime, map } from 'rxjs'
 
 import { ContributableViewContainer } from '../../protocol'
 import { RegisteredViewProvider, ViewContexts, ViewProviderResult } from '../extensionHostApi'

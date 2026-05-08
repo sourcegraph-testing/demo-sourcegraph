@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo } from 'react'
-import { from } from 'rxjs'
-import { catchError, switchMap } from 'rxjs/operators'
+import { from, catchError, switchMap } from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 

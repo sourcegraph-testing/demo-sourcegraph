@@ -1,7 +1,6 @@
 import OpenInNewIcon from 'mdi-react/OpenInNewIcon'
 import React, { useEffect, useMemo } from 'react'
-import { Observable, of } from 'rxjs'
-import { map, catchError } from 'rxjs/operators'
+import { Observable, of, map, catchError } from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import { ActivationProps, percentageDone } from '@sourcegraph/shared/src/components/activation/Activation'

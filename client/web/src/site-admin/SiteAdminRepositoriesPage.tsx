@@ -4,7 +4,7 @@ import SettingsIcon from 'mdi-react/SettingsIcon'
 import React, { useEffect, useCallback } from 'react'
 import { RouteComponentProps } from 'react-router'
 import { Link } from 'react-router-dom'
-import { Observable } from 'rxjs'
+import { Observable, lastValueFrom } from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import { RepoLink } from '@sourcegraph/shared/src/components/RepoLink'
@@ -120,12 +120,10 @@ export const SiteAdminRepositoriesPage: React.FunctionComponent<Props> = ({ hist
 
     // Refresh global alert about enabling repositories when the user visits & navigates away from this page.
     useEffect(() => {
-        refreshSiteFlags()
-            .toPromise()
+        lastValueFrom(refreshSiteFlags())
             .then(null, error => console.error(error))
         return () => {
-            refreshSiteFlags()
-                .toPromise()
+            lastValueFrom(refreshSiteFlags())
                 .then(null, error => console.error(error))
         }
     }, [])

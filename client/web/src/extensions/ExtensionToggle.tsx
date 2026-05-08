@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { Observable, of } from 'rxjs'
-import { catchError, map, switchMap } from 'rxjs/operators'
+import { Observable, of, catchError, map, switchMap } from 'rxjs'
 
 import { Toggle } from '@sourcegraph/branded/src/components/Toggle'
 import { ToggleBig } from '@sourcegraph/branded/src/components/ToggleBig'

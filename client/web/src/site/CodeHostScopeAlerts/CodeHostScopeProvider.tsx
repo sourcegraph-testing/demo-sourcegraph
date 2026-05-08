@@ -2,6 +2,7 @@ import React, { FunctionComponent, useState, useEffect, useCallback, createConte
 
 import { queryExternalServicesScope } from '../../components/externalServices/backend'
 import { ExternalServiceKind } from '../../graphql-operations'
+import { lastValueFrom } from 'rxjs'
 
 type Scope = string[] | null
 
@@ -29,9 +30,9 @@ export const CodeHostScopeProvider: FunctionComponent<Props> = ({ children, auth
     const fetchCodeHostScope = useCallback(async (): Promise<void> => {
         if (authenticatedUser) {
             // fetch all code hosts for given user
-            const { nodes: fetchedServices } = await queryExternalServicesScope({
+            const { nodes: fetchedServices } = await lastValueFrom(queryExternalServicesScope({
                 namespace: authenticatedUser.id,
-            }).toPromise()
+            }))
 
             // In theory users should have at most one of each
             const gitHubService = fetchedServices.find(({ kind }) => kind === ExternalServiceKind.GITHUB)

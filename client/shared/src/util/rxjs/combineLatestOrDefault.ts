@@ -1,6 +1,16 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint rxjs/no-internal: warn */
-import { Observable, ObservableInput, of, Operator, PartialObserver, Subscriber, TeardownLogic, zip } from 'rxjs'
+import {
+    Observable,
+    ObservableInput,
+    of,
+    Operator,
+    PartialObserver,
+    Subscriber,
+    TeardownLogic,
+    zip,
+} from 'rxjs'
+// TODO(rxjs7): rxjs/internal/* imports are unsupported in v7 and need manual review.
 import { fromArray } from 'rxjs/internal/observable/fromArray'
 import { OuterSubscriber } from 'rxjs/internal/OuterSubscriber'
 import { asap } from 'rxjs/internal/scheduler/asap'

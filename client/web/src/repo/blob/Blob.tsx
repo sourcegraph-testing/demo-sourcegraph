@@ -14,8 +14,6 @@ import {
     ReplaySubject,
     Subject,
     Subscription,
-} from 'rxjs'
-import {
     catchError,
     concatMap,
     distinctUntilChanged,
@@ -27,7 +25,7 @@ import {
     tap,
     throttleTime,
     withLatestFrom,
-} from 'rxjs/operators'
+} from 'rxjs'
 import useDeepCompareEffect from 'use-deep-compare-effect'
 
 import { createHoverifier, findPositionsFromEvents, HoveredToken } from '@sourcegraph/codeintellify'

@@ -1,6 +1,5 @@
 import { trimStart } from 'lodash'
-import { defer, of } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { defer, of, map } from 'rxjs'
 import { Omit } from 'utility-types'
 
 import { AdjustmentDirection, PositionAdjuster } from '@sourcegraph/codeintellify'

@@ -1,7 +1,6 @@
 import { Remote } from 'comlink'
 import { createMemoryHistory, MemoryHistory, createPath } from 'history'
-import { from, Observable, of, Subscription } from 'rxjs'
-import { first } from 'rxjs/operators'
+import { from, Observable, of, Subscription, first, lastValueFrom } from 'rxjs'
 import { TestScheduler } from 'rxjs/testing'
 import * as sinon from 'sinon'
 import * as sourcegraph from 'sourcegraph'
@@ -340,7 +339,7 @@ describe('getDefinitionURL', () => {
 
     it('emits null if the locations result is empty', () =>
         expect(
-            of({ isLoading: false, result: [] })
+            lastValueFrom(of({ isLoading: false, result: [] })
                 .pipe(
                     getDefinitionURL(
                         { urlToFile, requestGraphQL },
@@ -350,8 +349,7 @@ describe('getDefinitionURL', () => {
                         FIXTURE_PARAMS
                     ),
                     first(({ isLoading }) => !isLoading)
-                )
-                .toPromise()
+                ))
         ).resolves.toStrictEqual({ isLoading: false, result: null }))
 
     describe('if there is exactly 1 location result', () => {
@@ -378,7 +376,7 @@ describe('getDefinitionURL', () => {
                         Partial<ViewStateSpec>
                 ) => ''
             )
-            await of<MaybeLoadingResult<Location[]>>({
+            await lastValueFrom(of<MaybeLoadingResult<Location[]>>({
                 isLoading: false,
                 result: [{ uri: 'git://r3?c3#f' }],
             })
@@ -391,8 +389,7 @@ describe('getDefinitionURL', () => {
                         FIXTURE_PARAMS
                     ),
                     first(({ isLoading }) => !isLoading)
-                )
-                .toPromise()
+                ))
             sinon.assert.calledOnce(urlToFile)
             expect(urlToFile.getCalls()[0].args[0]).toMatchObject({
                 filePath: 'f',
@@ -406,7 +403,7 @@ describe('getDefinitionURL', () => {
         describe('when the result is inside the current root', () => {
             it('emits the definition URL the user input revision (not commit SHA) of the root', () =>
                 expect(
-                    of<MaybeLoadingResult<Location[]>>({
+                    lastValueFrom(of<MaybeLoadingResult<Location[]>>({
                         isLoading: false,
                         result: [{ uri: 'git://r3?c3#f' }],
                     })
@@ -419,15 +416,14 @@ describe('getDefinitionURL', () => {
                                 FIXTURE_PARAMS
                             ),
                             first(({ isLoading }) => !isLoading)
-                        )
-                        .toPromise()
+                        ))
                 ).resolves.toEqual({ isLoading: false, result: { url: '/r3@v3/-/blob/f', multiple: false } }))
         })
 
         describe('when the result is not inside the current root (different repo and/or commit)', () => {
             it('emits the definition URL with range', () =>
                 expect(
-                    of<MaybeLoadingResult<Location[]>>({
+                    lastValueFrom(of<MaybeLoadingResult<Location[]>>({
                         isLoading: false,
                         result: [FIXTURE_LOCATION_CLIENT],
                     })
@@ -440,13 +436,12 @@ describe('getDefinitionURL', () => {
                                 FIXTURE_PARAMS
                             ),
                             first(({ isLoading }) => !isLoading)
-                        )
-                        .toPromise()
+                        ))
                 ).resolves.toEqual({ isLoading: false, result: { url: '/r2@c2/-/blob/f2?L3:3', multiple: false } }))
 
             it('emits the definition URL without range', () =>
                 expect(
-                    of<MaybeLoadingResult<Location[]>>({
+                    lastValueFrom(of<MaybeLoadingResult<Location[]>>({
                         isLoading: false,
                         result: [{ ...FIXTURE_LOCATION_CLIENT, range: undefined }],
                     })
@@ -459,15 +454,14 @@ describe('getDefinitionURL', () => {
                                 FIXTURE_PARAMS
                             ),
                             first(({ isLoading }) => !isLoading)
-                        )
-                        .toPromise()
+                        ))
                 ).resolves.toEqual({ isLoading: false, result: { url: '/r2@c2/-/blob/f2', multiple: false } }))
         })
     })
 
     it('emits the definition panel URL if there is more than 1 location result', () =>
         expect(
-            of<MaybeLoadingResult<Location[]>>({
+            lastValueFrom(of<MaybeLoadingResult<Location[]>>({
                 isLoading: false,
                 result: [FIXTURE_LOCATION_CLIENT, { ...FIXTURE_LOCATION, uri: 'other' }],
             })
@@ -480,8 +474,7 @@ describe('getDefinitionURL', () => {
                         FIXTURE_PARAMS
                     ),
                     first()
-                )
-                .toPromise()
+                ))
         ).resolves.toEqual({ isLoading: false, result: { url: '/r@v/-/blob/f?L2:2#tab=def', multiple: true } }))
 })
 
@@ -566,7 +559,7 @@ describe('registerHoverContributions()', () => {
 
         it('shows goToDefinition (non-preloaded) when the definition is loading', () =>
             expect(
-                getHoverActionItems(
+                lastValueFrom(getHoverActionItems(
                     {
                         'goToDefinition.showLoading': true,
                         'goToDefinition.url': null,
@@ -576,12 +569,12 @@ describe('registerHoverContributions()', () => {
                         hoverPosition: FIXTURE_PARAMS,
                     },
                     extensionHostAPI
-                ).toPromise()
+                ))
             ).resolves.toEqual([GO_TO_DEFINITION_ACTION]))
 
         it('shows goToDefinition (non-preloaded) when the definition had an error', () =>
             expect(
-                getHoverActionItems(
+                lastValueFrom(getHoverActionItems(
                     {
                         'goToDefinition.showLoading': false,
                         'goToDefinition.url': null,
@@ -591,12 +584,12 @@ describe('registerHoverContributions()', () => {
                         hoverPosition: FIXTURE_PARAMS,
                     },
                     extensionHostAPI
-                ).toPromise()
+                ))
             ).resolves.toEqual([GO_TO_DEFINITION_ACTION]))
 
         it('hides goToDefinition when the definition was not found', () =>
             expect(
-                getHoverActionItems(
+                lastValueFrom(getHoverActionItems(
                     {
                         'goToDefinition.showLoading': false,
                         'goToDefinition.url': null,
@@ -606,12 +599,12 @@ describe('registerHoverContributions()', () => {
                         hoverPosition: FIXTURE_PARAMS,
                     },
                     extensionHostAPI
-                ).toPromise()
+                ))
             ).resolves.toEqual([]))
 
         it('shows goToDefinition.preloaded when goToDefinition.url is available', () =>
             expect(
-                getHoverActionItems(
+                lastValueFrom(getHoverActionItems(
                     {
                         'goToDefinition.showLoading': false,
                         'goToDefinition.url': '/r2@c2/-/blob/f2?L3:3',
@@ -621,12 +614,12 @@ describe('registerHoverContributions()', () => {
                         hoverPosition: FIXTURE_PARAMS,
                     },
                     extensionHostAPI
-                ).toPromise()
+                ))
             ).resolves.toEqual([GO_TO_DEFINITION_PRELOADED_ACTION]))
 
         it('shows findReferences when the definition exists', () =>
             expect(
-                getHoverActionItems(
+                lastValueFrom(getHoverActionItems(
                     {
                         'goToDefinition.showLoading': false,
                         'goToDefinition.url': '/r2@c2/-/blob/f2?L3:3',
@@ -636,12 +629,12 @@ describe('registerHoverContributions()', () => {
                         hoverPosition: FIXTURE_PARAMS,
                     },
                     extensionHostAPI
-                ).toPromise()
+                ))
             ).resolves.toEqual([GO_TO_DEFINITION_PRELOADED_ACTION, FIND_REFERENCES_ACTION]))
 
         it('hides findReferences when the definition might exist (and is still loading)', () =>
             expect(
-                getHoverActionItems(
+                lastValueFrom(getHoverActionItems(
                     {
                         'goToDefinition.showLoading': true,
                         'goToDefinition.url': null,
@@ -651,12 +644,12 @@ describe('registerHoverContributions()', () => {
                         hoverPosition: FIXTURE_PARAMS,
                     },
                     extensionHostAPI
-                ).toPromise()
+                ))
             ).resolves.toEqual([GO_TO_DEFINITION_ACTION, FIND_REFERENCES_ACTION]))
 
         it('shows findReferences when the definition had an error', () =>
             expect(
-                getHoverActionItems(
+                lastValueFrom(getHoverActionItems(
                     {
                         'goToDefinition.showLoading': false,
                         'goToDefinition.url': null,
@@ -666,12 +659,12 @@ describe('registerHoverContributions()', () => {
                         hoverPosition: FIXTURE_PARAMS,
                     },
                     extensionHostAPI
-                ).toPromise()
+                ))
             ).resolves.toEqual([GO_TO_DEFINITION_ACTION, FIND_REFERENCES_ACTION]))
 
         it('does not show findReferences when the definition was not found', () =>
             expect(
-                getHoverActionItems(
+                lastValueFrom(getHoverActionItems(
                     {
                         'goToDefinition.showLoading': false,
                         'goToDefinition.url': null,
@@ -681,7 +674,7 @@ describe('registerHoverContributions()', () => {
                         hoverPosition: FIXTURE_PARAMS,
                     },
                     extensionHostAPI
-                ).toPromise()
+                ))
             ).resolves.toEqual([]))
     })
 

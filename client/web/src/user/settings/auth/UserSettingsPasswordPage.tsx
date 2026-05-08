@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router'
 import { Link } from 'react-router-dom'
-import { Subject, Subscription } from 'rxjs'
-import { catchError, filter, mergeMap, tap } from 'rxjs/operators'
+import { Subject, Subscription, catchError, filter, mergeMap, tap } from 'rxjs'
 
 import { Form } from '@sourcegraph/branded/src/components/Form'
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'

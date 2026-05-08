@@ -1,8 +1,7 @@
 import DeleteIcon from 'mdi-react/DeleteIcon'
 import React, { FunctionComponent, useCallback, useEffect, useMemo, useState } from 'react'
 import { Redirect, RouteComponentProps } from 'react-router'
-import { timer } from 'rxjs'
-import { catchError, concatMap, delay, repeatWhen, takeWhile } from 'rxjs/operators'
+import { timer, catchError, concatMap, delay, repeatWhen, takeWhile, lastValueFrom } from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import { LSIFIndexState } from '@sourcegraph/shared/src/graphql-operations'
@@ -73,7 +72,7 @@ export const CodeIntelIndexPage: FunctionComponent<CodeIntelIndexPageProps> = ({
         setDeletionOrError('loading')
 
         try {
-            await deleteLsifIndex({ id }).toPromise()
+            await lastValueFrom(deleteLsifIndex({ id }))
             setDeletionOrError('deleted')
         } catch (error) {
             setDeletionOrError(error)

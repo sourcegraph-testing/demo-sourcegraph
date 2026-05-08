@@ -1,5 +1,4 @@
-import { Observable, ReplaySubject } from 'rxjs'
-import { catchError, map, mergeMap, tap } from 'rxjs/operators'
+import { Observable, ReplaySubject, catchError, map, mergeMap, tap, lastValueFrom } from 'rxjs'
 
 import { dataOrThrowErrors, gql } from '@sourcegraph/shared/src/graphql/graphql'
 
@@ -74,8 +73,7 @@ export const authRequired = authenticatedUser.pipe(map(user => user === null && 
 
 // Populate authenticatedUser.
 if (window.context?.isAuthenticatedUser) {
-    refreshAuthenticatedUser()
-        .toPromise()
+    lastValueFrom(refreshAuthenticatedUser())
         .then(
             () => undefined,
             error => console.error(error)

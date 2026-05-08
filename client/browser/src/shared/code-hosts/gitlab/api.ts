@@ -1,7 +1,6 @@
 import { first, identity } from 'lodash'
-import { Observable, zip, of } from 'rxjs'
+import { Observable, zip, of, map, switchMap } from 'rxjs'
 import { fromFetch } from 'rxjs/fetch'
-import { map, switchMap } from 'rxjs/operators'
 
 import { checkOk } from '@sourcegraph/shared/src/backend/fetch'
 import { memoizeObservable } from '@sourcegraph/shared/src/util/memoizeObservable'

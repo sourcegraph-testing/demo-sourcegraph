@@ -1,6 +1,5 @@
 import { noop } from 'lodash'
-import { Observable, ReplaySubject, Subscription } from 'rxjs'
-import { take } from 'rxjs/operators'
+import { Observable, ReplaySubject, Subscription, take, lastValueFrom } from 'rxjs'
 import * as uuid from 'uuid'
 
 import { PlatformContext } from '@sourcegraph/shared/src/platform/context'
@@ -120,7 +119,7 @@ export class EventLogger implements TelemetryService {
      */
     public async logCodeIntelligenceEvent(event: string, userEvent: UserEvent, eventProperties?: any): Promise<void> {
         const anonUserId = await this.getAnonUserID()
-        const sourcegraphURL = await this.sourcegraphURLs.pipe(take(1)).toPromise()
+        const sourcegraphURL = await lastValueFrom(this.sourcegraphURLs.pipe(take(1)))
         logUserEvent(userEvent, anonUserId, sourcegraphURL, this.requestGraphQL)
         logEvent(
             {
@@ -160,7 +159,7 @@ export class EventLogger implements TelemetryService {
      */
     public async logViewEvent(pageTitle: string, eventProperties?: any): Promise<void> {
         const anonUserId = await this.getAnonUserID()
-        const sourcegraphURL = await this.sourcegraphURLs.pipe(take(1)).toPromise()
+        const sourcegraphURL = await lastValueFrom(this.sourcegraphURLs.pipe(take(1)))
         logEvent(
             {
                 name: `View${pageTitle}`,

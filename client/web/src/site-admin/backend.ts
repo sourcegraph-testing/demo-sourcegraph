@@ -1,6 +1,5 @@
 import { parse as parseJSONC } from '@sqs/jsonc-parser'
-import { Observable } from 'rxjs'
-import { map, tap, mapTo } from 'rxjs/operators'
+import { Observable, map, tap, mapTo, lastValueFrom } from 'rxjs'
 
 import {
     createInvalidGraphQLMutationResponseError,
@@ -700,7 +699,7 @@ export function createUser(username: string, email: string | undefined): Observa
 }
 
 export function deleteOrganization(organization: Scalars['ID']): Promise<void> {
-    return requestGraphQL<DeleteOrganizationResult, DeleteOrganizationVariables>(
+    return lastValueFrom(requestGraphQL<DeleteOrganizationResult, DeleteOrganizationVariables>(
         gql`
             mutation DeleteOrganization($organization: ID!) {
                 deleteOrganization(organization: $organization) {
@@ -717,8 +716,7 @@ export function deleteOrganization(organization: Scalars['ID']): Promise<void> {
                     throw createInvalidGraphQLMutationResponseError('DeleteOrganization')
                 }
             })
-        )
-        .toPromise()
+        ))
 }
 
 export function fetchSiteUpdateCheck(): Observable<SiteUpdateCheckResult['site']> {

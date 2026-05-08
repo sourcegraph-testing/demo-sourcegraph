@@ -3,7 +3,7 @@
 import delay from 'delay'
 import expect from 'expect'
 import { describe, before, beforeEach, after, afterEach, test } from 'mocha'
-import { map } from 'rxjs/operators'
+import { map, lastValueFrom } from 'rxjs'
 
 import { gql, dataOrThrowErrors } from '@sourcegraph/shared/src/graphql/graphql'
 // import { overwriteSettings } from '@sourcegraph/shared/src/settings/edit'
@@ -191,10 +191,9 @@ describe('Core functionality regression test suite', () => {
                 }
             }
         `
-        const response = await gqlClientWithToken
+        const response = await lastValueFrom(gqlClientWithToken
             .queryGraphQL(currentUsernameQuery)
-            .pipe(map(dataOrThrowErrors))
-            .toPromise()
+            .pipe(map(dataOrThrowErrors)))
         expect(response).toEqual({ currentUser: { username: testUsername } })
 
         const gqlClientWithInvalidToken = createGraphQLClient({
@@ -203,7 +202,7 @@ describe('Core functionality regression test suite', () => {
         })
 
         await expect(
-            gqlClientWithInvalidToken.queryGraphQL(currentUsernameQuery).pipe(map(dataOrThrowErrors)).toPromise()
+            lastValueFrom(gqlClientWithInvalidToken.queryGraphQL(currentUsernameQuery).pipe(map(dataOrThrowErrors)))
         ).rejects.toThrowError('401 Unauthorized')
     })
 

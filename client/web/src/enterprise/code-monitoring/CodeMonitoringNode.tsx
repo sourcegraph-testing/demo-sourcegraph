@@ -1,7 +1,17 @@
 import * as H from 'history'
 import React, { useState, useCallback, useMemo } from 'react'
-import { Observable, concat, of } from 'rxjs'
-import { switchMap, catchError, startWith, takeUntil, tap, delay, mergeMap } from 'rxjs/operators'
+import {
+    Observable,
+    concat,
+    of,
+    switchMap,
+    catchError,
+    startWith,
+    takeUntil,
+    tap,
+    delay,
+    mergeMap,
+} from 'rxjs'
 
 import { Toggle } from '@sourcegraph/branded/src/components/Toggle'
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'

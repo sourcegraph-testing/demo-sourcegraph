@@ -8,8 +8,17 @@ import InformationCircleIcon from 'mdi-react/InformationCircleIcon'
 import SyncIcon from 'mdi-react/SyncIcon'
 import React from 'react'
 import { ButtonDropdown, DropdownMenu, DropdownToggle } from 'reactstrap'
-import { Observable, Subscription, of } from 'rxjs'
-import { catchError, map, repeatWhen, delay, distinctUntilChanged, switchMap } from 'rxjs/operators'
+import {
+    Observable,
+    Subscription,
+    of,
+    catchError,
+    map,
+    repeatWhen,
+    delay,
+    distinctUntilChanged,
+    switchMap,
+} from 'rxjs'
 
 import {
     CloudAlertIconRefresh,

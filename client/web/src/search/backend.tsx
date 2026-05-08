@@ -1,5 +1,4 @@
-import { Observable, of, combineLatest, defer } from 'rxjs'
-import { map, publishReplay, refCount } from 'rxjs/operators'
+import { Observable, of, combineLatest, defer, map, publishReplay, refCount } from 'rxjs'
 
 import { dataOrThrowErrors, gql } from '@sourcegraph/shared/src/graphql/graphql'
 import * as GQL from '@sourcegraph/shared/src/graphql/schema'

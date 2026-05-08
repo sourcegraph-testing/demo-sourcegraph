@@ -1,7 +1,6 @@
 import { proxy, Remote } from 'comlink'
 import { noop, sortBy } from 'lodash'
-import { BehaviorSubject, ReplaySubject } from 'rxjs'
-import { debounceTime, mapTo } from 'rxjs/operators'
+import { BehaviorSubject, ReplaySubject, debounceTime, mapTo } from 'rxjs'
 import * as sourcegraph from 'sourcegraph'
 
 import { Location, MarkupKind, Position, Range, Selection } from '@sourcegraph/extension-api-classes'

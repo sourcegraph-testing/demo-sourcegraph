@@ -1,6 +1,5 @@
 import { Remote } from 'comlink'
-import { combineLatest, from, Observable } from 'rxjs'
-import { map, switchMap } from 'rxjs/operators'
+import { combineLatest, from, Observable, map, switchMap } from 'rxjs'
 
 import { wrapRemoteObservable } from '@sourcegraph/shared/src/api/client/api/common'
 import { FlatExtensionHostAPI } from '@sourcegraph/shared/src/api/contract'

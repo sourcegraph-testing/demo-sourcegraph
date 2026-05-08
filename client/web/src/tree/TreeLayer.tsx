@@ -2,8 +2,12 @@
 import classNames from 'classnames'
 import * as H from 'history'
 import * as React from 'react'
-import { EMPTY, merge, of, Subject, Subscription } from 'rxjs'
 import {
+    EMPTY,
+    merge,
+    of,
+    Subject,
+    Subscription,
     catchError,
     debounceTime,
     delay,
@@ -13,7 +17,7 @@ import {
     share,
     switchMap,
     takeUntil,
-} from 'rxjs/operators'
+} from 'rxjs'
 import { FileDecoration } from 'sourcegraph'
 
 import { FileDecorationsByPath } from '@sourcegraph/shared/src/api/extension/extensionHostApi'

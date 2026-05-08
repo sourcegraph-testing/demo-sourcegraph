@@ -1,7 +1,6 @@
 import classNames from 'classnames'
 import React, { useMemo, useRef } from 'react'
-import { combineLatest, from, ReplaySubject } from 'rxjs'
-import { switchMap } from 'rxjs/operators'
+import { combineLatest, from, ReplaySubject, switchMap } from 'rxjs'
 import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect'
 
 import { wrapRemoteObservable } from '../api/client/api/common'

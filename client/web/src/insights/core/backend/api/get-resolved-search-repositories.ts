@@ -1,4 +1,5 @@
 import { fetchRepositoriesBySearch } from '../requests/fetch-repositories-by-search'
+import { lastValueFrom } from 'rxjs'
 
 /**
  * Get list of resolved repositories from the search API.
@@ -6,4 +7,4 @@ import { fetchRepositoriesBySearch } from '../requests/fetch-repositories-by-sea
  * @param query - search query
  */
 export const getResolvedSearchRepositories = (query: string): Promise<string[]> =>
-    fetchRepositoriesBySearch(query).toPromise()
+    lastValueFrom(fetchRepositoriesBySearch(query))

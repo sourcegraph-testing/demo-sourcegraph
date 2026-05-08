@@ -1,5 +1,4 @@
-import { from } from 'rxjs'
-import { take } from 'rxjs/operators'
+import { from, take, lastValueFrom } from 'rxjs'
 
 import { PlatformContext } from '@sourcegraph/shared/src/platform/context'
 import { Settings } from '@sourcegraph/shared/src/settings/settings'
@@ -34,7 +33,7 @@ export class SearchCommand {
             this.suggestionFetcher({
                 query,
                 handler: async suggestions => {
-                    const sourcegraphURL = await observeSourcegraphURL(IS_EXTENSION).pipe(take(1)).toPromise()
+                    const sourcegraphURL = await lastValueFrom(observeSourcegraphURL(IS_EXTENSION).pipe(take(1)))
                     const built = suggestions.map(({ title, url, urlLabel }) => ({
                         content: `${sourcegraphURL}${url}`,
                         description: `${title} - ${urlLabel}`,
@@ -51,7 +50,7 @@ export class SearchCommand {
         })
 
     public action = async (query: string, disposition?: string): Promise<void> => {
-        const sourcegraphURL = await observeSourcegraphURL(IS_EXTENSION).pipe(take(1)).toPromise()
+        const sourcegraphURL = await lastValueFrom(observeSourcegraphURL(IS_EXTENSION).pipe(take(1)))
 
         const [patternType, caseSensitive] = await this.getDefaultSearchSettings(sourcegraphURL)
 
@@ -104,7 +103,7 @@ export class SearchCommand {
                 )
 
                 await platformContext.refreshSettings()
-                const settings = (await from(platformContext.settings).pipe(take(1)).toPromise()).final
+                const settings = (await lastValueFrom(from(platformContext.settings).pipe(take(1)))).final
 
                 if (isDefined(settings) && isNot<ErrorLike | Settings, ErrorLike>(isErrorLike)(settings)) {
                     this.defaultPatternType =

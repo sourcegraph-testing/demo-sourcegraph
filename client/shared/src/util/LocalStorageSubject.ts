@@ -1,5 +1,4 @@
-import { BehaviorSubject, fromEvent, NextObserver, Observable } from 'rxjs'
-import { filter } from 'rxjs/operators'
+import { BehaviorSubject, fromEvent, NextObserver, Observable, filter } from 'rxjs'
 
 /**
  * An RxJS subject that is backed by a localStorage item.

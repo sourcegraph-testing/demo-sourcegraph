@@ -1,7 +1,18 @@
 import * as React from 'react'
 import { Link, Redirect } from 'react-router-dom'
-import { concat, Observable, Subject, Subscription } from 'rxjs'
-import { catchError, concatMap, distinctUntilKeyChanged, map, mapTo, tap, withLatestFrom } from 'rxjs/operators'
+import {
+    concat,
+    Observable,
+    Subject,
+    Subscription,
+    catchError,
+    concatMap,
+    distinctUntilKeyChanged,
+    map,
+    mapTo,
+    tap,
+    withLatestFrom,
+} from 'rxjs'
 
 import { Form } from '@sourcegraph/branded/src/components/Form'
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'

@@ -2,8 +2,17 @@ import { range, isEqual } from 'lodash'
 import ErrorIcon from 'mdi-react/ErrorIcon'
 import React from 'react'
 import VisibilitySensor from 'react-visibility-sensor'
-import { combineLatest, Observable, Subject, Subscription } from 'rxjs'
-import { catchError, filter, switchMap, map, distinctUntilChanged } from 'rxjs/operators'
+import {
+    combineLatest,
+    Observable,
+    Subject,
+    Subscription,
+    catchError,
+    filter,
+    switchMap,
+    map,
+    distinctUntilChanged,
+} from 'rxjs'
 
 import * as GQL from '../graphql/schema'
 import { highlightNode } from '../util/dom'

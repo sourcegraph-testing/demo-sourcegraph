@@ -1,7 +1,7 @@
 import * as H from 'history'
 import MapSearchIcon from 'mdi-react/MapSearchIcon'
 import React, { useCallback } from 'react'
-import { delay, repeatWhen, tap } from 'rxjs/operators'
+import { delay, repeatWhen, tap } from 'rxjs'
 
 import { BulkOperationState } from '@sourcegraph/shared/src/graphql-operations'
 import { Container } from '@sourcegraph/wildcard'

@@ -7,6 +7,7 @@ import { createRequiredValidator } from '../../../../../../components/form/valid
 import { fetchRepositories } from '../../../../../../core/backend/requests/fetch-repositories'
 import { EditableDataSeries } from '../../types'
 import { getSanitizedRepositories } from '../../utils/insight-sanitizer'
+import { lastValueFrom } from 'rxjs'
 
 export const repositoriesFieldValidator: Validator<string> = value => {
     if (value !== undefined && dedupeWhitespace(value).trim() === '') {
@@ -45,7 +46,7 @@ export const repositoriesExistValidator: AsyncValidator<string> = async value =>
             return
         }
 
-        const repositories = await fetchRepositories(repositoryNames).toPromise()
+        const repositories = await lastValueFrom(fetchRepositories(repositoryNames))
 
         const nullRepositoryIndex = repositories.findIndex(repo => !repo)
 

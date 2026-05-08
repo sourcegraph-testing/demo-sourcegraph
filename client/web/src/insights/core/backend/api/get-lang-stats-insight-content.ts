@@ -1,7 +1,6 @@
 import linguistLanguages from 'linguist-languages'
 import { escapeRegExp, partition, sum } from 'lodash'
-import { defer } from 'rxjs'
-import { map, retry } from 'rxjs/operators'
+import { defer, map, retry, lastValueFrom } from 'rxjs'
 import { PieChartContent } from 'sourcegraph'
 
 import { fetchLangStatsInsight } from '../requests/fetch-lang-stats-insight'
@@ -20,13 +19,12 @@ export async function getLangStatsInsightContent(settings: LangStatsInsightsSett
     const { repository, threshold = 0.03 } = settings
 
     const query = `repo:^${escapeRegExp(repository)}`
-    const stats = await defer(() => fetchLangStatsInsight(query))
+    const stats = await lastValueFrom(defer(() => fetchLangStatsInsight(query))
         .pipe(
             // The search may timeout, but a retry is then likely faster because caches are warm
             retry(3),
             map(data => data.search!.stats)
-        )
-        .toPromise()
+        ))
 
     if (stats.languages.length === 0) {
         throw new Error("We couldn't find the language statistics, try changing the repository.")

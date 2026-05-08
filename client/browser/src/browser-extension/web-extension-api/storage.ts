@@ -1,5 +1,4 @@
-import { concat, from, Observable, of } from 'rxjs'
-import { filter, map } from 'rxjs/operators'
+import { concat, from, Observable, of, filter, map } from 'rxjs'
 
 import { getPlatformName } from '../../shared/util/context'
 

@@ -9,8 +9,7 @@ import SourceRepositoryIcon from 'mdi-react/SourceRepositoryIcon'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Route, RouteComponentProps, Switch } from 'react-router'
 import { UncontrolledPopover } from 'reactstrap'
-import { NEVER, ObservableInput, of } from 'rxjs'
-import { catchError, switchMap } from 'rxjs/operators'
+import { NEVER, ObservableInput, of, catchError, switchMap } from 'rxjs'
 
 import {
     isCloneInProgressErrorLike,

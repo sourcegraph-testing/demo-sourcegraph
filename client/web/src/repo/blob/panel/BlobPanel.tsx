@@ -1,7 +1,6 @@
 import * as H from 'history'
 import React, { useCallback, useEffect, useMemo, useRef } from 'react'
-import { from, Observable, ReplaySubject, Subscription } from 'rxjs'
-import { map, mapTo, switchMap, tap } from 'rxjs/operators'
+import { from, Observable, ReplaySubject, Subscription, map, mapTo, switchMap, tap } from 'rxjs'
 
 import { useBuiltinPanelViews } from '@sourcegraph/branded/src/components/panel/Panel'
 import { MaybeLoadingResult } from '@sourcegraph/codeintellify'

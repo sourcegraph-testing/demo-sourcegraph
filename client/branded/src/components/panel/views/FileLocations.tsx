@@ -2,8 +2,16 @@ import * as H from 'history'
 import { upperFirst } from 'lodash'
 import MapSearchIcon from 'mdi-react/MapSearchIcon'
 import * as React from 'react'
-import { Observable, Subject, Subscription } from 'rxjs'
-import { catchError, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators'
+import {
+    Observable,
+    Subject,
+    Subscription,
+    catchError,
+    distinctUntilChanged,
+    map,
+    startWith,
+    switchMap,
+} from 'rxjs'
 import { Badged } from 'sourcegraph'
 
 import { Location } from '@sourcegraph/extension-api-types'

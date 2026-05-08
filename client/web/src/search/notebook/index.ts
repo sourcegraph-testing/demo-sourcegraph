@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs'
-import { startWith } from 'rxjs/operators'
+import { Observable, startWith } from 'rxjs'
 import * as uuid from 'uuid'
 
 import { SearchPatternType } from '@sourcegraph/shared/src/graphql-operations'

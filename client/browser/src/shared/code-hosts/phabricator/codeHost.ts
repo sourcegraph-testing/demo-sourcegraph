@@ -1,4 +1,4 @@
-import { map } from 'rxjs/operators'
+import { map } from 'rxjs'
 
 import { AdjustmentDirection, PositionAdjuster } from '@sourcegraph/codeintellify'
 import { Position } from '@sourcegraph/extension-api-types'

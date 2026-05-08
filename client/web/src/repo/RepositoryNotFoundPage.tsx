@@ -1,7 +1,15 @@
 import MapSearchIcon from 'mdi-react/MapSearchIcon'
 import * as React from 'react'
-import { merge, of, Subject, Subscription } from 'rxjs'
-import { catchError, distinctUntilChanged, map, switchMap } from 'rxjs/operators'
+import {
+    merge,
+    of,
+    Subject,
+    Subscription,
+    catchError,
+    distinctUntilChanged,
+    map,
+    switchMap,
+} from 'rxjs'
 
 import { asError, ErrorLike, isErrorLike } from '@sourcegraph/shared/src/util/errors'
 

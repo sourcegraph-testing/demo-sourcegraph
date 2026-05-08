@@ -2,8 +2,7 @@ import * as _graphiqlModule from 'graphiql' // type only
 import * as H from 'history'
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { from as fromPromise, Subject, Subscription } from 'rxjs'
-import { catchError, debounceTime } from 'rxjs/operators'
+import { from as fromPromise, Subject, Subscription, catchError, debounceTime } from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import { asError, ErrorLike, isErrorLike } from '@sourcegraph/shared/src/util/errors'

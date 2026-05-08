@@ -3,8 +3,14 @@ import '../../shared/polyfills'
 
 import { Endpoint } from 'comlink'
 import { without } from 'lodash'
-import { combineLatest, merge, Observable, of, Subject, Subscription, timer } from 'rxjs'
 import {
+    combineLatest,
+    merge,
+    Observable,
+    of,
+    Subject,
+    Subscription,
+    timer,
     bufferCount,
     filter,
     groupBy,
@@ -16,7 +22,8 @@ import {
     mapTo,
     catchError,
     distinctUntilChanged,
-} from 'rxjs/operators'
+    lastValueFrom,
+} from 'rxjs'
 import addDomainPermissionToggle from 'webext-domain-permission-toggle'
 import { patternToRegex } from 'webext-patterns'
 
@@ -232,7 +239,7 @@ async function main(): Promise<void> {
             variables: V
             sourcegraphURL?: string
         }): Promise<GraphQLResult<T>> {
-            return requestGraphQL<T, V>({ request, variables, sourcegraphURL }).toPromise()
+            return lastValueFrom(requestGraphQL<T, V>({ request, variables, sourcegraphURL }))
         },
 
         async notifyPrivateCloudError(

@@ -12,6 +12,7 @@ import {
 } from '../../keyboardShortcuts/keyboardShortcuts'
 
 import { FuzzyModal } from './FuzzyModal'
+import { lastValueFrom } from 'rxjs'
 
 const DEFAULT_MAX_RESULTS = 100
 
@@ -108,7 +109,7 @@ export interface Failed {
 }
 
 async function downloadFilenames(props: FuzzyFinderProps): Promise<string[]> {
-    const gqlResult = await requestGraphQL<FileNamesResult, FileNamesVariables>(
+    const gqlResult = await lastValueFrom(requestGraphQL<FileNamesResult, FileNamesVariables>(
         gql`
             query FileNames($repository: String!, $commit: String!) {
                 repository(name: $repository) {
@@ -122,7 +123,7 @@ async function downloadFilenames(props: FuzzyFinderProps): Promise<string[]> {
             repository: props.repoName,
             commit: props.commitID,
         }
-    ).toPromise()
+    ))
     const filenames = gqlResult.data?.repository?.commit?.fileNames
     if (!filenames) {
         throw new Error(JSON.stringify(gqlResult))

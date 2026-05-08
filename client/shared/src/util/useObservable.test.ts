@@ -3,8 +3,7 @@
 
 import { renderHook, act } from '@testing-library/react-hooks'
 import { useMemo, useCallback } from 'react'
-import { Observable, Subscriber } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { Observable, Subscriber, map } from 'rxjs'
 import * as sinon from 'sinon'
 
 import { useObservable, useEventObservable } from './useObservable'

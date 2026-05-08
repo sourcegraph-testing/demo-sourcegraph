@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import { isEqual } from 'lodash'
 import React, { FormEvent, useCallback, useEffect, useState, useRef } from 'react'
 import { RouteComponentProps } from 'react-router'
-import { Subscription } from 'rxjs'
+import { Subscription, lastValueFrom } from 'rxjs'
 
 import { Form } from '@sourcegraph/branded/src/components/Form'
 import { Link } from '@sourcegraph/shared/src/components/Link'
@@ -186,12 +186,11 @@ export const UserSettingsManageRepositoriesPage: React.FunctionComponent<Props> 
 
     const fetchExternalServices = useCallback(
         async (): Promise<ExternalServicesResult['externalServices']['nodes']> =>
-            queryExternalServices({
+            lastValueFrom(queryExternalServices({
                 first: null,
                 after: null,
                 namespace: authenticatedUser.id,
-            })
-                .toPromise()
+            }))
                 .then(({ nodes }) => nodes),
 
         [authenticatedUser.id]
@@ -199,12 +198,11 @@ export const UserSettingsManageRepositoriesPage: React.FunctionComponent<Props> 
 
     const fetchAffiliatedRepos = useCallback(
         async (): Promise<AffiliatedRepositoriesResult['affiliatedRepositories']['nodes']> =>
-            listAffiliatedRepositories({
+            lastValueFrom(listAffiliatedRepositories({
                 user: authenticatedUser.id,
                 codeHost: null,
                 query: null,
-            })
-                .toPromise()
+            }))
                 .then(({ affiliatedRepositories: { nodes } }) => nodes),
 
         [authenticatedUser.id]
@@ -212,8 +210,7 @@ export const UserSettingsManageRepositoriesPage: React.FunctionComponent<Props> 
 
     const fetchSelectedRepositories = useCallback(
         async (): Promise<NonNullable<UserRepositoriesResult['node']>['repositories']['nodes']> =>
-            listUserRepositories({ id: authenticatedUser.id, first: 2000 })
-                .toPromise()
+            lastValueFrom(listUserRepositories({ id: authenticatedUser.id, first: 2000 }))
                 .then(({ nodes }) => nodes),
         [authenticatedUser.id]
     )
@@ -389,7 +386,7 @@ export const UserSettingsManageRepositoriesPage: React.FunctionComponent<Props> 
 
     // fetch public repos for the "other public repositories" textarea
     const fetchAndSetPublicRepos = useCallback(async (): Promise<void> => {
-        const result = await queryUserPublicRepositories(authenticatedUser.id).toPromise()
+        const result = await lastValueFrom(queryUserPublicRepositories(authenticatedUser.id))
 
         if (!result) {
             setPublicRepoState({ ...initialPublicRepoState, loaded: true })
@@ -457,7 +454,7 @@ export const UserSettingsManageRepositoriesPage: React.FunctionComponent<Props> 
             onSyncedPublicRepositoriesUpdate(publicRepos.length)
 
             try {
-                await setUserPublicRepositories(authenticatedUser.id, publicRepos).toPromise()
+                await lastValueFrom(setUserPublicRepositories(authenticatedUser.id, publicRepos))
             } catch (error) {
                 setOtherPublicRepoError(asError(error))
                 setFetchingRepos(undefined)

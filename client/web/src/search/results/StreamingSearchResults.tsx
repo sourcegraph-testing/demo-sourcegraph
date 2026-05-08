@@ -1,8 +1,7 @@
 import classNames from 'classnames'
 import * as H from 'history'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { Observable } from 'rxjs'
-import { debounceTime } from 'rxjs/operators'
+import { Observable, debounceTime } from 'rxjs'
 
 import { FetchFileParameters } from '@sourcegraph/shared/src/components/CodeExcerpt'
 import { Link } from '@sourcegraph/shared/src/components/Link'

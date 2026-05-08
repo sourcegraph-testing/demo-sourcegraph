@@ -1,8 +1,21 @@
 import classNames from 'classnames'
 import * as H from 'history'
 import React, { useCallback, useMemo, useState, useEffect } from 'react'
-import { combineLatest, from, NEVER, Observable, of, ReplaySubject, Subscription } from 'rxjs'
-import { distinctUntilKeyChanged, filter, first, map, switchMap, tap } from 'rxjs/operators'
+import {
+    combineLatest,
+    from,
+    NEVER,
+    Observable,
+    of,
+    ReplaySubject,
+    Subscription,
+    distinctUntilKeyChanged,
+    filter,
+    first,
+    map,
+    switchMap,
+    tap,
+} from 'rxjs'
 import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect'
 
 import { findPositionsFromEvents } from '@sourcegraph/codeintellify'

@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect, useMemo } from 'react'
 import { RouteComponentProps, Redirect } from 'react-router'
-import { catchError } from 'rxjs/operators'
+import { catchError } from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import { asError, ErrorLike, isErrorLike } from '@sourcegraph/shared/src/util/errors'

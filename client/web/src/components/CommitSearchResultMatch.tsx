@@ -2,8 +2,16 @@ import { isEqual, range } from 'lodash'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import VisibilitySensor from 'react-visibility-sensor'
-import { combineLatest, of, Subject, Subscription } from 'rxjs'
-import { catchError, distinctUntilChanged, filter, switchMap } from 'rxjs/operators'
+import {
+    combineLatest,
+    of,
+    Subject,
+    Subscription,
+    catchError,
+    distinctUntilChanged,
+    filter,
+    switchMap,
+} from 'rxjs'
 import sanitizeHtml from 'sanitize-html'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'

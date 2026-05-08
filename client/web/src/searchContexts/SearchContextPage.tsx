@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import ChevronLeftIcon from 'mdi-react/ChevronLeftIcon'
 import React from 'react'
 import { RouteComponentProps } from 'react-router'
-import { catchError, startWith } from 'rxjs/operators'
+import { catchError, startWith } from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import { Link } from '@sourcegraph/shared/src/components/Link'

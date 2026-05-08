@@ -1,7 +1,6 @@
 import classNames from 'classnames'
 import * as React from 'react'
-import { Subject, Subscription } from 'rxjs'
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators'
+import { Subject, Subscription, debounceTime, distinctUntilChanged } from 'rxjs'
 
 import styles from './Resizable.module.scss'
 

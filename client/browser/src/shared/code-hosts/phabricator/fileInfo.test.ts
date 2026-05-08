@@ -1,5 +1,5 @@
 import { readFile } from 'mz/fs'
-import { Observable, throwError, of } from 'rxjs'
+import { Observable, throwError, of, lastValueFrom } from 'rxjs'
 
 import { SuccessGraphQLResult } from '@sourcegraph/shared/src/graphql/graphql'
 import { IMutation, IQuery } from '@sourcegraph/shared/src/graphql/schema'
@@ -115,7 +115,7 @@ function mockQueryConduit(responseMap?: ConduitResponseMap): QueryConduitHelper<
     return (endpoint, parameters) => {
         const mock = responseMap?.[endpoint] || DEFAULT_CONDUIT_RESPONSES[endpoint]
         if (!mock) {
-            return throwError(new Error(`No mock for endpoint ${endpoint}`))
+            return throwError(() => new Error(`No mock for endpoint ${endpoint}`))
         }
         return mock(parameters)
     }
@@ -146,14 +146,14 @@ const resolveFileInfoFromFixture = async (
     if (!codeView) {
         throw new Error(`Code view matching selector ${codeViewSelector} not found`)
     }
-    return resolver(
+    return lastValueFrom(resolver(
         codeView as HTMLElement,
         mockRequestGraphQL({
             ...DEFAULT_GRAPHQL_RESPONSES,
             ...(graphQLResponseMap || {}),
         }),
         mockQueryConduit(conduitResponseMap)
-    ).toPromise()
+    ))
 }
 
 describe('Phabricator file info', () => {

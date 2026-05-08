@@ -1,6 +1,17 @@
 /* eslint-disable id-length */
-import { Observable, fromEvent, Subscription, OperatorFunction, pipe, Subscriber, Notification } from 'rxjs'
-import { defaultIfEmpty, map, materialize, scan } from 'rxjs/operators'
+import {
+    Observable,
+    fromEvent,
+    Subscription,
+    OperatorFunction,
+    pipe,
+    Subscriber,
+    Notification,
+    defaultIfEmpty,
+    map,
+    materialize,
+    scan,
+} from 'rxjs'
 import { AggregableBadge } from 'sourcegraph'
 
 import { asError, ErrorLike, isErrorLike } from '@sourcegraph/shared/src/util/errors'

@@ -4,8 +4,18 @@ import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon'
 import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import { RouteComponentProps } from 'react-router'
 import { Link } from 'react-router-dom'
-import { Observable, Subject, NEVER } from 'rxjs'
-import { catchError, map, mapTo, startWith, switchMap, tap, filter } from 'rxjs/operators'
+import {
+    Observable,
+    Subject,
+    NEVER,
+    catchError,
+    map,
+    mapTo,
+    startWith,
+    switchMap,
+    tap,
+    filter,
+} from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import { gql } from '@sourcegraph/shared/src/graphql/graphql'

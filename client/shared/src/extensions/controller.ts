@@ -1,6 +1,5 @@
 import { Remote } from 'comlink'
-import { from, Observable, Subscription, Unsubscribable } from 'rxjs'
-import { switchMap } from 'rxjs/operators'
+import { from, Observable, Subscription, Unsubscribable, switchMap } from 'rxjs'
 
 import { createExtensionHostClientConnection } from '../api/client/connection'
 import { CommandEntry, ExecuteCommandParameters } from '../api/client/mainthread-api'

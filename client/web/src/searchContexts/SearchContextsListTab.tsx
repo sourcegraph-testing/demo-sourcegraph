@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import React, { useCallback } from 'react'
 import { useHistory, useLocation } from 'react-router'
-import { catchError } from 'rxjs/operators'
+import { catchError } from 'rxjs'
 
 import { Link } from '@sourcegraph/shared/src/components/Link'
 import { useObservable } from '@sourcegraph/shared/src/util/useObservable'

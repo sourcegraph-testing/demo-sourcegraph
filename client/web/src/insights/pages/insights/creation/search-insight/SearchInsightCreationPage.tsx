@@ -23,6 +23,7 @@ import styles from './SearchInsightCreationPage.module.scss'
 import { CreateInsightFormFields } from './types'
 import { getSanitizedSearchInsight } from './utils/insight-sanitizer'
 import { useSearchInsightInitialValues } from './utils/use-initial-values'
+import { lastValueFrom } from 'rxjs'
 
 export interface SearchInsightCreationPageProps
     extends PlatformContextProps<'updateSettings'>,
@@ -48,11 +49,11 @@ export const SearchInsightCreationPage: React.FunctionComponent<SearchInsightCre
             const subjectID = values.visibility
 
             try {
-                const settings = await getSubjectSettings(subjectID).toPromise()
+                const settings = await lastValueFrom(getSubjectSettings(subjectID))
                 const insight = getSanitizedSearchInsight(values)
                 const editedSettings = addInsightToSettings(settings.contents, insight)
 
-                await updateSubjectSettings(platformContext, subjectID, editedSettings).toPromise()
+                await lastValueFrom(updateSubjectSettings(platformContext, subjectID, editedSettings))
 
                 telemetryService.log('CodeInsightsSearchBasedCreationPageSubmitClick')
 

@@ -2,9 +2,8 @@ import * as H from 'history'
 import CheckCircleIcon from 'mdi-react/CheckCircleIcon'
 import ErrorIcon from 'mdi-react/ErrorIcon'
 import React, { useCallback, useState } from 'react'
-import { of, Observable, concat, from } from 'rxjs'
+import { of, Observable, concat, from, map, catchError, tap, concatMap, lastValueFrom } from 'rxjs'
 import { fromFetch } from 'rxjs/fetch'
-import { map, catchError, tap, concatMap } from 'rxjs/operators'
 
 import { Form } from '@sourcegraph/branded/src/components/Form'
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
@@ -30,7 +29,7 @@ import { DynamicallyImportedMonacoSettingsEditor } from '../../../settings/Dynam
 const publishExtension = (
     args: Pick<GQL.IPublishExtensionOnExtensionRegistryMutationArguments, 'extensionID' | 'manifest' | 'bundle'>
 ): Promise<GQL.IExtensionRegistryPublishExtensionResult> =>
-    mutateGraphQL(
+    lastValueFrom(mutateGraphQL(
         gql`
             mutation PublishRegistryExtension($extensionID: String!, $manifest: String!, $bundle: String!) {
                 extensionRegistry {
@@ -47,8 +46,7 @@ const publishExtension = (
         .pipe(
             map(dataOrThrowErrors),
             map(data => data.extensionRegistry.publishExtension)
-        )
-        .toPromise()
+        ))
 
 interface Props extends ThemeProps, TelemetryProps {
     /** The extension that is the subject of the page. */

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { from, Subscription } from 'rxjs'
-import { switchMap } from 'rxjs/operators'
+import { from, Subscription, switchMap } from 'rxjs'
 
 import { wrapRemoteObservable } from '../../api/client/api/common'
 import { ExtensionsControllerProps } from '../../extensions/controller'

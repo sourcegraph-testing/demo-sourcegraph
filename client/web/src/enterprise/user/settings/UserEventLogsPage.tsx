@@ -1,8 +1,7 @@
 import classNames from 'classnames'
 import React, { useCallback, useMemo } from 'react'
 import { RouteComponentProps } from 'react-router'
-import { Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { Observable, map } from 'rxjs'
 
 import { Link } from '@sourcegraph/shared/src/components/Link'
 import { dataOrThrowErrors, gql } from '@sourcegraph/shared/src/graphql/graphql'

@@ -1,6 +1,5 @@
 import { Remote } from 'comlink'
-import { Observable, from, concat } from 'rxjs'
-import { switchMap } from 'rxjs/operators'
+import { Observable, from, concat, switchMap } from 'rxjs'
 import { DocumentHighlight } from 'sourcegraph'
 
 import { MaybeLoadingResult } from '@sourcegraph/codeintellify'

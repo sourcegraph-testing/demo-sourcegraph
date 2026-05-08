@@ -1,8 +1,7 @@
 import * as H from 'history'
 import * as Monaco from 'monaco-editor'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { BehaviorSubject, noop } from 'rxjs'
-import { debounceTime } from 'rxjs/operators'
+import { BehaviorSubject, noop, debounceTime } from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import { ExtensionsControllerProps } from '@sourcegraph/shared/src/extensions/controller'

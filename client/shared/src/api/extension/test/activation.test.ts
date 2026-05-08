@@ -1,5 +1,4 @@
-import { BehaviorSubject } from 'rxjs'
-import { filter, first } from 'rxjs/operators'
+import { BehaviorSubject, filter, first, lastValueFrom } from 'rxjs'
 import sinon from 'sinon'
 import sourcegraph from 'sourcegraph'
 
@@ -55,12 +54,11 @@ describe('Extension activation', () => {
             )
 
             // Wait for extensions to load to check on the spy
-            await haveInitialExtensionsLoaded
+            await lastValueFrom(haveInitialExtensionsLoaded
                 .pipe(
                     filter(haveLoaded => haveLoaded),
                     first()
-                )
-                .toPromise()
+                ))
 
             sinon.assert.calledWith(logEvent, 'ExtensionActivation', { extension_id: 'sourcegraph/fixture-extension' })
         })

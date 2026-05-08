@@ -1,8 +1,7 @@
 import * as H from 'history'
 import HistoryIcon from 'mdi-react/HistoryIcon'
 import * as React from 'react'
-import { fromEvent, Subject, Subscription } from 'rxjs'
-import { filter } from 'rxjs/operators'
+import { fromEvent, Subject, Subscription, filter } from 'rxjs'
 
 import { Tooltip } from '@sourcegraph/branded/src/components/tooltip/Tooltip'
 import { ButtonLink } from '@sourcegraph/shared/src/components/LinkOrButton'

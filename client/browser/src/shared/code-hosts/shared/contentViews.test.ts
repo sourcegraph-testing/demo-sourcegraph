@@ -2,8 +2,17 @@ import { nextTick } from 'process'
 import { promisify } from 'util'
 
 import { uniqueId } from 'lodash'
-import { concat, Observable, of, ReplaySubject, Subject, Subscription } from 'rxjs'
-import { first, tap } from 'rxjs/operators'
+import {
+    concat,
+    Observable,
+    of,
+    ReplaySubject,
+    Subject,
+    Subscription,
+    first,
+    tap,
+    lastValueFrom,
+} from 'rxjs'
 
 import { MarkupKind } from '@sourcegraph/extension-api-classes'
 import { FlatExtensionHostAPI } from '@sourcegraph/shared/src/api/contract'
@@ -95,7 +104,7 @@ describe('contentViews', () => {
             )
             // Add content view.
             mutations.next([{ addedNodes: [document.body], removedNodes: [] }])
-            await waitSubject.pipe(first()).toPromise()
+            await lastValueFrom(waitSubject.pipe(first()))
             await tick()
             expect(element.innerHTML).toBe(
                 '0 <a href="#foo" data-tooltip="foo">foo</a><span class="sg-link-preview-content" data-tooltip="foo"><strong>foo</strong> x</span> 1 <a href="#bar">bar</a> 2 <a href="#qux" data-tooltip="qux">qux</a><span class="sg-link-preview-content" data-tooltip="qux"><strong>qux</strong> x</span> 3'
@@ -103,7 +112,7 @@ describe('contentViews', () => {
 
             // Mutate content view.
             element.innerHTML = '4 <a href=#zip>zip</a> 5'
-            await Promise.all([unsubscribed.pipe(first()).toPromise(), waitSubject.pipe(first()).toPromise()])
+            await Promise.all([lastValueFrom(unsubscribed.pipe(first())), lastValueFrom(waitSubject.pipe(first()))])
             await tick()
 
             expect(element.innerHTML).toBe(
@@ -112,7 +121,7 @@ describe('contentViews', () => {
 
             // Remove content view.
             mutations.next([{ addedNodes: [], removedNodes: [element] }])
-            await unsubscribed.pipe(first()).toPromise()
+            await lastValueFrom(unsubscribed.pipe(first()))
             await tick()
         })
 
@@ -150,11 +159,11 @@ describe('contentViews', () => {
                 )
             )
 
-            let wait: Promise<void> = waitSubject.pipe(first()).toPromise()
+            let wait: Promise<void> = lastValueFrom(waitSubject.pipe(first()))
             await wait
             expect(element.innerHTML).toBe(originalInnerHTML)
 
-            wait = waitSubject.pipe(first()).toPromise()
+            wait = lastValueFrom(waitSubject.pipe(first()))
             fooLinkPreviewValues.next({
                 content: [
                     {
@@ -174,7 +183,7 @@ describe('contentViews', () => {
                 '0 <a href="#foo" data-tooltip="foo">foo</a><span class="sg-link-preview-content" data-tooltip="foo"><strong>foo</strong></span> 1 <a href="#bar">bar</a> 2'
             )
 
-            wait = waitSubject.pipe(first()).toPromise()
+            wait = lastValueFrom(waitSubject.pipe(first()))
             fooLinkPreviewValues.next({
                 content: [
                     {
@@ -194,7 +203,7 @@ describe('contentViews', () => {
                 '0 <a href="#foo" data-tooltip="foo2">foo</a><span class="sg-link-preview-content" data-tooltip="foo2"><strong>foo2</strong></span> 1 <a href="#bar">bar</a> 2'
             )
 
-            wait = waitSubject.pipe(first()).toPromise()
+            wait = lastValueFrom(waitSubject.pipe(first()))
             fooLinkPreviewValues.next({
                 content: [],
                 hover: [
@@ -207,7 +216,7 @@ describe('contentViews', () => {
             await wait
             expect(element.innerHTML).toBe('0 <a href="#foo" data-tooltip="foo2">foo</a> 1 <a href="#bar">bar</a> 2')
 
-            wait = waitSubject.pipe(first()).toPromise()
+            wait = lastValueFrom(waitSubject.pipe(first()))
             fooLinkPreviewValues.next({
                 content: [],
                 hover: [],

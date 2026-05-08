@@ -1,7 +1,6 @@
 import classNames from 'classnames'
 import React, { useState, useCallback, useEffect } from 'react'
-import { Observable } from 'rxjs'
-import { delay, startWith, tap, mergeMap, catchError } from 'rxjs/operators'
+import { Observable, delay, startWith, tap, mergeMap, catchError } from 'rxjs'
 
 import { Toggle } from '@sourcegraph/branded/src/components/Toggle'
 import { asError, isErrorLike } from '@sourcegraph/shared/src/util/errors'

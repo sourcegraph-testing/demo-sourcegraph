@@ -19,6 +19,7 @@ import {
     AddInsightModalContent,
 } from './components/add-insight-modal-content/AddInsightModalContent'
 import { useReachableInsights } from './hooks/use-reachable-insights'
+import { lastValueFrom } from 'rxjs'
 
 export interface AddInsightModalProps extends SettingsCascadeProps, PlatformContextProps<'updateSettings'> {
     dashboard: SettingsBasedInsightDashboard
@@ -42,11 +43,11 @@ export const AddInsightModal: React.FunctionComponent<AddInsightModalProps> = pr
     const handleSubmit = async (values: AddInsightFormValues): Promise<void | SubmissionErrors> => {
         try {
             const { insightIds } = values
-            const settings = await getSubjectSettings(dashboard.owner.id).toPromise()
+            const settings = await lastValueFrom(getSubjectSettings(dashboard.owner.id))
 
             const editedSettings = updateDashboardInsightIds(settings.contents, dashboard.settingsKey, insightIds)
 
-            await updateSubjectSettings(platformContext, dashboard.owner.id, editedSettings).toPromise()
+            await lastValueFrom(updateSubjectSettings(platformContext, dashboard.owner.id, editedSettings))
             onClose()
         } catch (error) {
             return { [FORM_ERROR]: asError(error) }

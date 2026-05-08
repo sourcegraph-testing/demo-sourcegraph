@@ -1,5 +1,4 @@
-import { Observable, from } from 'rxjs'
-import { map, switchMap } from 'rxjs/operators'
+import { Observable, from, map, switchMap } from 'rxjs'
 
 import { asObservable } from '@sourcegraph/shared/src/util/rxjs/asObservable'
 

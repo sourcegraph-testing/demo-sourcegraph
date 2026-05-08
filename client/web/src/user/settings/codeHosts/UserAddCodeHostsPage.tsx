@@ -18,6 +18,7 @@ import { UserExternalServicesOrRepositoriesUpdateProps } from '../../../util'
 import { githubRepoScopeRequired, gitlabAPIScopeRequired } from '../cloud-ga'
 
 import { CodeHostItem } from './CodeHostItem'
+import { lastValueFrom } from 'rxjs'
 
 type AuthProvider = SourcegraphContext['authProviders'][0]
 type AuthProvidersByKind = Partial<Record<ExternalServiceKind, AuthProvider>>
@@ -85,11 +86,11 @@ export const UserAddCodeHostsPage: React.FunctionComponent<UserAddCodeHostsPageP
     const fetchExternalServices = useCallback(async () => {
         setStatusOrError('loading')
 
-        const { nodes: fetchedServices } = await queryExternalServices({
+        const { nodes: fetchedServices } = await lastValueFrom(queryExternalServices({
             namespace: user.id,
             first: null,
             after: null,
-        }).toPromise()
+        }))
 
         const services: ServicesByKind = fetchedServices.reduce<ServicesByKind>((accumulator, service) => {
             // backend constraint - non-admin users have only one external service per ExternalServiceKind

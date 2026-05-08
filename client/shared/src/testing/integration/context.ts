@@ -10,8 +10,7 @@ import { Test } from 'mocha'
 import { readFile, mkdir } from 'mz/fs'
 import pTimeout from 'p-timeout'
 import * as prettier from 'prettier'
-import { Subject, Subscription, throwError } from 'rxjs'
-import { first, timeoutWith } from 'rxjs/operators'
+import { Subject, Subscription, throwError, first, timeoutWith, lastValueFrom } from 'rxjs'
 
 import { ErrorGraphQLResult, SuccessGraphQLResult } from '../../graphql/graphql'
 import { asError } from '../../util/errors'
@@ -246,15 +245,14 @@ export const createSharedIntegrationTestContext = async <
             triggerRequest: () => Promise<void> | void,
             operationName: O
         ): Promise<Parameters<TGraphQlOperations[O]>[0]> => {
-            const requestPromise = graphQlRequests
+            const requestPromise = lastValueFrom(graphQlRequests
                 .pipe(
                     first(
                         (request: GraphQLRequestEvent<TGraphQlOperationNames>): request is GraphQLRequestEvent<O> =>
                             request.operationName === operationName
                     ),
-                    timeoutWith(4000, throwError(new Error(`Timeout waiting for GraphQL request "${operationName}"`)))
-                )
-                .toPromise()
+                    timeoutWith(4000, throwError(() => new Error(`Timeout waiting for GraphQL request "${operationName}"`)))
+                ))
             await triggerRequest()
             const { variables } = await requestPromise
             return variables

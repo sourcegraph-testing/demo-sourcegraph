@@ -2,8 +2,19 @@ import classNames from 'classnames'
 import * as H from 'history'
 import FileDocumentIcon from 'mdi-react/FileDocumentIcon'
 import * as React from 'react'
-import { Observable, of, Subject, Subscription } from 'rxjs'
-import { catchError, distinctUntilChanged, endWith, map, startWith, switchMap, tap } from 'rxjs/operators'
+import {
+    Observable,
+    of,
+    Subject,
+    Subscription,
+    catchError,
+    distinctUntilChanged,
+    endWith,
+    map,
+    startWith,
+    switchMap,
+    tap,
+} from 'rxjs'
 
 import { MaybeLoadingResult } from '@sourcegraph/codeintellify'
 import { Location } from '@sourcegraph/extension-api-types'

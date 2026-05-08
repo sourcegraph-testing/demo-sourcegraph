@@ -1,8 +1,7 @@
 import classNames from 'classnames'
 import * as H from 'history'
 import React, { useCallback, useEffect, useRef, useMemo } from 'react'
-import { fromEvent } from 'rxjs'
-import { filter } from 'rxjs/operators'
+import { fromEvent, filter } from 'rxjs'
 import { Key } from 'ts-key-enum'
 
 import { useRedesignToggle } from '@sourcegraph/shared/src/util/useRedesignToggle'

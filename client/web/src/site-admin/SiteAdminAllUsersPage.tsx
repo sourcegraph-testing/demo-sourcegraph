@@ -7,8 +7,17 @@ import SettingsIcon from 'mdi-react/SettingsIcon'
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router'
 import { Link } from 'react-router-dom'
-import { merge, of, Subject, Subscription } from 'rxjs'
-import { catchError, distinctUntilChanged, map, switchMap } from 'rxjs/operators'
+import {
+    merge,
+    of,
+    Subject,
+    Subscription,
+    catchError,
+    distinctUntilChanged,
+    map,
+    switchMap,
+    lastValueFrom,
+} from 'rxjs'
 
 import * as GQL from '@sourcegraph/shared/src/graphql/schema'
 import { asError } from '@sourcegraph/shared/src/util/errors'
@@ -215,8 +224,7 @@ class UserNode extends React.PureComponent<UserNodeProps, UserNodeState> {
             loading: true,
         })
 
-        setUserIsSiteAdmin(this.props.node.id, siteAdmin)
-            .toPromise()
+        lastValueFrom(setUserIsSiteAdmin(this.props.node.id, siteAdmin))
             .then(
                 () => {
                     this.setState({ loading: false })
@@ -243,8 +251,7 @@ class UserNode extends React.PureComponent<UserNodeProps, UserNodeState> {
             loading: true,
         })
 
-        randomizeUserPassword(this.props.node.id)
-            .toPromise()
+        lastValueFrom(randomizeUserPassword(this.props.node.id))
             .then(
                 ({ resetPasswordURL }) => {
                     this.setState({
@@ -266,8 +273,7 @@ class UserNode extends React.PureComponent<UserNodeProps, UserNodeState> {
         }
 
         this.setState({ loading: true })
-        invalidateSessionsByID(this.props.node.id)
-            .toPromise()
+        lastValueFrom(invalidateSessionsByID(this.props.node.id))
             .then(
                 () => {
                     this.setState({
@@ -296,8 +302,7 @@ class UserNode extends React.PureComponent<UserNodeProps, UserNodeState> {
             loading: true,
         })
 
-        deleteUser(this.props.node.id, hard)
-            .toPromise()
+        lastValueFrom(deleteUser(this.props.node.id, hard))
             .then(
                 () => {
                     this.setState({ loading: false })

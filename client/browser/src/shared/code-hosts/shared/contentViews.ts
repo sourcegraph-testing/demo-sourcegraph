@@ -1,5 +1,21 @@
-import { asyncScheduler, from, merge, Observable, of, Subject, Subscription, Unsubscribable } from 'rxjs'
-import { distinctUntilChanged, map, mapTo, mergeMap, observeOn, switchMap, tap, throttleTime } from 'rxjs/operators'
+import {
+    asyncScheduler,
+    from,
+    merge,
+    Observable,
+    of,
+    Subject,
+    Subscription,
+    Unsubscribable,
+    distinctUntilChanged,
+    map,
+    mapTo,
+    mergeMap,
+    observeOn,
+    switchMap,
+    tap,
+    throttleTime,
+} from 'rxjs'
 
 import { wrapRemoteObservable } from '@sourcegraph/shared/src/api/client/api/common'
 import { applyLinkPreview } from '@sourcegraph/shared/src/components/linkPreviews/linkPreviews'

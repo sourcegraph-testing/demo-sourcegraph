@@ -2,8 +2,7 @@
 import * as H from 'history'
 import { isEqual } from 'lodash'
 import * as React from 'react'
-import { Subject, Subscription } from 'rxjs'
-import { distinctUntilChanged, startWith } from 'rxjs/operators'
+import { Subject, Subscription, distinctUntilChanged, startWith } from 'rxjs'
 import { Key } from 'ts-key-enum'
 
 import { ExtensionsControllerProps } from '@sourcegraph/shared/src/extensions/controller'

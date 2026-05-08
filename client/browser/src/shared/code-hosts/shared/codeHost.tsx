@@ -13,8 +13,6 @@ import {
     Unsubscribable,
     concat,
     BehaviorSubject,
-} from 'rxjs'
-import {
     catchError,
     concatAll,
     concatMap,
@@ -31,7 +29,7 @@ import {
     retryWhen,
     mapTo,
     take,
-} from 'rxjs/operators'
+} from 'rxjs'
 import { NotificationType, HoverAlert } from 'sourcegraph'
 
 import {

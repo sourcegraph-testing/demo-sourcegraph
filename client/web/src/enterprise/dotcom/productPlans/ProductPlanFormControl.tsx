@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo } from 'react'
-import { Observable } from 'rxjs'
-import { catchError, map, startWith, tap } from 'rxjs/operators'
+import { Observable, catchError, map, startWith, tap } from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import { gql } from '@sourcegraph/shared/src/graphql/graphql'

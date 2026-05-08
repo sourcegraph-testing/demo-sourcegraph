@@ -1,7 +1,6 @@
 import classNames from 'classnames'
 import * as React from 'react'
-import { Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { Observable, map } from 'rxjs'
 
 import { LinkOrSpan } from '@sourcegraph/shared/src/components/LinkOrSpan'
 import { gql } from '@sourcegraph/shared/src/graphql/graphql'

@@ -1,6 +1,5 @@
 import { compact, find, head } from 'lodash'
-import { interval, Observable, Subject } from 'rxjs'
-import { filter, map, refCount, publishReplay } from 'rxjs/operators'
+import { interval, Observable, Subject, filter, map, refCount, publishReplay } from 'rxjs'
 
 import { MutationRecordLike } from '../../util/dom'
 import { CodeHost } from '../shared/codeHost'

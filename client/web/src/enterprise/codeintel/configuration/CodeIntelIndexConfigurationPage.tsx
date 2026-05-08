@@ -14,6 +14,7 @@ import { DynamicallyImportedMonacoSettingsEditor } from '../../../settings/Dynam
 
 import { getConfiguration as defaultGetConfiguration, updateConfiguration, enqueueIndexJob } from './backend'
 import allConfigSchema from './schema.json'
+import { lastValueFrom } from 'rxjs'
 
 export interface CodeIntelIndexConfigurationPageProps extends RouteComponentProps<{}>, ThemeProps, TelemetryProps {
     repo: { id: string }
@@ -56,7 +57,7 @@ export const CodeIntelIndexConfigurationPage: FunctionComponent<CodeIntelIndexCo
             setSaveError(undefined)
 
             try {
-                await updateConfiguration({ id: repo.id, content }).toPromise()
+                await lastValueFrom(updateConfiguration({ id: repo.id, content }))
                 setConfiguration(content)
             } catch (error) {
                 setSaveError(error)
@@ -71,7 +72,7 @@ export const CodeIntelIndexConfigurationPage: FunctionComponent<CodeIntelIndexCo
         setSaveError(undefined)
 
         try {
-            await enqueueIndexJob(repo.id).toPromise()
+            await lastValueFrom(enqueueIndexJob(repo.id))
         } catch (error) {
             setSaveError(error)
         } finally {

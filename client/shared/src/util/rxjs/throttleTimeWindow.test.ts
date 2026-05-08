@@ -1,5 +1,4 @@
-import { of } from 'rxjs'
-import { mergeMap } from 'rxjs/operators'
+import { of, mergeMap } from 'rxjs'
 import { TestScheduler } from 'rxjs/testing'
 
 import { throttleTimeWindow } from './throttleTimeWindow'

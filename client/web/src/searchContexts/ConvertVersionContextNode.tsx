@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { merge, Observable, of, Subject } from 'rxjs'
-import { catchError, delay, mergeMap, switchMap } from 'rxjs/operators'
+import { merge, Observable, of, Subject, catchError, delay, mergeMap, switchMap } from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import { asError, isErrorLike } from '@sourcegraph/shared/src/util/errors'

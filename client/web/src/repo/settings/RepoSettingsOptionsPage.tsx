@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router'
-import { Subject, Subscription } from 'rxjs'
-import { switchMap } from 'rxjs/operators'
+import { Subject, Subscription, switchMap } from 'rxjs'
 
 import { Form } from '@sourcegraph/branded/src/components/Form'
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'

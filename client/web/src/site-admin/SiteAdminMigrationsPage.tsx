@@ -4,8 +4,17 @@ import ErrorIcon from 'mdi-react/ErrorIcon'
 import WarningIcon from 'mdi-react/WarningIcon'
 import React, { useCallback, useMemo } from 'react'
 import { RouteComponentProps } from 'react-router'
-import { Observable, of, timer } from 'rxjs'
-import { catchError, concatMap, delay, map, repeatWhen, takeWhile } from 'rxjs/operators'
+import {
+    Observable,
+    of,
+    timer,
+    catchError,
+    concatMap,
+    delay,
+    map,
+    repeatWhen,
+    takeWhile,
+} from 'rxjs'
 import { parse as _parseVersion, SemVer } from 'semver'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'

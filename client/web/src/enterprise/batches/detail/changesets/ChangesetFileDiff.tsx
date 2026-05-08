@@ -1,6 +1,6 @@
 import * as H from 'history'
 import React, { useState, useCallback, useMemo } from 'react'
-import { map, tap } from 'rxjs/operators'
+import { map, tap } from 'rxjs'
 
 import { Hoverifier } from '@sourcegraph/codeintellify'
 import { ActionItemAction } from '@sourcegraph/shared/src/actions/ActionItem'

@@ -3,7 +3,7 @@ import AddIcon from 'mdi-react/AddIcon'
 import CloseIcon from 'mdi-react/CloseIcon'
 import EmailOpenOutlineIcon from 'mdi-react/EmailOpenOutlineIcon'
 import React, { useCallback, useState } from 'react'
-import { map } from 'rxjs/operators'
+import { map, lastValueFrom } from 'rxjs'
 
 import { Form } from '@sourcegraph/branded/src/components/Form'
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
@@ -192,7 +192,7 @@ function inviteUserToOrganization(
     username: string,
     organization: Scalars['ID']
 ): Promise<InviteUserToOrganizationResult['inviteUserToOrganization']> {
-    return requestGraphQL<InviteUserToOrganizationResult, InviteUserToOrganizationVariables>(
+    return lastValueFrom(requestGraphQL<InviteUserToOrganizationResult, InviteUserToOrganizationVariables>(
         gql`
             mutation InviteUserToOrganization($organization: ID!, $username: String!) {
                 inviteUserToOrganization(organization: $organization, username: $username) {
@@ -219,12 +219,11 @@ function inviteUserToOrganization(
                 eventLogger.log('OrgMemberInvited')
                 return data.inviteUserToOrganization
             })
-        )
-        .toPromise()
+        ))
 }
 
 function addUserToOrganization(username: string, organization: Scalars['ID']): Promise<void> {
-    return requestGraphQL<AddUserToOrganizationResult, AddUserToOrganizationVariables>(
+    return lastValueFrom(requestGraphQL<AddUserToOrganizationResult, AddUserToOrganizationVariables>(
         gql`
             mutation AddUserToOrganization($organization: ID!, $username: String!) {
                 addUserToOrganization(organization: $organization, username: $username) {
@@ -245,8 +244,7 @@ function addUserToOrganization(username: string, organization: Scalars['ID']): P
                 }
                 eventLogger.log('OrgMemberAdded')
             })
-        )
-        .toPromise()
+        ))
 }
 
 interface InvitedNotificationProps {

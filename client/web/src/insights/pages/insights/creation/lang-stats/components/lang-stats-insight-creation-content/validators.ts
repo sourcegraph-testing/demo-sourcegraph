@@ -3,6 +3,7 @@ import { Validator } from '../../../../../../components/form/hooks/useField'
 import { AsyncValidator } from '../../../../../../components/form/hooks/utils/use-async-validation'
 import { createRequiredValidator } from '../../../../../../components/form/validators'
 import { fetchRepositories } from '../../../../../../core/backend/requests/fetch-repositories'
+import { lastValueFrom } from 'rxjs'
 
 export const repositoriesFieldValidator: Validator<string> = value => {
     if (value !== undefined && value.trim() === '') {
@@ -21,7 +22,7 @@ export const repositoryFieldAsyncValidator: AsyncValidator<string> = async value
     }
 
     try {
-        const repositories = await fetchRepositories([value.trim()]).toPromise()
+        const repositories = await lastValueFrom(fetchRepositories([value.trim()]))
 
         if (!repositories[0]) {
             return `We couldn't find the repository ${value}. Please ensure the repository exists.`

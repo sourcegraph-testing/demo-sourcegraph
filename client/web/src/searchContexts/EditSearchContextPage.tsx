@@ -1,7 +1,6 @@
 import React, { useCallback, useMemo } from 'react'
 import { RouteComponentProps } from 'react-router'
-import { Observable, of, throwError } from 'rxjs'
-import { catchError, startWith, switchMap } from 'rxjs/operators'
+import { Observable, of, throwError, catchError, startWith, switchMap } from 'rxjs'
 
 import { isErrorLike } from '@sourcegraph/codeintellify/lib/errors'
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
@@ -43,7 +42,7 @@ export const AuthenticatedEditSearchContextPage: React.FunctionComponent<EditSea
             repositories: SearchContextRepositoryRevisionsInput[]
         ): Observable<ISearchContext> => {
             if (!id) {
-                return throwError(new Error('Cannot update search context with undefined ID'))
+                return throwError(() => new Error('Cannot update search context with undefined ID'))
             }
             return updateSearchContext({ id, searchContext, repositories })
         },
@@ -56,7 +55,7 @@ export const AuthenticatedEditSearchContextPage: React.FunctionComponent<EditSea
                 fetchSearchContext(match.params.id).pipe(
                     switchMap(searchContext => {
                         if (!searchContext.viewerCanManage) {
-                            return throwError(new Error('You do not have sufficient permissions to edit this context.'))
+                            return throwError(() => new Error('You do not have sufficient permissions to edit this context.'))
                         }
                         return of(searchContext)
                     }),

@@ -1,7 +1,20 @@
 import { Remote, proxy } from 'comlink'
-import { Subscription, from, Observable, of, combineLatest, Subject } from 'rxjs'
+import {
+    Subscription,
+    from,
+    Observable,
+    of,
+    combineLatest,
+    Subject,
+    catchError,
+    distinctUntilChanged,
+    map,
+    publishReplay,
+    refCount,
+    switchMap,
+    lastValueFrom,
+} from 'rxjs'
 import { fromFetch } from 'rxjs/fetch'
-import { catchError, distinctUntilChanged, map, publishReplay, refCount, switchMap } from 'rxjs/operators'
 import * as sourcegraph from 'sourcegraph'
 
 import { checkOk } from '../../backend/fetch'
@@ -131,13 +144,12 @@ export const initMainThreadAPI = (
     const api: MainThreadAPI = {
         applySettingsEdit: edit => updateSettings(platformContext, edit),
         requestGraphQL: (request, variables) =>
-            platformContext
+            lastValueFrom(platformContext
                 .requestGraphQL({
                     request,
                     variables,
                     mightContainPrivateInfo: true,
-                })
-                .toPromise(),
+                })),
         // Commands
         executeCommand: (command, args) => executeCommand({ command, args }),
         registerCommand: (command, run) => {

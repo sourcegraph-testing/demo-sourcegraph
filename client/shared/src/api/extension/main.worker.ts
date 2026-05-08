@@ -1,7 +1,6 @@
 import '../../polyfills'
 
-import { fromEvent } from 'rxjs'
-import { take } from 'rxjs/operators'
+import { fromEvent, take, lastValueFrom } from 'rxjs'
 
 import { isEndpointPair } from '../../platform/context'
 import { hasProperty } from '../../util/types'
@@ -25,7 +24,7 @@ const isInitMessage = (value: unknown): value is InitMessage =>
  */
 async function extensionHostMain(): Promise<void> {
     try {
-        const event = await fromEvent<MessageEvent>(self, 'message').pipe(take(1)).toPromise()
+        const event = await lastValueFrom(fromEvent<MessageEvent>(self, 'message').pipe(take(1)))
         if (!isInitMessage(event.data)) {
             throw new Error('First message event in extension host worker was not a well-formed InitMessage')
         }

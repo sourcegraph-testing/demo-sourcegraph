@@ -13,6 +13,7 @@ import { eventLogger } from '../../../../tracking/eventLogger'
 
 import { scheduleUserPermissionsSync, userPermissionsInfo } from './backend'
 import styles from './UserSettingsPermissionsPage.module.scss'
+import { lastValueFrom } from 'rxjs'
 
 /**
  * The user settings permissions page.
@@ -108,6 +109,6 @@ class ScheduleUserPermissionsSyncActionContainer extends React.PureComponent<Sch
     }
 
     private scheduleUserPermissions = async (): Promise<void> => {
-        await scheduleUserPermissionsSync({ user: this.props.user.id }).toPromise()
+        await lastValueFrom(scheduleUserPermissionsSync({ user: this.props.user.id }))
     }
 }

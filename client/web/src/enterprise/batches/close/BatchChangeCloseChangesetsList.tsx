@@ -1,7 +1,6 @@
 import * as H from 'history'
 import React, { useCallback, useMemo, useEffect } from 'react'
-import { Subject } from 'rxjs'
-import { repeatWhen, withLatestFrom, filter, map, delay } from 'rxjs/operators'
+import { Subject, repeatWhen, withLatestFrom, filter, map, delay } from 'rxjs'
 
 import { createHoverifier } from '@sourcegraph/codeintellify'
 import { ActionItemAction } from '@sourcegraph/shared/src/actions/ActionItem'

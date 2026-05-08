@@ -3,8 +3,7 @@ import '../../shared/polyfills'
 
 import React, { useEffect, useState } from 'react'
 import { render } from 'react-dom'
-import { from, noop, Observable, combineLatest } from 'rxjs'
-import { catchError, map, mapTo } from 'rxjs/operators'
+import { from, noop, Observable, combineLatest, catchError, map, mapTo } from 'rxjs'
 import { Optional } from 'utility-types'
 
 import { AnchorLink, setLinkComponent } from '@sourcegraph/shared/src/components/Link'

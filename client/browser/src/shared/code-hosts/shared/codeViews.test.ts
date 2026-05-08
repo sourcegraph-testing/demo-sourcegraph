@@ -1,5 +1,4 @@
-import { of } from 'rxjs'
-import { toArray } from 'rxjs/operators'
+import { of, toArray, lastValueFrom } from 'rxjs'
 import * as sinon from 'sinon'
 import { Omit } from 'utility-types'
 
@@ -32,14 +31,13 @@ describe('codeViews', () => {
             element.className = 'test-code-view'
             document.body.append(element)
             const selector = '.test-code-view'
-            const detected = await of([{ addedNodes: [document.body], removedNodes: [] }])
+            const detected = await lastValueFrom(of([{ addedNodes: [document.body], removedNodes: [] }])
                 .pipe(
                     trackCodeViews({
                         codeViewResolvers: [toCodeViewResolver(selector, codeViewSpec)],
                     }),
                     toArray()
-                )
-                .toPromise()
+                ))
             expect(detected.map(({ subscriptions, ...rest }) => rest)).toEqual([{ ...codeViewSpec, element }])
         })
         it('should detect added code views from resolver', async () => {
@@ -48,14 +46,13 @@ describe('codeViews', () => {
             document.body.append(element)
             const selector = '.test-code-view'
             const resolveView = sinon.spy((element: HTMLElement) => ({ element, ...codeViewSpec }))
-            const detected = await of([{ addedNodes: [document.body], removedNodes: [] }])
+            const detected = await lastValueFrom(of([{ addedNodes: [document.body], removedNodes: [] }])
                 .pipe(
                     trackCodeViews({
                         codeViewResolvers: [{ selector, resolveView }],
                     }),
                     toArray()
-                )
-                .toPromise()
+                ))
             expect(detected.map(({ subscriptions, ...rest }) => rest)).toEqual([{ ...codeViewSpec, element }])
             sinon.assert.calledOnce(resolveView)
             sinon.assert.calledWith(resolveView, element)

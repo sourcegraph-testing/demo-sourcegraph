@@ -1,5 +1,4 @@
-import { combineLatest, Observable, ReplaySubject } from 'rxjs'
-import { map, switchMap, take } from 'rxjs/operators'
+import { combineLatest, Observable, ReplaySubject, map, switchMap, take, lastValueFrom } from 'rxjs'
 
 import { isHTTPAuthError } from '@sourcegraph/shared/src/backend/fetch'
 import { GraphQLResult } from '@sourcegraph/shared/src/graphql/graphql'
@@ -92,7 +91,7 @@ export function createPlatformContext(
         ),
         refreshSettings: async () => {
             try {
-                const settings = await fetchViewerSettings(requestGraphQL).toPromise()
+                const settings = await lastValueFrom(fetchViewerSettings(requestGraphQL))
                 updatedViewerSettings.next(settings)
             } catch (error) {
                 if (isHTTPAuthError(error)) {

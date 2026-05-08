@@ -3,8 +3,17 @@ import AddIcon from 'mdi-react/AddIcon'
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router'
 import { Link } from 'react-router-dom'
-import { Observable, Subject, Subscription } from 'rxjs'
-import { catchError, map, mapTo, startWith, switchMap, tap } from 'rxjs/operators'
+import {
+    Observable,
+    Subject,
+    Subscription,
+    catchError,
+    map,
+    mapTo,
+    startWith,
+    switchMap,
+    tap,
+} from 'rxjs'
 
 import { gql } from '@sourcegraph/shared/src/graphql/graphql'
 import * as GQL from '@sourcegraph/shared/src/graphql/schema'

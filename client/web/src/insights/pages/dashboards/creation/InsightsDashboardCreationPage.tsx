@@ -27,6 +27,7 @@ import {
 import { useDashboardSettings } from './hooks/use-dashboard-settings'
 import styles from './InsightsDashboardCreationPage.module.scss'
 import { createSanitizedDashboard } from './utils/dashboard-sanitizer'
+import { lastValueFrom } from 'rxjs'
 
 interface InsightsDashboardCreationPageProps
     extends PlatformContextProps<'updateSettings'>,
@@ -48,11 +49,11 @@ export const InsightsDashboardCreationPage: React.FunctionComponent<InsightsDash
         const subjectID = values.visibility
 
         try {
-            const settings = await getSubjectSettings(subjectID).toPromise()
+            const settings = await lastValueFrom(getSubjectSettings(subjectID))
             const dashboard = createSanitizedDashboard(values)
             const editedSettings = addDashboardToSettings(settings.contents, dashboard)
 
-            await updateSubjectSettings(platformContext, subjectID, editedSettings).toPromise()
+            await lastValueFrom(updateSubjectSettings(platformContext, subjectID, editedSettings))
 
             telemetryService.log('CodeInsightsDashboardCreationPageSubmitClick')
 

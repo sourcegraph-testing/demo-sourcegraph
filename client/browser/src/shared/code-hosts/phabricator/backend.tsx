@@ -1,6 +1,15 @@
-import { from, Observable, of, throwError } from 'rxjs'
+import {
+    from,
+    Observable,
+    of,
+    throwError,
+    map,
+    mapTo,
+    switchMap,
+    catchError,
+    lastValueFrom,
+} from 'rxjs'
 import { fromFetch } from 'rxjs/fetch'
-import { map, mapTo, switchMap, catchError } from 'rxjs/operators'
 
 import { isRepoNotFoundErrorLike } from '@sourcegraph/shared/src/backend/errors'
 import { checkOk } from '@sourcegraph/shared/src/backend/fetch'
@@ -258,7 +267,7 @@ export function getRepoDetailsFromCallsign(
         }),
         switchMap((details: PhabricatorRepoDetails | null) => {
             if (!details) {
-                return throwError(new Error('could not parse repo details'))
+                return throwError(() => new Error('could not parse repo details'))
             }
             return createPhabricatorRepo({
                 callsign,
@@ -277,9 +286,8 @@ export function getRepoDetailsFromCallsign(
  * case it fails we query the conduit API.
  */
 export function getSourcegraphURLFromConduit(): Promise<string> {
-    return queryConduitHelper<{ url: string }>('/api/sourcegraph.configuration', {})
-        .pipe(map(({ url }) => url))
-        .toPromise()
+    return lastValueFrom(queryConduitHelper<{ url: string }>('/api/sourcegraph.configuration', {})
+        .pipe(map(({ url }) => url)))
 }
 
 const getRepoDetailsFromRepoPHID = memoizeObservable(
@@ -311,10 +319,10 @@ const getRepoDetailsFromRepoPHID = memoizeObservable(
                 return from(convertConduitRepoToRepoDetails(repo)).pipe(
                     switchMap((details: PhabricatorRepoDetails | null) => {
                         if (!details) {
-                            return throwError(new Error('could not parse repo details'))
+                            return throwError(() => new Error('could not parse repo details'))
                         }
                         if (!repo.fields || !repo.fields.callsign) {
-                            return throwError(new Error('callsign not found'))
+                            return throwError(() => new Error('callsign not found'))
                         }
                         return createPhabricatorRepo({
                             callsign: repo.fields.callsign,

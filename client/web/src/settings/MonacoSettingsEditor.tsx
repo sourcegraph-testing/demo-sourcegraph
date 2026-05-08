@@ -2,8 +2,14 @@ import * as jsonc from '@sqs/jsonc-parser'
 import classNames from 'classnames'
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
 import * as React from 'react'
-import { Subject, Subscription } from 'rxjs'
-import { distinctUntilChanged, distinctUntilKeyChanged, map, startWith } from 'rxjs/operators'
+import {
+    Subject,
+    Subscription,
+    distinctUntilChanged,
+    distinctUntilKeyChanged,
+    map,
+    startWith,
+} from 'rxjs'
 
 import { TelemetryService } from '@sourcegraph/shared/src/telemetry/telemetryService'
 import { ThemeProps } from '@sourcegraph/shared/src/theme'

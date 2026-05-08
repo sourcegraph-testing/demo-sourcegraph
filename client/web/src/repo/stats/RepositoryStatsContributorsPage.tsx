@@ -1,8 +1,7 @@
 import { escapeRegExp, isEqual } from 'lodash'
 import * as React from 'react'
 import { Link, RouteComponentProps } from 'react-router-dom'
-import { Observable, Subject } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { Observable, Subject, map } from 'rxjs'
 
 import { Form } from '@sourcegraph/branded/src/components/Form'
 import { Scalars } from '@sourcegraph/shared/src/graphql-operations'

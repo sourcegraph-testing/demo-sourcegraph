@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router'
-import { Observable, Subject, Subscription } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { Observable, Subject, Subscription, map } from 'rxjs'
 
 import { gql } from '@sourcegraph/shared/src/graphql/graphql'
 import { createAggregateError } from '@sourcegraph/shared/src/util/errors'

@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs'
-import { publishReplay, refCount, tap } from 'rxjs/operators'
+import { Observable, publishReplay, refCount, tap } from 'rxjs'
 
 let allCachesResetSeq = 0
 

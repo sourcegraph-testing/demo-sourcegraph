@@ -1,7 +1,6 @@
 import { escapeRegExp, startCase } from 'lodash'
 import * as Monaco from 'monaco-editor'
-import { Observable } from 'rxjs'
-import { first } from 'rxjs/operators'
+import { Observable, first, lastValueFrom } from 'rxjs'
 import { Omit } from 'utility-types'
 
 import { SymbolKind } from '../../graphql-operations'
@@ -237,7 +236,7 @@ async function completeDefault(
     return {
         suggestions: [
             ...staticSuggestions,
-            ...(await dynamicSuggestions.pipe(first()).toPromise())
+            ...(await lastValueFrom(dynamicSuggestions.pipe(first())))
                 .map(suggestion => suggestionToCompletionItem(suggestion, { isFilterValue: false, globbing }))
                 .filter(isDefined)
                 .map(completionItem => ({
@@ -297,7 +296,7 @@ async function completeFilter(
     if (resolvedFilter.definition.suggestions) {
         // If the filter definition has an associated dynamic suggestion type,
         // use it to retrieve dynamic suggestions from the backend.
-        const suggestions = await serverSuggestions.pipe(first()).toPromise()
+        const suggestions = await lastValueFrom(serverSuggestions.pipe(first()))
         dynamicSuggestions = suggestions
             .filter(({ __typename }) => __typename === resolvedFilter.definition.suggestions)
             .map(suggestion => suggestionToCompletionItem(suggestion, { isFilterValue: true, globbing }))

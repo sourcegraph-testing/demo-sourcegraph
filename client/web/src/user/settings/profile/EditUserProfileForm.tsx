@@ -11,6 +11,7 @@ import { UpdateUserResult, UpdateUserVariables } from '../../../graphql-operatio
 import { eventLogger } from '../../../tracking/eventLogger'
 
 import { UserProfileFormFields, UserProfileFormFieldsValue } from './UserProfileFormFields'
+import { lastValueFrom } from 'rxjs'
 
 export const UPDATE_USER = gql`
     mutation UpdateUser($user: ID!, $username: String!, $displayName: String, $avatarURL: String) {
@@ -42,8 +43,7 @@ export const EditUserProfileForm: React.FunctionComponent<Props> = ({ user, init
             // In case the edited user is the current user, immediately reflect the changes in the
             // UI.
             // TODO: Migrate this to use the Apollo cache
-            refreshAuthenticatedUser()
-                .toPromise()
+            lastValueFrom(refreshAuthenticatedUser())
                 .finally(() => {})
         },
         onError: () => eventLogger.log('UpdateUserFailed'),

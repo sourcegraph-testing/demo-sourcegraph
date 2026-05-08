@@ -1,5 +1,4 @@
-import { Observable, zip } from 'rxjs'
-import { map, switchMap } from 'rxjs/operators'
+import { Observable, zip, map, switchMap } from 'rxjs'
 
 import { PlatformContext } from '@sourcegraph/shared/src/platform/context'
 

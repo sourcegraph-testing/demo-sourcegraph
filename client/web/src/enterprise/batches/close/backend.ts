@@ -2,9 +2,10 @@ import { gql, dataOrThrowErrors } from '@sourcegraph/shared/src/graphql/graphql'
 
 import { requestGraphQL } from '../../../backend/graphql'
 import { CloseBatchChangeResult, CloseBatchChangeVariables } from '../../../graphql-operations'
+import { lastValueFrom } from 'rxjs'
 
 export async function closeBatchChange({ batchChange, closeChangesets }: CloseBatchChangeVariables): Promise<void> {
-    const result = await requestGraphQL<CloseBatchChangeResult, CloseBatchChangeVariables>(
+    const result = await lastValueFrom(requestGraphQL<CloseBatchChangeResult, CloseBatchChangeVariables>(
         gql`
             mutation CloseBatchChange($batchChange: ID!, $closeChangesets: Boolean) {
                 closeBatchChange(batchChange: $batchChange, closeChangesets: $closeChangesets) {
@@ -13,6 +14,6 @@ export async function closeBatchChange({ batchChange, closeChangesets }: CloseBa
             }
         `,
         { batchChange, closeChangesets }
-    ).toPromise()
+    ))
     dataOrThrowErrors(result)
 }

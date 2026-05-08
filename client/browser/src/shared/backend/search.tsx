@@ -1,6 +1,7 @@
 /* eslint rxjs/no-ignored-subscription: warn */
-import { Subject, Observable } from 'rxjs'
 import {
+    Subject,
+    Observable,
     debounceTime,
     distinctUntilChanged,
     filter,
@@ -12,7 +13,7 @@ import {
     switchMap,
     take,
     toArray,
-} from 'rxjs/operators'
+} from 'rxjs'
 
 import { dataOrThrowErrors, gql } from '@sourcegraph/shared/src/graphql/graphql'
 import * as GQL from '@sourcegraph/shared/src/graphql/schema'

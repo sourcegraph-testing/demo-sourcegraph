@@ -1,7 +1,15 @@
 import classNames from 'classnames'
 import * as React from 'react'
-import { from, Subject, Subscription } from 'rxjs'
-import { catchError, distinctUntilChanged, map, scan, switchMap } from 'rxjs/operators'
+import {
+    from,
+    Subject,
+    Subscription,
+    catchError,
+    distinctUntilChanged,
+    map,
+    scan,
+    switchMap,
+} from 'rxjs'
 import * as sourcegraph from 'sourcegraph'
 
 import { renderMarkdown } from '../util/markdown'

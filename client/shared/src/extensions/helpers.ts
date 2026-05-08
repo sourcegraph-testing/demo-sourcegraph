@@ -1,6 +1,15 @@
 import { isEqual } from 'lodash'
-import { from, Observable, of, throwError } from 'rxjs'
-import { catchError, distinctUntilChanged, map, shareReplay, switchMap } from 'rxjs/operators'
+import {
+    from,
+    Observable,
+    of,
+    throwError,
+    catchError,
+    distinctUntilChanged,
+    map,
+    shareReplay,
+    switchMap,
+} from 'rxjs'
 
 import { gql } from '../graphql/graphql'
 import * as GQL from '../graphql/schema'
@@ -21,7 +30,7 @@ export function viewerConfiguredExtensions({
         map(settings => extensionIDsFromSettings(settings)),
         distinctUntilChanged((a, b) => isEqual(a, b)),
         switchMap(extensionIDs => queryConfiguredRegistryExtensions({ requestGraphQL }, extensionIDs)),
-        catchError(error => throwError(asError(error))),
+        catchError(error => throwError(() => asError(error))),
         // TODO: Restore reference counter after refactoring contributions service
         // to not unsubscribe from existing entries when new entries are registered,
         // in order to ensure that the source is unsubscribed from.

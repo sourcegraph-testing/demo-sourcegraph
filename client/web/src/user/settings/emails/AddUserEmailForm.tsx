@@ -11,6 +11,7 @@ import { ErrorAlert } from '../../../components/alerts'
 import { LoaderButton } from '../../../components/LoaderButton'
 import { AddUserEmailResult, AddUserEmailVariables } from '../../../graphql-operations'
 import { eventLogger } from '../../../tracking/eventLogger'
+import { lastValueFrom } from 'rxjs'
 
 interface Props {
     user: string
@@ -42,7 +43,7 @@ export const AddUserEmailForm: FunctionComponent<Props> = ({ user, className, on
 
             try {
                 dataOrThrowErrors(
-                    await requestGraphQL<AddUserEmailResult, AddUserEmailVariables>(
+                    await lastValueFrom(requestGraphQL<AddUserEmailResult, AddUserEmailVariables>(
                         gql`
                             mutation AddUserEmail($user: ID!, $email: String!) {
                                 addUserEmail(user: $user, email: $email) {
@@ -51,7 +52,7 @@ export const AddUserEmailForm: FunctionComponent<Props> = ({ user, className, on
                             }
                         `,
                         { user, email: emailState.value }
-                    ).toPromise()
+                    ))
                 )
 
                 eventLogger.log('NewUserEmailAddressAdded')

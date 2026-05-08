@@ -2,8 +2,7 @@ import classNames from 'classnames'
 import AddIcon from 'mdi-react/AddIcon'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { RouteComponentProps } from 'react-router'
-import { EMPTY, Observable } from 'rxjs'
-import { catchError, tap } from 'rxjs/operators'
+import { EMPTY, Observable, catchError, tap, lastValueFrom } from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import { Link } from '@sourcegraph/shared/src/components/Link'
@@ -139,7 +138,7 @@ export const UserSettingsRepositoriesPage: React.FunctionComponent<Props> = ({
     const fetchUserReposCount = useCallback(
         async (): Promise<UserRepositoriesResult> =>
             dataOrThrowErrors(
-                await requestGraphQL<UserRepositoriesResult, UserRepositoriesVariables>(
+                await lastValueFrom(requestGraphQL<UserRepositoriesResult, UserRepositoriesVariables>(
                     gql`
                         query UserRepositoriesTotalCount(
                             $id: ID!
@@ -178,7 +177,7 @@ export const UserSettingsRepositoriesPage: React.FunctionComponent<Props> = ({
                         query: null,
                         externalServiceID: null,
                     }
-                ).toPromise()
+                ))
             ),
 
         [userID]
@@ -186,12 +185,11 @@ export const UserSettingsRepositoriesPage: React.FunctionComponent<Props> = ({
 
     const fetchExternalServices = useCallback(
         async (): Promise<ExternalServicesResult['externalServices']['nodes']> =>
-            queryExternalServices({
+            lastValueFrom(queryExternalServices({
                 first: null,
                 after: null,
                 namespace: userID,
-            })
-                .toPromise()
+            }))
                 .then(({ nodes }) => nodes),
 
         [userID]

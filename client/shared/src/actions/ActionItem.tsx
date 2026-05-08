@@ -2,8 +2,7 @@ import classNames from 'classnames'
 import * as H from 'history'
 import OpenInNewIcon from 'mdi-react/OpenInNewIcon'
 import * as React from 'react'
-import { from, Subject, Subscription } from 'rxjs'
-import { catchError, map, mapTo, mergeMap, startWith, tap } from 'rxjs/operators'
+import { from, Subject, Subscription, catchError, map, mapTo, mergeMap, startWith, tap } from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 

@@ -1,4 +1,4 @@
-import { take } from 'rxjs/operators'
+import { take, lastValueFrom } from 'rxjs'
 
 import { wrapRemoteObservable } from '../client/api/common'
 
@@ -14,7 +14,7 @@ describe('search (integration)', () => {
         })
         await extensionAPI.internal.sync()
         expect(
-            await wrapRemoteObservable(extensionHostAPI.transformSearchQuery('foo')).pipe(take(1)).toPromise()
+            await lastValueFrom(wrapRemoteObservable(extensionHostAPI.transformSearchQuery('foo')).pipe(take(1)))
         ).toEqual('bar')
     })
 
@@ -30,7 +30,7 @@ describe('search (integration)', () => {
         subscription.unsubscribe()
         await extensionAPI.internal.sync()
         expect(
-            await wrapRemoteObservable(extensionHostAPI.transformSearchQuery('foo')).pipe(take(1)).toPromise()
+            await lastValueFrom(wrapRemoteObservable(extensionHostAPI.transformSearchQuery('foo')).pipe(take(1)))
         ).toEqual('foo')
     })
 
@@ -42,7 +42,7 @@ describe('search (integration)', () => {
         extensionAPI.search.registerQueryTransformer({ transformQuery: (query: string) => `${query} qux` })
         await extensionAPI.internal.sync()
         expect(
-            await wrapRemoteObservable(extensionHostAPI.transformSearchQuery('foo')).pipe(take(1)).toPromise()
+            await lastValueFrom(wrapRemoteObservable(extensionHostAPI.transformSearchQuery('foo')).pipe(take(1)))
         ).toEqual('foo bar qux')
     })
 })

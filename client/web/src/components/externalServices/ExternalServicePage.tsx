@@ -1,7 +1,7 @@
 import { parse as parseJSONC } from '@sqs/jsonc-parser'
 import * as H from 'history'
 import React, { useEffect, useState, useCallback } from 'react'
-import { catchError } from 'rxjs/operators'
+import { catchError } from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import * as GQL from '@sourcegraph/shared/src/graphql/schema'

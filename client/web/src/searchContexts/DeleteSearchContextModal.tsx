@@ -1,8 +1,7 @@
 import Dialog from '@reach/dialog'
 import React, { useCallback } from 'react'
 import { useHistory } from 'react-router'
-import { Observable } from 'rxjs'
-import { mergeMap, startWith, tap, catchError } from 'rxjs/operators'
+import { Observable, mergeMap, startWith, tap, catchError } from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import { ISearchContext } from '@sourcegraph/shared/src/graphql/schema'

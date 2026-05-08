@@ -10,8 +10,16 @@ import React, {
     useState,
 } from 'react'
 import { DropdownItem } from 'reactstrap'
-import { BehaviorSubject, combineLatest, of, timer } from 'rxjs'
-import { catchError, debounce, switchMap, tap } from 'rxjs/operators'
+import {
+    BehaviorSubject,
+    combineLatest,
+    of,
+    timer,
+    catchError,
+    debounce,
+    switchMap,
+    tap,
+} from 'rxjs'
 
 import { Link } from '@sourcegraph/shared/src/components/Link'
 import { ISearchContext } from '@sourcegraph/shared/src/graphql/schema'

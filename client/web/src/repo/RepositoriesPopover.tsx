@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect } from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom'
-import { Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { Observable, map } from 'rxjs'
 
 import { CircleChevronLeftIcon } from '@sourcegraph/shared/src/components/icons'
 import { displayRepoName } from '@sourcegraph/shared/src/components/RepoFileLink'

@@ -1,5 +1,4 @@
-import { NEVER, of } from 'rxjs'
-import { first, take, toArray } from 'rxjs/operators'
+import { NEVER, of, first, take, toArray, lastValueFrom } from 'rxjs'
 
 import { wrapRemoteObservable } from '../client/api/common'
 import { ContributableViewContainer } from '../protocol'
@@ -15,9 +14,8 @@ describe('Views (integration)', () => {
             panelView.content = 'c'
             panelView.priority = 3
 
-            const values = await wrapRemoteObservable(extensionHostAPI.getPanelViews())
-                .pipe(first(views => views.length > 0))
-                .toPromise()
+            const values = await lastValueFrom(wrapRemoteObservable(extensionHostAPI.getPanelViews())
+                .pipe(first(views => views.length > 0)))
 
             assertToJSON(values, [
                 {
@@ -44,9 +42,8 @@ describe('Views (integration)', () => {
             panelView.priority = 3
             panelView.component = { locationProvider: LOCATION_PROVIDER_ID }
 
-            const values = await wrapRemoteObservable(extensionHostAPI.getPanelViews())
-                .pipe(first(views => views.length > 0))
-                .toPromise()
+            const values = await lastValueFrom(wrapRemoteObservable(extensionHostAPI.getPanelViews())
+                .pipe(first(views => views.length > 0)))
 
             assertToJSON(values, [
                 {
@@ -70,9 +67,8 @@ describe('Views (integration)', () => {
             provideView: parameters => of({ title: `t${parameters.x}`, content: [] }),
         })
 
-        const views = await wrapRemoteObservable(extensionHostAPI.getGlobalPageViews({ x: 'y' }))
-            .pipe(take(2), toArray())
-            .toPromise()
+        const views = await lastValueFrom(wrapRemoteObservable(extensionHostAPI.getGlobalPageViews({ x: 'y' }))
+            .pipe(take(2), toArray()))
         expect(views).toEqual([[{ id: 'v', view: undefined }], [{ id: 'v', view: { title: 'ty', content: [] } }]])
     })
 })

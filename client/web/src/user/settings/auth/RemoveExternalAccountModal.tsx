@@ -7,10 +7,11 @@ import { asError, ErrorLike } from '@sourcegraph/shared/src/util/errors'
 
 import { requestGraphQL } from '../../../backend/graphql'
 import { Scalars, DeleteExternalAccountResult, DeleteExternalAccountVariables } from '../../../graphql-operations'
+import { lastValueFrom } from 'rxjs'
 
 const deleteUserExternalAccount = async (externalAccount: Scalars['ID']): Promise<void> => {
     dataOrThrowErrors(
-        await requestGraphQL<DeleteExternalAccountResult, DeleteExternalAccountVariables>(
+        await lastValueFrom(requestGraphQL<DeleteExternalAccountResult, DeleteExternalAccountVariables>(
             gql`
                 mutation DeleteExternalAccount($externalAccount: ID!) {
                     deleteExternalAccount(externalAccount: $externalAccount) {
@@ -19,7 +20,7 @@ const deleteUserExternalAccount = async (externalAccount: Scalars['ID']): Promis
                 }
             `,
             { externalAccount }
-        ).toPromise()
+        ))
     )
 }
 

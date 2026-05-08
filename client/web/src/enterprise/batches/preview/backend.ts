@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { Observable, map, lastValueFrom } from 'rxjs'
 
 import { gql, dataOrThrowErrors } from '@sourcegraph/shared/src/graphql/graphql'
 
@@ -124,7 +123,7 @@ export const fetchBatchSpecById = (batchSpec: Scalars['ID']): Observable<BatchSp
 export const createBatchChange = ({
     batchSpec,
 }: CreateBatchChangeVariables): Promise<CreateBatchChangeResult['createBatchChange']> =>
-    requestGraphQL<CreateBatchChangeResult, CreateBatchChangeVariables>(
+    lastValueFrom(requestGraphQL<CreateBatchChangeResult, CreateBatchChangeVariables>(
         gql`
             mutation CreateBatchChange($batchSpec: ID!) {
                 createBatchChange(batchSpec: $batchSpec) {
@@ -138,14 +137,13 @@ export const createBatchChange = ({
         .pipe(
             map(dataOrThrowErrors),
             map(data => data.createBatchChange)
-        )
-        .toPromise()
+        ))
 
 export const applyBatchChange = ({
     batchSpec,
     batchChange,
 }: ApplyBatchChangeVariables): Promise<ApplyBatchChangeResult['applyBatchChange']> =>
-    requestGraphQL<ApplyBatchChangeResult, ApplyBatchChangeVariables>(
+    lastValueFrom(requestGraphQL<ApplyBatchChangeResult, ApplyBatchChangeVariables>(
         gql`
             mutation ApplyBatchChange($batchSpec: ID!, $batchChange: ID!) {
                 applyBatchChange(batchSpec: $batchSpec, ensureBatchChange: $batchChange) {
@@ -159,5 +157,4 @@ export const applyBatchChange = ({
         .pipe(
             map(dataOrThrowErrors),
             map(data => data.applyBatchChange)
-        )
-        .toPromise()
+        ))

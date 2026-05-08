@@ -1,5 +1,4 @@
-import { from } from 'rxjs'
-import { first } from 'rxjs/operators'
+import { from, first, lastValueFrom } from 'rxjs'
 
 import { PlatformContext } from '../../../platform/context'
 import { isSettingsValid } from '../../../settings/settings'
@@ -34,7 +33,7 @@ export async function updateSettings(
     edit: SettingsEdit
 ): Promise<void> {
     const { settings: data, updateSettings: update } = platformContext
-    const settings = await from(data).pipe(first()).toPromise()
+    const settings = await lastValueFrom(from(data).pipe(first()))
     if (!isSettingsValid(settings)) {
         throw new Error('invalid settings (internal error)')
     }

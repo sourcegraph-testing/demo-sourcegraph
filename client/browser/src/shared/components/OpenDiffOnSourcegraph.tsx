@@ -1,7 +1,6 @@
 import classNames from 'classnames'
 import * as React from 'react'
-import { Subject, Subscription } from 'rxjs'
-import { catchError, map, switchMap } from 'rxjs/operators'
+import { Subject, Subscription, catchError, map, switchMap } from 'rxjs'
 
 import { PlatformContextProps } from '@sourcegraph/shared/src/platform/context'
 

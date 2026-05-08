@@ -1,8 +1,7 @@
 import addDays from 'date-fns/addDays'
 import endOfDay from 'date-fns/endOfDay'
 import React, { useState, useCallback } from 'react'
-import { Observable } from 'rxjs'
-import { catchError, map, startWith, switchMap, tap } from 'rxjs/operators'
+import { Observable, catchError, map, startWith, switchMap, tap } from 'rxjs'
 
 import { Form } from '@sourcegraph/branded/src/components/Form'
 import { Scalars } from '@sourcegraph/shared/src/graphql-operations'

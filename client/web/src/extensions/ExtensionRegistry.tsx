@@ -1,8 +1,18 @@
 import * as H from 'history'
 import React, { useEffect, useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import { concat, of, timer } from 'rxjs'
-import { debounce, delay, map, switchMap, takeUntil, tap, distinctUntilChanged } from 'rxjs/operators'
+import {
+    concat,
+    of,
+    timer,
+    debounce,
+    delay,
+    map,
+    switchMap,
+    takeUntil,
+    tap,
+    distinctUntilChanged,
+} from 'rxjs'
 
 import { Form } from '@sourcegraph/branded/src/components/Form'
 import { ConfiguredRegistryExtension, isExtensionEnabled } from '@sourcegraph/shared/src/extensions/extension'

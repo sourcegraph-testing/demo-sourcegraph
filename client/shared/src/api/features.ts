@@ -1,6 +1,5 @@
 import { Remote } from 'comlink'
-import { from } from 'rxjs'
-import { switchMap } from 'rxjs/operators'
+import { from, switchMap } from 'rxjs'
 
 import { memoizeObservable } from '../util/memoizeObservable'
 

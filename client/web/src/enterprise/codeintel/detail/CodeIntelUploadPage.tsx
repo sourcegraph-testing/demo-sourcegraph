@@ -2,8 +2,7 @@ import DeleteIcon from 'mdi-react/DeleteIcon'
 import InformationOutlineIcon from 'mdi-react/InformationOutlineIcon'
 import React, { FunctionComponent, useCallback, useEffect, useMemo, useState } from 'react'
 import { Redirect, RouteComponentProps } from 'react-router'
-import { timer } from 'rxjs'
-import { catchError, concatMap, delay, repeatWhen, takeWhile } from 'rxjs/operators'
+import { timer, catchError, concatMap, delay, repeatWhen, takeWhile, lastValueFrom } from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import { LSIFUploadState } from '@sourcegraph/shared/src/graphql-operations'
@@ -79,7 +78,7 @@ export const CodeIntelUploadPage: FunctionComponent<CodeIntelUploadPageProps> = 
         setDeletionOrError('loading')
 
         try {
-            await deleteLsifUpload({ id }).toPromise()
+            await lastValueFrom(deleteLsifUpload({ id }))
             setDeletionOrError('deleted')
         } catch (error) {
             setDeletionOrError(error)

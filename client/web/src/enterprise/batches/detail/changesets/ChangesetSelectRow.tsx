@@ -16,6 +16,7 @@ import { DetachChangesetsModal } from './DetachChangesetsModal'
 import { MergeChangesetsModal } from './MergeChangesetsModal'
 import { PublishChangesetsModal } from './PublishChangesetsModal'
 import { ReenqueueChangesetsModal } from './ReenqueueChangesetsModal'
+import { lastValueFrom } from 'rxjs'
 
 /**
  * Describes a possible action on the changeset list.
@@ -205,7 +206,7 @@ export const ChangesetSelectRow: React.FunctionComponent<ChangesetSelectRowProps
         let ids: () => Promise<Scalars['ID'][]>
         if (allSelected) {
             // We asynchronously fetch all the IDs for ALL all.
-            ids = () => queryAllChangesetIDs(queryArguments).toPromise()
+            ids = () => lastValueFrom(queryAllChangesetIDs(queryArguments))
         } else {
             // We can just pass down the IDs.
             ids = () => Promise.resolve([...selected])

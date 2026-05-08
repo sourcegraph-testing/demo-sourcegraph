@@ -1,6 +1,21 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { combineLatest, concat, from, Observable, of, Subject } from 'rxjs'
-import { catchError, concatMap, delay, map, mergeMap, reduce, startWith, tap, toArray } from 'rxjs/operators'
+import {
+    combineLatest,
+    concat,
+    from,
+    Observable,
+    of,
+    Subject,
+    catchError,
+    concatMap,
+    delay,
+    map,
+    mergeMap,
+    reduce,
+    startWith,
+    tap,
+    toArray,
+} from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import { Link } from '@sourcegraph/shared/src/components/Link'

@@ -1,5 +1,15 @@
-import { from, Observable, of } from 'rxjs'
-import { catchError, defaultIfEmpty, map, mergeMap, scan, startWith, switchMap } from 'rxjs/operators'
+import {
+    from,
+    Observable,
+    of,
+    catchError,
+    defaultIfEmpty,
+    map,
+    mergeMap,
+    scan,
+    startWith,
+    switchMap,
+} from 'rxjs'
 import sourcegraph from 'sourcegraph'
 
 import { asError, ErrorLike } from '../../../util/errors'

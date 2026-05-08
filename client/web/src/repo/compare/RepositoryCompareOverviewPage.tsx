@@ -1,7 +1,16 @@
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router'
-import { merge, Observable, of, Subject, Subscription } from 'rxjs'
-import { catchError, distinctUntilChanged, map, switchMap } from 'rxjs/operators'
+import {
+    merge,
+    Observable,
+    of,
+    Subject,
+    Subscription,
+    catchError,
+    distinctUntilChanged,
+    map,
+    switchMap,
+} from 'rxjs'
 
 import { Hoverifier } from '@sourcegraph/codeintellify'
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'

@@ -1,5 +1,4 @@
-import { Observable, of } from 'rxjs'
-import { catchError, map, startWith } from 'rxjs/operators'
+import { Observable, of, catchError, map, startWith } from 'rxjs'
 
 import { asError } from '@sourcegraph/shared/src/util/errors'
 

@@ -1,6 +1,17 @@
 import { noop } from 'lodash'
-import { from, Observable, of, Subject, Subscription, NEVER } from 'rxjs'
-import { bufferCount, map, switchMap, toArray } from 'rxjs/operators'
+import {
+    from,
+    Observable,
+    of,
+    Subject,
+    Subscription,
+    NEVER,
+    bufferCount,
+    map,
+    switchMap,
+    toArray,
+    lastValueFrom,
+} from 'rxjs'
 import * as sinon from 'sinon'
 
 import { createBarrier } from '@sourcegraph/shared/src/api/integration-test/testHelpers'
@@ -39,9 +50,8 @@ describe('trackViews()', () => {
 
     test('detects all views on the page', async () => {
         const mutations: Observable<MutationRecordLike[]> = of([{ addedNodes: [document.body], removedNodes: [] }])
-        const views = await mutations
-            .pipe(trackViews([{ selector: '.view', resolveView: element => ({ element }) }]), toArray())
-            .toPromise()
+        const views = await lastValueFrom(mutations
+            .pipe(trackViews([{ selector: '.view', resolveView: element => ({ element }) }]), toArray()))
         expect(views.map(({ element }) => element.id)).toEqual(['view1', 'view2', 'view3'])
     })
 
@@ -50,13 +60,12 @@ describe('trackViews()', () => {
             { addedNodes: [document.querySelector<HTMLElement>('#view1')!], removedNodes: [] },
         ])
         expect(
-            await mutations
+            await lastValueFrom(mutations
                 .pipe(
                     trackViews([{ selector: '.view', resolveView: element => ({ element }) }]),
                     map(({ element }) => element.id),
                     toArray()
-                )
-                .toPromise()
+                ))
         ).toEqual(['view1'])
     })
 
@@ -65,13 +74,12 @@ describe('trackViews()', () => {
             { addedNodes: [document.querySelector<HTMLElement>('#view1')!], removedNodes: [] },
         ])
         expect(
-            await mutations
+            await lastValueFrom(mutations
                 .pipe(
                     trackViews([{ selector: '.view', resolveView: element => ({ element }) }]),
                     map(({ element }) => element.id),
                     toArray()
-                )
-                .toPromise()
+                ))
         ).toEqual(['view1'])
     })
 
@@ -81,7 +89,7 @@ describe('trackViews()', () => {
         selectorTarget.className = 'selector-target'
         document.querySelector<HTMLElement>('#view1')!.append(selectorTarget)
         expect(
-            await mutations
+            await lastValueFrom(mutations
                 .pipe(
                     trackViews([
                         {
@@ -91,15 +99,14 @@ describe('trackViews()', () => {
                     ]),
                     map(({ element }) => element.id),
                     toArray()
-                )
-                .toPromise()
+                ))
         ).toEqual(['view1'])
     })
 
     test("doesn't emit duplicate views", async () => {
         const mutations: Observable<MutationRecordLike[]> = of([{ addedNodes: [document.body], removedNodes: [] }])
         expect(
-            await mutations
+            await lastValueFrom(mutations
                 .pipe(
                     trackViews([
                         {
@@ -111,8 +118,7 @@ describe('trackViews()', () => {
                     ]),
                     map(({ element }) => element.id),
                     toArray()
-                )
-                .toPromise()
+                ))
         ).toEqual(['view1'])
     })
 
@@ -189,7 +195,7 @@ describe('trackViews()', () => {
             [{ addedNodes: [], removedNodes: [document.querySelector<HTMLElement>('#view1')!] }],
             [{ addedNodes: [], removedNodes: [document.querySelector<HTMLElement>('#view3')!] }],
         ])
-        await mutations
+        await lastValueFrom(mutations
             .pipe(
                 trackViews([{ selector: '.view', resolveView: element => ({ element }) }]),
                 bufferCount(3),
@@ -201,8 +207,7 @@ describe('trackViews()', () => {
                     await Promise.all([v1Removed, v3Removed])
                     sinon.assert.notCalled(v2Removed)
                 })
-            )
-            .toPromise()
+            ))
     })
 
     test('removes all nested views', async () => {
@@ -210,15 +215,14 @@ describe('trackViews()', () => {
             [{ addedNodes: [document.body], removedNodes: [] }],
             [{ addedNodes: [], removedNodes: [document.querySelector<HTMLElement>('#parent')!] }],
         ])
-        await mutations
+        await lastValueFrom(mutations
             .pipe(
                 trackViews([{ selector: '.view', resolveView: element => ({ element }) }]),
                 bufferCount(3),
                 switchMap(views =>
                     Promise.all(views.map(view => new Promise(resolve => view.subscriptions.add(resolve))))
                 )
-            )
-            .toPromise()
+            ))
     })
 
     test('removes a view without depending on its resolver', async () => {

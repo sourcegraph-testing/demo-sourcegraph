@@ -14,6 +14,7 @@ import {
     ResendVerificationEmailVariables,
 } from '../../../graphql-operations'
 import { eventLogger } from '../../../tracking/eventLogger'
+import { lastValueFrom } from 'rxjs'
 
 interface Props {
     user: string
@@ -45,7 +46,7 @@ export const UserEmail: FunctionComponent<Props> = ({
 
         try {
             dataOrThrowErrors(
-                await requestGraphQL<RemoveUserEmailResult, RemoveUserEmailVariables>(
+                await lastValueFrom(requestGraphQL<RemoveUserEmailResult, RemoveUserEmailVariables>(
                     gql`
                         mutation RemoveUserEmail($user: ID!, $email: String!) {
                             removeUserEmail(user: $user, email: $email) {
@@ -54,7 +55,7 @@ export const UserEmail: FunctionComponent<Props> = ({
                         }
                     `,
                     { user, email }
-                ).toPromise()
+                ))
             )
 
             setIsLoading(false)
@@ -73,7 +74,7 @@ export const UserEmail: FunctionComponent<Props> = ({
 
         try {
             dataOrThrowErrors(
-                await requestGraphQL<SetUserEmailVerifiedResult, SetUserEmailVerifiedVariables>(
+                await lastValueFrom(requestGraphQL<SetUserEmailVerifiedResult, SetUserEmailVerifiedVariables>(
                     gql`
                         mutation SetUserEmailVerified($user: ID!, $email: String!, $verified: Boolean!) {
                             setUserEmailVerified(user: $user, email: $email, verified: $verified) {
@@ -82,7 +83,7 @@ export const UserEmail: FunctionComponent<Props> = ({
                         }
                     `,
                     { user, email, verified }
-                ).toPromise()
+                ))
             )
 
             setIsLoading(false)
@@ -106,7 +107,7 @@ export const UserEmail: FunctionComponent<Props> = ({
 
         try {
             dataOrThrowErrors(
-                await requestGraphQL<ResendVerificationEmailResult, ResendVerificationEmailVariables>(
+                await lastValueFrom(requestGraphQL<ResendVerificationEmailResult, ResendVerificationEmailVariables>(
                     gql`
                         mutation ResendVerificationEmail($user: ID!, $email: String!) {
                             resendVerificationEmail(user: $user, email: $email) {
@@ -115,7 +116,7 @@ export const UserEmail: FunctionComponent<Props> = ({
                         }
                     `,
                     { user, email }
-                ).toPromise()
+                ))
             )
 
             setIsLoading(false)

@@ -1,8 +1,7 @@
 import PlusIcon from 'mdi-react/PlusIcon'
 import React, { useMemo, useEffect } from 'react'
 import { NavLink, Redirect } from 'react-router-dom'
-import { of } from 'rxjs'
-import { catchError, map, startWith } from 'rxjs/operators'
+import { of, catchError, map, startWith } from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import { Link } from '@sourcegraph/shared/src/components/Link'

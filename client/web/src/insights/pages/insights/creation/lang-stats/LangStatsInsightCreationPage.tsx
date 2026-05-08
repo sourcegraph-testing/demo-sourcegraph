@@ -22,6 +22,7 @@ import {
 import styles from './LangStatsInsightCreationPage.module.scss'
 import { LangStatsCreationFormFields } from './types'
 import { getSanitizedLangStatsInsight } from './utils/insight-sanitizer'
+import { lastValueFrom } from 'rxjs'
 
 const DEFAULT_FINAL_SETTINGS = {}
 
@@ -51,12 +52,12 @@ export const LangStatsInsightCreationPage: React.FunctionComponent<LangStatsInsi
             const subjectID = values.visibility
 
             try {
-                const settings = await getSubjectSettings(subjectID).toPromise()
+                const settings = await lastValueFrom(getSubjectSettings(subjectID))
 
                 const insight = getSanitizedLangStatsInsight(values)
                 const editedSettings = addInsightToSettings(settings.contents, insight)
 
-                await updateSubjectSettings(platformContext, subjectID, editedSettings).toPromise()
+                await lastValueFrom(updateSubjectSettings(platformContext, subjectID, editedSettings))
 
                 // Clear initial values if user successfully created search insight
                 setInitialFormValues(undefined)

@@ -1,5 +1,4 @@
-import { concat, Observable } from 'rxjs'
-import { map, mergeMap } from 'rxjs/operators'
+import { concat, Observable, map, mergeMap, lastValueFrom } from 'rxjs'
 
 import { gql } from '@sourcegraph/shared/src/graphql/graphql'
 import { createAggregateError } from '@sourcegraph/shared/src/util/errors'
@@ -27,7 +26,7 @@ export function createOrganization(args: {
     /** The new organization's display name (e.g. full name) in the organization profile. */
     displayName?: string
 }): Promise<CreateOrganizationResult['createOrganization']> {
-    return requestGraphQL<CreateOrganizationResult, CreateOrganizationVariables>(
+    return lastValueFrom(requestGraphQL<CreateOrganizationResult, CreateOrganizationVariables>(
         gql`
             mutation CreateOrganization($name: String!, $displayName: String) {
                 createOrganization(name: $name, displayName: $displayName) {
@@ -48,8 +47,7 @@ export function createOrganization(args: {
                 eventLogger.log('NewOrgCreated')
                 return concat(refreshAuthenticatedUser(), [data.createOrganization])
             })
-        )
-        .toPromise()
+        ))
 }
 
 /**
@@ -93,7 +91,7 @@ export function removeUserFromOrganization(args: {
  * @returns Observable that emits `undefined`, then completes
  */
 export function updateOrganization(id: Scalars['ID'], displayName: string): Promise<void> {
-    return requestGraphQL<UpdateOrganizationResult, UpdateOrganizationVariables>(
+    return lastValueFrom(requestGraphQL<UpdateOrganizationResult, UpdateOrganizationVariables>(
         gql`
             mutation UpdateOrganization($id: ID!, $displayName: String) {
                 updateOrganization(id: $id, displayName: $displayName) {
@@ -115,6 +113,5 @@ export function updateOrganization(id: Scalars['ID'], displayName: string): Prom
                 eventLogger.log('OrgSettingsUpdated')
                 return
             })
-        )
-        .toPromise()
+        ))
 }

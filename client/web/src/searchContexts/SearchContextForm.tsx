@@ -2,8 +2,20 @@ import classNames from 'classnames'
 import React, { useCallback, useMemo, useState } from 'react'
 import { RouteComponentProps, useHistory } from 'react-router'
 import { Form } from 'reactstrap'
-import { from, Observable, of, throwError } from 'rxjs'
-import { catchError, concatMap, filter, map, startWith, switchMap, tap, toArray } from 'rxjs/operators'
+import {
+    from,
+    Observable,
+    of,
+    throwError,
+    catchError,
+    concatMap,
+    filter,
+    map,
+    startWith,
+    switchMap,
+    tap,
+    toArray,
+} from 'rxjs'
 
 import {
     Scalars,
@@ -202,7 +214,7 @@ export const SearchContextForm: React.FunctionComponent<SearchContextFormProps> 
                     switchMap(repositories => {
                         const validationErrors = repositories.filter(repository => isErrorLike(repository)) as Error[]
                         if (validationErrors.length > 0) {
-                            return throwError(createAggregateError(validationErrors))
+                            return throwError(() => createAggregateError(validationErrors))
                         }
                         const validRepositories = repositories.filter(
                             repository => !isErrorLike(repository)

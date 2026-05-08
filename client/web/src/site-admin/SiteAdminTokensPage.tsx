@@ -1,8 +1,7 @@
 import AddIcon from 'mdi-react/AddIcon'
 import React, { useCallback, useMemo } from 'react'
 import { RouteComponentProps } from 'react-router'
-import { Observable, Subject } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { Observable, Subject, map } from 'rxjs'
 
 import { LinkOrSpan } from '@sourcegraph/shared/src/components/LinkOrSpan'
 import { dataOrThrowErrors, gql } from '@sourcegraph/shared/src/graphql/graphql'

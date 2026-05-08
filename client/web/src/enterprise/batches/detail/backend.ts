@@ -1,5 +1,4 @@
-import { EMPTY, Observable } from 'rxjs'
-import { expand, map, reduce } from 'rxjs/operators'
+import { EMPTY, Observable, expand, map, reduce, lastValueFrom } from 'rxjs'
 
 import { dataOrThrowErrors, gql } from '@sourcegraph/shared/src/graphql/graphql'
 
@@ -348,7 +347,7 @@ export const queryChangesets = ({
     )
 
 export async function syncChangeset(changeset: Scalars['ID']): Promise<void> {
-    const result = await requestGraphQL<SyncChangesetResult, SyncChangesetVariables>(
+    const result = await lastValueFrom(requestGraphQL<SyncChangesetResult, SyncChangesetVariables>(
         gql`
             mutation SyncChangeset($changeset: ID!) {
                 syncChangeset(changeset: $changeset) {
@@ -357,12 +356,12 @@ export async function syncChangeset(changeset: Scalars['ID']): Promise<void> {
             }
         `,
         { changeset }
-    ).toPromise()
+    ))
     dataOrThrowErrors(result)
 }
 
 export async function reenqueueChangeset(changeset: Scalars['ID']): Promise<ChangesetFields> {
-    return requestGraphQL<ReenqueueChangesetResult, ReenqueueChangesetVariables>(
+    return lastValueFrom(requestGraphQL<ReenqueueChangesetResult, ReenqueueChangesetVariables>(
         gql`
             mutation ReenqueueChangeset($changeset: ID!) {
                 reenqueueChangeset(changeset: $changeset) {
@@ -377,8 +376,7 @@ export async function reenqueueChangeset(changeset: Scalars['ID']): Promise<Chan
         .pipe(
             map(dataOrThrowErrors),
             map(data => data.reenqueueChangeset)
-        )
-        .toPromise()
+        ))
 }
 
 // Because thats the name in the API:
@@ -529,7 +527,7 @@ export const queryChangesetCountsOverTime = ({
     )
 
 export async function deleteBatchChange(batchChange: Scalars['ID']): Promise<void> {
-    const result = await requestGraphQL<DeleteBatchChangeResult, DeleteBatchChangeVariables>(
+    const result = await lastValueFrom(requestGraphQL<DeleteBatchChangeResult, DeleteBatchChangeVariables>(
         gql`
             mutation DeleteBatchChange($batchChange: ID!) {
                 deleteBatchChange(batchChange: $batchChange) {
@@ -538,7 +536,7 @@ export async function deleteBatchChange(batchChange: Scalars['ID']): Promise<voi
             }
         `,
         { batchChange }
-    ).toPromise()
+    ))
     dataOrThrowErrors(result)
 }
 
@@ -557,7 +555,7 @@ const changesetDiffFragment = gql`
 `
 
 export async function getChangesetDiff(changeset: Scalars['ID']): Promise<string> {
-    return requestGraphQL<ChangesetDiffResult, ChangesetDiffVariables>(
+    return lastValueFrom(requestGraphQL<ChangesetDiffResult, ChangesetDiffVariables>(
         gql`
             query ChangesetDiff($changeset: ID!) {
                 node(id: $changeset) {
@@ -590,8 +588,7 @@ export async function getChangesetDiff(changeset: Scalars['ID']): Promise<string
 
                 return commits[0].diff
             })
-        )
-        .toPromise()
+        ))
 }
 
 const changesetScheduleEstimateFragment = gql`
@@ -601,7 +598,7 @@ const changesetScheduleEstimateFragment = gql`
 `
 
 export async function getChangesetScheduleEstimate(changeset: Scalars['ID']): Promise<Scalars['DateTime'] | null> {
-    return requestGraphQL<ChangesetScheduleEstimateResult, ChangesetScheduleEstimateVariables>(
+    return lastValueFrom(requestGraphQL<ChangesetScheduleEstimateResult, ChangesetScheduleEstimateVariables>(
         gql`
             query ChangesetScheduleEstimate($changeset: ID!) {
                 node(id: $changeset) {
@@ -627,12 +624,11 @@ export async function getChangesetScheduleEstimate(changeset: Scalars['ID']): Pr
 
                 return node.scheduleEstimateAt
             })
-        )
-        .toPromise()
+        ))
 }
 
 export async function detachChangesets(batchChange: Scalars['ID'], changesets: Scalars['ID'][]): Promise<void> {
-    const result = await requestGraphQL<DetachChangesetsResult, DetachChangesetsVariables>(
+    const result = await lastValueFrom(requestGraphQL<DetachChangesetsResult, DetachChangesetsVariables>(
         gql`
             mutation DetachChangesets($batchChange: ID!, $changesets: [ID!]!) {
                 detachChangesets(batchChange: $batchChange, changesets: $changesets) {
@@ -641,7 +637,7 @@ export async function detachChangesets(batchChange: Scalars['ID'], changesets: S
             }
         `,
         { batchChange, changesets }
-    ).toPromise()
+    ))
     dataOrThrowErrors(result)
 }
 
@@ -650,7 +646,7 @@ export async function createChangesetComments(
     changesets: Scalars['ID'][],
     body: string
 ): Promise<void> {
-    const result = await requestGraphQL<CreateChangesetCommentsResult, CreateChangesetCommentsVariables>(
+    const result = await lastValueFrom(requestGraphQL<CreateChangesetCommentsResult, CreateChangesetCommentsVariables>(
         gql`
             mutation CreateChangesetComments($batchChange: ID!, $changesets: [ID!]!, $body: String!) {
                 createChangesetComments(batchChange: $batchChange, changesets: $changesets, body: $body) {
@@ -659,12 +655,12 @@ export async function createChangesetComments(
             }
         `,
         { batchChange, changesets, body }
-    ).toPromise()
+    ))
     dataOrThrowErrors(result)
 }
 
 export async function reenqueueChangesets(batchChange: Scalars['ID'], changesets: Scalars['ID'][]): Promise<void> {
-    const result = await requestGraphQL<ReenqueueChangesetsResult, ReenqueueChangesetsVariables>(
+    const result = await lastValueFrom(requestGraphQL<ReenqueueChangesetsResult, ReenqueueChangesetsVariables>(
         gql`
             mutation ReenqueueChangesets($batchChange: ID!, $changesets: [ID!]!) {
                 reenqueueChangesets(batchChange: $batchChange, changesets: $changesets) {
@@ -673,7 +669,7 @@ export async function reenqueueChangesets(batchChange: Scalars['ID'], changesets
             }
         `,
         { batchChange, changesets }
-    ).toPromise()
+    ))
     dataOrThrowErrors(result)
 }
 
@@ -682,7 +678,7 @@ export async function mergeChangesets(
     changesets: Scalars['ID'][],
     squash: boolean
 ): Promise<void> {
-    const result = await requestGraphQL<MergeChangesetsResult, MergeChangesetsVariables>(
+    const result = await lastValueFrom(requestGraphQL<MergeChangesetsResult, MergeChangesetsVariables>(
         gql`
             mutation MergeChangesets($batchChange: ID!, $changesets: [ID!]!, $squash: Boolean!) {
                 mergeChangesets(batchChange: $batchChange, changesets: $changesets, squash: $squash) {
@@ -691,12 +687,12 @@ export async function mergeChangesets(
             }
         `,
         { batchChange, changesets, squash }
-    ).toPromise()
+    ))
     dataOrThrowErrors(result)
 }
 
 export async function closeChangesets(batchChange: Scalars['ID'], changesets: Scalars['ID'][]): Promise<void> {
-    const result = await requestGraphQL<CloseChangesetsResult, CloseChangesetsVariables>(
+    const result = await lastValueFrom(requestGraphQL<CloseChangesetsResult, CloseChangesetsVariables>(
         gql`
             mutation CloseChangesets($batchChange: ID!, $changesets: [ID!]!) {
                 closeChangesets(batchChange: $batchChange, changesets: $changesets) {
@@ -705,7 +701,7 @@ export async function closeChangesets(batchChange: Scalars['ID'], changesets: Sc
             }
         `,
         { batchChange, changesets }
-    ).toPromise()
+    ))
     dataOrThrowErrors(result)
 }
 
@@ -714,7 +710,7 @@ export async function publishChangesets(
     changesets: Scalars['ID'][],
     draft: boolean
 ): Promise<void> {
-    const result = await requestGraphQL<PublishChangesetsResult, PublishChangesetsVariables>(
+    const result = await lastValueFrom(requestGraphQL<PublishChangesetsResult, PublishChangesetsVariables>(
         gql`
             mutation PublishChangesets($batchChange: ID!, $changesets: [ID!]!, $draft: Boolean!) {
                 publishChangesets(batchChange: $batchChange, changesets: $changesets, draft: $draft) {
@@ -723,7 +719,7 @@ export async function publishChangesets(
             }
         `,
         { batchChange, changesets, draft }
-    ).toPromise()
+    ))
     dataOrThrowErrors(result)
 }
 

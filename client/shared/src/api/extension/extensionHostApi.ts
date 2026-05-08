@@ -1,7 +1,13 @@
 import { proxy } from 'comlink'
 import { castArray, groupBy, identity, isEqual } from 'lodash'
-import { combineLatest, concat, EMPTY, from, Observable, of, Subscribable } from 'rxjs'
 import {
+    combineLatest,
+    concat,
+    EMPTY,
+    from,
+    Observable,
+    of,
+    Subscribable,
     catchError,
     debounceTime,
     defaultIfEmpty,
@@ -9,7 +15,7 @@ import {
     map,
     mergeMap,
     switchMap,
-} from 'rxjs/operators'
+} from 'rxjs'
 import * as sourcegraph from 'sourcegraph'
 
 import { LOADING, MaybeLoadingResult } from '@sourcegraph/codeintellify'

@@ -1,7 +1,7 @@
 import { isEqual } from 'lodash'
 import AlertCircleIcon from 'mdi-react/AlertCircleIcon'
 import React, { useEffect, useMemo } from 'react'
-import { delay, distinctUntilChanged, repeatWhen } from 'rxjs/operators'
+import { delay, distinctUntilChanged, repeatWhen } from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import { useObservable } from '@sourcegraph/shared/src/util/useObservable'

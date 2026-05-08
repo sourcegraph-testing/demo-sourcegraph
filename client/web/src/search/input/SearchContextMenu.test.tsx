@@ -273,7 +273,7 @@ describe('SearchContextMenu', () => {
 
     it('should default to empty array if fetching auto-defined contexts fails', () => {
         const errorFetchAutoDefinedSearchContexts: () => Observable<ISearchContext[]> = () =>
-            throwError(new Error('unknown error'))
+            throwError(() => new Error('unknown error'))
 
         const root = mount(
             <UncontrolledDropdown>

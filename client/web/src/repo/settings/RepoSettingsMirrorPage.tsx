@@ -3,8 +3,7 @@ import LockIcon from 'mdi-react/LockIcon'
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router'
 import { Link } from 'react-router-dom'
-import { interval, Subject, Subscription } from 'rxjs'
-import { catchError, switchMap, tap } from 'rxjs/operators'
+import { interval, Subject, Subscription, catchError, switchMap, tap, lastValueFrom } from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import * as GQL from '@sourcegraph/shared/src/graphql/schema'
@@ -124,7 +123,7 @@ class UpdateMirrorRepositoryActionContainer extends React.PureComponent<UpdateMi
     }
 
     private updateMirrorRepository = async (): Promise<void> => {
-        await updateMirrorRepository({ repository: this.props.repo.id }).toPromise()
+        await lastValueFrom(updateMirrorRepository({ repository: this.props.repo.id }))
         this.props.onDidUpdateRepository()
     }
 }

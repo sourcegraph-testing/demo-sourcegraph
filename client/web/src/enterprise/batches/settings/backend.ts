@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs'
-import { map, mapTo } from 'rxjs/operators'
+import { Observable, map, mapTo, lastValueFrom } from 'rxjs'
 
 import { dataOrThrowErrors, gql } from '@sourcegraph/shared/src/graphql/graphql'
 
@@ -29,7 +28,7 @@ export const batchChangesCredentialFieldsFragment = gql`
 export function createBatchChangesCredential(
     args: CreateBatchChangesCredentialVariables
 ): Promise<BatchChangesCredentialFields> {
-    return requestGraphQL<CreateBatchChangesCredentialResult, CreateBatchChangesCredentialVariables>(
+    return lastValueFrom(requestGraphQL<CreateBatchChangesCredentialResult, CreateBatchChangesCredentialVariables>(
         gql`
             mutation CreateBatchChangesCredential(
                 $user: ID
@@ -54,12 +53,11 @@ export function createBatchChangesCredential(
         .pipe(
             map(dataOrThrowErrors),
             map(data => data.createBatchChangesCredential)
-        )
-        .toPromise()
+        ))
 }
 
 export function deleteBatchChangesCredential(id: Scalars['ID']): Promise<void> {
-    return requestGraphQL<DeleteBatchChangesCredentialResult, DeleteBatchChangesCredentialVariables>(
+    return lastValueFrom(requestGraphQL<DeleteBatchChangesCredentialResult, DeleteBatchChangesCredentialVariables>(
         gql`
             mutation DeleteBatchChangesCredential($id: ID!) {
                 deleteBatchChangesCredential(batchChangesCredential: $id) {
@@ -69,8 +67,7 @@ export function deleteBatchChangesCredential(id: Scalars['ID']): Promise<void> {
         `,
         { id }
     )
-        .pipe(map(dataOrThrowErrors), mapTo(undefined))
-        .toPromise()
+        .pipe(map(dataOrThrowErrors), mapTo(undefined)))
 }
 
 const batchChangesCodeHostsFieldsFragment = gql`

@@ -13,6 +13,7 @@ import { addDashboardToSettings, removeDashboardFromSettings } from '../../../..
 import { SettingsBasedInsightDashboard } from '../../../../core/types'
 import { DashboardCreationFields } from '../../creation/components/insights-dashboard-creation-content/InsightsDashboardCreationContent'
 import { createSanitizedDashboard } from '../../creation/utils/dashboard-sanitizer'
+import { lastValueFrom } from 'rxjs'
 
 interface useUpdateDashboardProps extends PlatformContextProps<'updateSettings'> {
     authenticatedUser: Pick<AuthenticatedUser, 'id' | 'organizations' | 'username'>
@@ -40,15 +41,15 @@ export function useUpdateDashboardCallback(props: useUpdateDashboardProps): Dash
 
         try {
             if (previousDashboard.owner.id !== dashboardValues.visibility) {
-                const settings = await getSubjectSettings(previousDashboard.owner.id).toPromise()
+                const settings = await lastValueFrom(getSubjectSettings(previousDashboard.owner.id))
                 const editedSettings = removeDashboardFromSettings(settings.contents, previousDashboard.settingsKey)
 
-                await updateSubjectSettings(platformContext, previousDashboard.owner.id, editedSettings).toPromise()
+                await lastValueFrom(updateSubjectSettings(platformContext, previousDashboard.owner.id, editedSettings))
             }
 
             const subjectID = dashboardValues.visibility
 
-            const settings = await getSubjectSettings(subjectID).toPromise()
+            const settings = await lastValueFrom(getSubjectSettings(subjectID))
 
             let settingsContent = settings.contents
 
@@ -69,7 +70,7 @@ export function useUpdateDashboardCallback(props: useUpdateDashboardProps): Dash
 
             settingsContent = addDashboardToSettings(settingsContent, updatedDashboard)
 
-            await updateSubjectSettings(platformContext, subjectID, settingsContent).toPromise()
+            await lastValueFrom(updateSubjectSettings(platformContext, subjectID, settingsContent))
 
             history.push(`/insights/dashboards/${camelCase(updatedDashboard.title)}`)
         } catch (error) {

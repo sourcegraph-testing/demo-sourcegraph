@@ -1,5 +1,4 @@
-import { Observable, of } from 'rxjs'
-import { map, distinctUntilChanged } from 'rxjs/operators'
+import { Observable, of, map, distinctUntilChanged } from 'rxjs'
 
 import { observeStorageKey } from '../../browser-extension/web-extension-api/storage'
 import { isExtension } from '../context'

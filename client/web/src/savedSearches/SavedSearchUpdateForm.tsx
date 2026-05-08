@@ -1,7 +1,10 @@
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router'
-import { concat, of, Subject, Subscription } from 'rxjs'
 import {
+    concat,
+    of,
+    Subject,
+    Subscription,
     catchError,
     delay,
     distinctUntilChanged,
@@ -11,7 +14,7 @@ import {
     startWith,
     switchMap,
     tap,
-} from 'rxjs/operators'
+} from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import { Scalars } from '@sourcegraph/shared/src/graphql-operations'

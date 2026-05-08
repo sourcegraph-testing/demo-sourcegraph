@@ -7,12 +7,13 @@ import {
     CreateBatchSpecExecutionVariables,
     Scalars,
 } from '../../../graphql-operations'
+import { lastValueFrom } from 'rxjs'
 
 export async function createBatchSpecExecution(
     spec: string,
     namespace: Scalars['ID']
 ): Promise<BatchSpecExecutionCreateFields> {
-    const result = await requestGraphQL<CreateBatchSpecExecutionResult, CreateBatchSpecExecutionVariables>(
+    const result = await lastValueFrom(requestGraphQL<CreateBatchSpecExecutionResult, CreateBatchSpecExecutionVariables>(
         gql`
             mutation CreateBatchSpecExecution($spec: String!, $namespace: ID) {
                 createBatchSpecExecution(spec: $spec, namespace: $namespace) {
@@ -28,6 +29,6 @@ export async function createBatchSpecExecution(
             }
         `,
         { spec, namespace }
-    ).toPromise()
+    ))
     return dataOrThrowErrors(result).createBatchSpecExecution
 }

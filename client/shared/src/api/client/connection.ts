@@ -1,6 +1,5 @@
 import * as comlink from 'comlink'
-import { from, Subscription } from 'rxjs'
-import { first } from 'rxjs/operators'
+import { from, Subscription, first, lastValueFrom } from 'rxjs'
 import { Unsubscribable } from 'sourcegraph'
 
 import { PlatformContext, ClosableEndpointPair } from '../../platform/context'
@@ -68,7 +67,7 @@ export async function createExtensionHostClientConnection(
     /** Proxy to the exposed extension host API */
     const initializeExtensionHost = comlink.wrap<ExtensionHostAPIFactory>(endpoints.proxy)
 
-    const initialSettings = await from(platformContext.settings).pipe(first()).toPromise()
+    const initialSettings = await lastValueFrom(from(platformContext.settings).pipe(first()))
     const proxy = await initializeExtensionHost({
         ...initData,
         // TODO what to do in error case?

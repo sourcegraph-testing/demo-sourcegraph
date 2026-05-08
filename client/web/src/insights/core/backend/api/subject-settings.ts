@@ -1,5 +1,4 @@
-import { from, Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { from, Observable, map } from 'rxjs'
 
 import { PlatformContext } from '@sourcegraph/shared/src/platform/context'
 

@@ -1,6 +1,5 @@
 import * as React from 'react'
-import { Subject, Subscription } from 'rxjs'
-import { catchError, filter, mergeMap, tap } from 'rxjs/operators'
+import { Subject, Subscription, catchError, filter, mergeMap, tap, lastValueFrom } from 'rxjs'
 
 import { Form } from '@sourcegraph/branded/src/components/Form'
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
@@ -61,7 +60,7 @@ interface State {
 
 const fetchUserExternalAccountsByType = async (username: string): Promise<MinExternalAccount[]> => {
     const result = dataOrThrowErrors(
-        await requestGraphQL<UserExternalAccountsResult, MinExternalAccountsVariables>(
+        await lastValueFrom(requestGraphQL<UserExternalAccountsResult, MinExternalAccountsVariables>(
             gql`
                 query MinExternalAccounts($username: String!) {
                     user(username: $username) {
@@ -77,7 +76,7 @@ const fetchUserExternalAccountsByType = async (username: string): Promise<MinExt
                 }
             `,
             { username }
-        ).toPromise()
+        ))
     )
     // if user doesn't have external accounts API will return an empty array
     return result.user.externalAccounts.nodes

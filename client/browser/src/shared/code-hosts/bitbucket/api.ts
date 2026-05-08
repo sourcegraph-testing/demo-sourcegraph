@@ -1,7 +1,6 @@
 import { first } from 'lodash'
-import { Observable } from 'rxjs'
+import { Observable, filter, map } from 'rxjs'
 import { fromFetch } from 'rxjs/fetch'
-import { filter, map } from 'rxjs/operators'
 
 import { checkOk } from '@sourcegraph/shared/src/backend/fetch'
 import { memoizeObservable } from '@sourcegraph/shared/src/util/memoizeObservable'

@@ -1,7 +1,6 @@
 import { describe, test } from 'mocha'
-import { merge } from 'rxjs'
+import { merge, catchError, lastValueFrom } from 'rxjs'
 import { fromFetch } from 'rxjs/fetch'
-import { catchError } from 'rxjs/operators'
 
 import { checkOk } from '@sourcegraph/shared/src/backend/fetch'
 import { getConfig } from '@sourcegraph/shared/src/testing/config'
@@ -16,7 +15,7 @@ describe('Native integrations regression test suite', () => {
             '/.assets/extension/css/style.bundle.css',
             '/.assets/extension/extensionHostFrame.html',
         ]
-        await merge(
+        await lastValueFrom(merge(
             ...assets.map(asset =>
                 fromFetch(new URL(asset, sourcegraphBaseUrl).href, { selector: response => [checkOk(response)] }).pipe(
                     catchError(() => {
@@ -24,6 +23,6 @@ describe('Native integrations regression test suite', () => {
                     })
                 )
             )
-        ).toPromise()
+        ))
     })
 })

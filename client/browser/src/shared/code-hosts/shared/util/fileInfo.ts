@@ -1,5 +1,4 @@
-import { Observable, of, zip } from 'rxjs'
-import { catchError, map } from 'rxjs/operators'
+import { Observable, of, zip, catchError, map } from 'rxjs'
 
 import { PlatformContext } from '@sourcegraph/shared/src/platform/context'
 

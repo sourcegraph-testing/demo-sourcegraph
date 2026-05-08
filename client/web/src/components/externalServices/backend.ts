@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs'
-import { map, mapTo } from 'rxjs/operators'
+import { Observable, map, mapTo, lastValueFrom } from 'rxjs'
 
 import { gql, dataOrThrowErrors } from '@sourcegraph/shared/src/graphql/graphql'
 import { TelemetryService } from '@sourcegraph/shared/src/telemetry/telemetryService'
@@ -51,7 +50,7 @@ export async function addExternalService(
     variables: AddExternalServiceVariables,
     eventLogger: TelemetryService
 ): Promise<AddExternalServiceResult['addExternalService']> {
-    return requestGraphQL<AddExternalServiceResult, AddExternalServiceVariables>(
+    return lastValueFrom(requestGraphQL<AddExternalServiceResult, AddExternalServiceVariables>(
         gql`
             mutation AddExternalService($input: AddExternalServiceInput!) {
                 addExternalService(input: $input) {
@@ -72,8 +71,7 @@ export async function addExternalService(
                 eventLogger.log('AddExternalServiceSucceeded')
                 return data.addExternalService
             })
-        )
-        .toPromise()
+        ))
 }
 
 export function isExternalService(
@@ -85,7 +83,7 @@ export function isExternalService(
 export function updateExternalService(
     variables: UpdateExternalServiceVariables
 ): Promise<UpdateExternalServiceResult['updateExternalService']> {
-    return requestGraphQL<UpdateExternalServiceResult, UpdateExternalServiceVariables>(
+    return lastValueFrom(requestGraphQL<UpdateExternalServiceResult, UpdateExternalServiceVariables>(
         gql`
             mutation UpdateExternalService($input: UpdateExternalServiceInput!) {
                 updateExternalService(input: $input) {
@@ -99,12 +97,11 @@ export function updateExternalService(
         .pipe(
             map(dataOrThrowErrors),
             map(data => data.updateExternalService)
-        )
-        .toPromise()
+        ))
 }
 
 export function setExternalServiceRepos(variables: SetExternalServiceReposVariables): Promise<void> {
-    return requestGraphQL<SetExternalServiceReposResult, SetExternalServiceReposVariables>(
+    return lastValueFrom(requestGraphQL<SetExternalServiceReposResult, SetExternalServiceReposVariables>(
         gql`
             mutation SetExternalServiceRepos($id: ID!, $allRepos: Boolean!, $repos: [String!]) {
                 setExternalServiceRepos(id: $id, allRepos: $allRepos, repos: $repos) {
@@ -114,8 +111,7 @@ export function setExternalServiceRepos(variables: SetExternalServiceReposVariab
         `,
         variables
     )
-        .pipe(map(dataOrThrowErrors), mapTo(undefined))
-        .toPromise()
+        .pipe(map(dataOrThrowErrors), mapTo(undefined)))
 }
 
 export function fetchExternalService(id: Scalars['ID']): Observable<ExternalServiceFields> {
@@ -172,7 +168,7 @@ export function listAffiliatedRepositories(
 }
 
 export async function deleteExternalService(externalService: Scalars['ID']): Promise<void> {
-    const result = await requestGraphQL<DeleteExternalServiceResult, DeleteExternalServiceVariables>(
+    const result = await lastValueFrom(requestGraphQL<DeleteExternalServiceResult, DeleteExternalServiceVariables>(
         gql`
             mutation DeleteExternalService($externalService: ID!) {
                 deleteExternalService(externalService: $externalService) {
@@ -181,7 +177,7 @@ export async function deleteExternalService(externalService: Scalars['ID']): Pro
             }
         `,
         { externalService }
-    ).toPromise()
+    ))
     dataOrThrowErrors(result)
 }
 

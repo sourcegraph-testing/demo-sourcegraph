@@ -4,8 +4,7 @@ import ExportIcon from 'mdi-react/ExportIcon'
 import GithubIcon from 'mdi-react/GithubIcon'
 import GitlabIcon from 'mdi-react/GitlabIcon'
 import React, { useCallback, useMemo, useState } from 'react'
-import { merge, of } from 'rxjs'
-import { catchError } from 'rxjs/operators'
+import { merge, of, catchError } from 'rxjs'
 
 import { Position, Range } from '@sourcegraph/extension-api-types'
 import { PhabricatorIcon } from '@sourcegraph/shared/src/components/icons' // TODO: Switch mdi icon

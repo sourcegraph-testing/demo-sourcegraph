@@ -1,7 +1,6 @@
 import Dialog from '@reach/dialog'
 import React, { useCallback } from 'react'
-import { Observable, throwError } from 'rxjs'
-import { mergeMap, startWith, tap, catchError } from 'rxjs/operators'
+import { Observable, throwError, mergeMap, startWith, tap, catchError } from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import { asError, isErrorLike } from '@sourcegraph/shared/src/util/errors'
@@ -41,7 +40,7 @@ export const DeleteMonitorModal: React.FunctionComponent<DeleteModalProps> = ({
                             )
                         }
 
-                        return throwError(new Error('Failed to delete: Code monitor ID not provided'))
+                        return throwError(() => new Error('Failed to delete: Code monitor ID not provided'))
                     })
                 ),
             [deleteCodeMonitor, history, codeMonitor]

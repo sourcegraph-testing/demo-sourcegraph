@@ -1,8 +1,7 @@
 import AddIcon from 'mdi-react/AddIcon'
 import React, { useCallback, useMemo, useState } from 'react'
 import { RouteComponentProps } from 'react-router'
-import { concat, Observable, Subject } from 'rxjs'
-import { catchError, concatMap, map, tap } from 'rxjs/operators'
+import { concat, Observable, Subject, catchError, concatMap, map, tap } from 'rxjs'
 
 import { Form } from '@sourcegraph/branded/src/components/Form'
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'

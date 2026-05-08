@@ -1,5 +1,13 @@
-import { from } from 'rxjs'
-import { distinctUntilChanged, first, switchMap, take, toArray, filter } from 'rxjs/operators'
+import {
+    from,
+    distinctUntilChanged,
+    first,
+    switchMap,
+    take,
+    toArray,
+    filter,
+    lastValueFrom,
+} from 'rxjs'
 import * as sourcegraph from 'sourcegraph'
 
 import { Range, Selection } from '@sourcegraph/extension-api-classes'
@@ -15,14 +23,13 @@ describe('CodeEditor (integration)', () => {
         test('observe changes', async () => {
             const { extensionAPI, extensionHostAPI } = await integrationTestContext()
 
-            const values = from(extensionAPI.app.activeWindow!.activeViewComponentChanges)
+            const values = lastValueFrom(from(extensionAPI.app.activeWindow!.activeViewComponentChanges)
                 .pipe(
                     switchMap(viewer => (viewer && viewer.type === 'CodeEditor' ? viewer.selectionsChanges : [])),
                     distinctUntilChanged(),
                     take(3),
                     toArray()
-                )
-                .toPromise()
+                ))
 
             await extensionHostAPI.setEditorSelections({ viewerId: 'viewer#0' }, [new Selection(1, 2, 3, 4)])
             await extensionHostAPI.setEditorSelections({ viewerId: 'viewer#0' }, [])
@@ -49,9 +56,8 @@ describe('CodeEditor (integration)', () => {
             ])
 
             expect(
-                await wrapRemoteObservable(extensionHostAPI.getTextDecorations({ viewerId: 'viewer#0' }))
-                    .pipe(take(1))
-                    .toPromise()
+                await lastValueFrom(wrapRemoteObservable(extensionHostAPI.getTextDecorations({ viewerId: 'viewer#0' }))
+                    .pipe(take(1)))
             ).toEqual([
                 {
                     range: { start: { line: 1, character: 2 }, end: { line: 3, character: 4 } },
@@ -62,9 +68,8 @@ describe('CodeEditor (integration)', () => {
             // Clear the decorations and ensure they are removed.
             editor.setDecorations(decorationType, [])
             expect(
-                await wrapRemoteObservable(extensionHostAPI.getTextDecorations({ viewerId: 'viewer#0' }))
-                    .pipe(take(1))
-                    .toPromise()
+                await lastValueFrom(wrapRemoteObservable(extensionHostAPI.getTextDecorations({ viewerId: 'viewer#0' }))
+                    .pipe(take(1)))
             ).toEqual([])
         })
 
@@ -91,9 +96,8 @@ describe('CodeEditor (integration)', () => {
             ])
 
             expect(
-                await wrapRemoteObservable(extensionHostAPI.getTextDecorations({ viewerId: 'viewer#0' }))
-                    .pipe(take(1))
-                    .toPromise()
+                await lastValueFrom(wrapRemoteObservable(extensionHostAPI.getTextDecorations({ viewerId: 'viewer#0' }))
+                    .pipe(take(1)))
             ).toEqual([
                 {
                     range: { start: { line: 1, character: 2 }, end: { line: 3, character: 4 } },
@@ -120,9 +124,8 @@ describe('CodeEditor (integration)', () => {
             ])
 
             expect(
-                await wrapRemoteObservable(extensionHostAPI.getTextDecorations({ viewerId: 'viewer#0' }))
-                    .pipe(take(1))
-                    .toPromise()
+                await lastValueFrom(wrapRemoteObservable(extensionHostAPI.getTextDecorations({ viewerId: 'viewer#0' }))
+                    .pipe(take(1)))
             ).toEqual([
                 {
                     range: { start: { line: 1, character: 2 }, end: { line: 3, character: 4 } },
@@ -141,9 +144,8 @@ describe('CodeEditor (integration)', () => {
             // remove decorations for dt2, and verify that decorations for dt1 are still present
             editor.setDecorations(dt2, [])
             expect(
-                await wrapRemoteObservable(extensionHostAPI.getTextDecorations({ viewerId: 'viewer#0' }))
-                    .pipe(take(1))
-                    .toPromise()
+                await lastValueFrom(wrapRemoteObservable(extensionHostAPI.getTextDecorations({ viewerId: 'viewer#0' }))
+                    .pipe(take(1)))
             ).toEqual([
                 {
                     range: { start: { line: 1, character: 2 }, end: { line: 3, character: 4 } },
@@ -180,9 +182,8 @@ describe('CodeEditor (integration)', () => {
 
             // Both sets of decorations should be displayed
             expect(
-                await wrapRemoteObservable(extensionHostAPI.getTextDecorations({ viewerId: 'viewer#0' }))
-                    .pipe(take(1))
-                    .toPromise()
+                await lastValueFrom(wrapRemoteObservable(extensionHostAPI.getTextDecorations({ viewerId: 'viewer#0' }))
+                    .pipe(take(1)))
             ).toEqual([
                 {
                     range: { start: { line: 1, character: 2 }, end: { line: 3, character: 4 } },
@@ -200,13 +201,12 @@ describe('CodeEditor (integration)', () => {
 })
 
 async function getFirstCodeEditor(extensionAPI: typeof sourcegraph): Promise<sourcegraph.CodeEditor> {
-    return from(extensionAPI.app.activeWindowChanges)
+    return lastValueFrom(from(extensionAPI.app.activeWindowChanges)
         .pipe(
             first(isDefined),
             switchMap(win => win.activeViewComponentChanges),
             filter(isDefined),
             filter(isTaggedUnionMember('type', 'CodeEditor' as const)),
             take(1)
-        )
-        .toPromise()
+        ))
 }

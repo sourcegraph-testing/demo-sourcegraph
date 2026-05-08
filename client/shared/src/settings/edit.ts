@@ -1,5 +1,4 @@
-import { from } from 'rxjs'
-import { first, map, switchMap } from 'rxjs/operators'
+import { from, first, map, switchMap, lastValueFrom } from 'rxjs'
 
 import { SettingsEdit } from '../api/client/services/settings'
 import { Scalars } from '../graphql-operations'
@@ -24,7 +23,7 @@ export function updateSettings(
         edit: GQL.ISettingsEdit | string
     ) => Promise<void>
 ): Promise<void> {
-    return from(settings)
+    return lastValueFrom(from(settings)
         .pipe(
             first(),
             switchMap(settingsCascade => {
@@ -55,8 +54,7 @@ export function updateSettings(
                           }
                 )
             })
-        )
-        .toPromise()
+        ))
 }
 
 function toGQLKeyPath(keyPath: (string | number)[]): GQL.IKeyPathSegment[] {
@@ -94,7 +92,7 @@ function editSettings(
     lastID: number | null,
     edit: GQL.IConfigurationEdit
 ): Promise<void> {
-    return from(
+    return lastValueFrom(from(
         requestGraphQL({
             request: gql`
                 mutation EditSettings($subject: ID!, $lastID: Int, $edit: ConfigurationEdit!) {
@@ -114,8 +112,7 @@ function editSettings(
         .pipe(
             map(dataOrThrowErrors),
             map(() => undefined)
-        )
-        .toPromise()
+        ))
 }
 
 /**
@@ -132,7 +129,7 @@ export function overwriteSettings(
     lastID: number | null,
     contents: string
 ): Promise<void> {
-    return from(
+    return lastValueFrom(from(
         requestGraphQL({
             request: gql`
                 mutation OverwriteSettings($subject: ID!, $lastID: Int, $contents: String!) {
@@ -152,6 +149,5 @@ export function overwriteSettings(
         .pipe(
             map(dataOrThrowErrors),
             map(() => undefined)
-        )
-        .toPromise()
+        ))
 }

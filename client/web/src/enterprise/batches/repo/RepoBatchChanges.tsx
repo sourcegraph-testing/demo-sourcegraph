@@ -1,6 +1,6 @@
 import * as H from 'history'
 import React, { useCallback } from 'react'
-import { map } from 'rxjs/operators'
+import { map } from 'rxjs'
 
 import { ThemeProps } from '@sourcegraph/shared/src/theme'
 import { Container } from '@sourcegraph/wildcard'

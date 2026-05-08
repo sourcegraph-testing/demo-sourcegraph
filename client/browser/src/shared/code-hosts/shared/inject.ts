@@ -1,5 +1,4 @@
-import { Observable, Subscription } from 'rxjs'
-import { startWith } from 'rxjs/operators'
+import { Observable, Subscription, startWith } from 'rxjs'
 
 import { SourcegraphIntegrationURLs } from '../../platform/context'
 import { MutationRecordLike, observeMutations as defaultObserveMutations } from '../../util/dom'

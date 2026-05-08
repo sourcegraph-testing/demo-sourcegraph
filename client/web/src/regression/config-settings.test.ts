@@ -15,6 +15,7 @@ import { GraphQLClient } from './util/GraphQlClient'
 import { editSiteConfig } from './util/helpers'
 import { getTestTools } from './util/init'
 import { TestResourceManager } from './util/TestResourceManager'
+import { lastValueFrom } from 'rxjs'
 
 describe('Site config test suite', () => {
     const formattingOptions = { eol: '\n', insertSpaces: true, tabSize: 2 }
@@ -80,7 +81,7 @@ describe('Site config test suite', () => {
 
     test('builtin auth provider: allowSignup', async function () {
         this.timeout(20 * 1000)
-        const siteConfig = await fetchSiteConfiguration(gqlClient).toPromise()
+        const siteConfig = await lastValueFrom(fetchSiteConfiguration(gqlClient))
         const siteConfigParsed: SiteConfiguration = jsonc.parse(siteConfig.configuration.effectiveContents)
         const setBuiltinAuthProvider = async (provider: BuiltinAuthProvider) => {
             const authProviders = siteConfigParsed['auth.providers']

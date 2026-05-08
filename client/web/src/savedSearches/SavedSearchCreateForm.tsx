@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router'
-import { concat, Subject, Subscription } from 'rxjs'
-import { catchError, map, switchMap } from 'rxjs/operators'
+import { concat, Subject, Subscription, catchError, map, switchMap } from 'rxjs'
 import { Omit } from 'utility-types'
 
 import { ErrorLike, isErrorLike, asError } from '@sourcegraph/shared/src/util/errors'

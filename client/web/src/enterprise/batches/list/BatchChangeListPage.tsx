@@ -1,8 +1,7 @@
 import classNames from 'classnames'
 import React, { useEffect, useCallback, useState, useMemo } from 'react'
 import { RouteComponentProps } from 'react-router'
-import { Observable, ReplaySubject } from 'rxjs'
-import { filter, map, tap, withLatestFrom } from 'rxjs/operators'
+import { Observable, ReplaySubject, filter, map, tap, withLatestFrom } from 'rxjs'
 
 import { TelemetryProps } from '@sourcegraph/shared/src/telemetry/telemetryService'
 import { useObservable } from '@sourcegraph/shared/src/util/useObservable'

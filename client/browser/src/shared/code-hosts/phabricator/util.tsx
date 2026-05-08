@@ -1,5 +1,4 @@
-import { Observable, throwError } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { Observable, throwError, map } from 'rxjs'
 
 import { PlatformContext } from '@sourcegraph/shared/src/platform/context'
 
@@ -208,7 +207,7 @@ export function getPhabricatorState(
 
         throw new Error(`Could not determine Phabricator state from stateUrl ${stateUrl}`)
     } catch (error) {
-        return throwError(error)
+        return throwError(() => error)
     }
 }
 

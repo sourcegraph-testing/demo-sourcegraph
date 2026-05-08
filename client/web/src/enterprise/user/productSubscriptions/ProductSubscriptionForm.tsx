@@ -2,8 +2,7 @@ import * as H from 'history'
 import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { ReactStripeElements } from 'react-stripe-elements'
-import { from, of, throwError, Observable } from 'rxjs'
-import { catchError, startWith, switchMap } from 'rxjs/operators'
+import { from, of, throwError, Observable, catchError, startWith, switchMap } from 'rxjs'
 
 import { Form } from '@sourcegraph/branded/src/components/Form'
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
@@ -141,19 +140,19 @@ const _ProductSubscriptionForm: React.FunctionComponent<Props & ReactStripeEleme
                         ).pipe(
                             switchMap(({ token, error }) => {
                                 if (error) {
-                                    return throwError(error)
+                                    return throwError(() => error)
                                 }
                                 if (!accountID) {
-                                    return throwError(new Error('no account (unauthenticated user)'))
+                                    return throwError(() => new Error('no account (unauthenticated user)'))
                                 }
                                 if (!billingPlanID) {
-                                    return throwError(new Error('no product plan selected'))
+                                    return throwError(() => new Error('no product plan selected'))
                                 }
                                 if (userCount === null) {
-                                    return throwError(new Error('invalid user count'))
+                                    return throwError(() => new Error('invalid user count'))
                                 }
                                 if (!token && paymentValidity !== PaymentValidity.NoPaymentRequired) {
-                                    return throwError(new Error('invalid payment and billing'))
+                                    return throwError(() => new Error('invalid payment and billing'))
                                 }
                                 parentOnSubmit({
                                     accountID,

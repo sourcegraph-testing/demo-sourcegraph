@@ -1,8 +1,16 @@
 import ChevronRightIcon from 'mdi-react/ChevronRightIcon'
 import * as React from 'react'
 import { Link, RouteComponentProps } from 'react-router-dom'
-import { Observable, Subject, Subscription } from 'rxjs'
-import { catchError, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators'
+import {
+    Observable,
+    Subject,
+    Subscription,
+    catchError,
+    distinctUntilChanged,
+    map,
+    startWith,
+    switchMap,
+} from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import { Scalars } from '@sourcegraph/shared/src/graphql-operations'

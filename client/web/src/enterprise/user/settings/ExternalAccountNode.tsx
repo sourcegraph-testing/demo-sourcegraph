@@ -1,7 +1,17 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { Observable, Subject, Subscription } from 'rxjs'
-import { catchError, filter, map, mapTo, startWith, switchMap, tap } from 'rxjs/operators'
+import {
+    Observable,
+    Subject,
+    Subscription,
+    catchError,
+    filter,
+    map,
+    mapTo,
+    startWith,
+    switchMap,
+    tap,
+} from 'rxjs'
 
 import { dataOrThrowErrors, gql } from '@sourcegraph/shared/src/graphql/graphql'
 import { asError, ErrorLike, isErrorLike } from '@sourcegraph/shared/src/util/errors'

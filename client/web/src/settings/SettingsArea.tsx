@@ -2,8 +2,19 @@ import AlertCircleIcon from 'mdi-react/AlertCircleIcon'
 import MapSearchIcon from 'mdi-react/MapSearchIcon'
 import * as React from 'react'
 import { Route, RouteComponentProps, Switch } from 'react-router'
-import { combineLatest, from, Observable, of, Subject, Subscription } from 'rxjs'
-import { catchError, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators'
+import {
+    combineLatest,
+    from,
+    Observable,
+    of,
+    Subject,
+    Subscription,
+    catchError,
+    distinctUntilChanged,
+    map,
+    startWith,
+    switchMap,
+} from 'rxjs'
 
 import { getConfiguredSideloadedExtension } from '@sourcegraph/shared/src/api/client/mainthread-api'
 import { extensionIDsFromSettings } from '@sourcegraph/shared/src/extensions/extension'

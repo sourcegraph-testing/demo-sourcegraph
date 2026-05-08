@@ -1,5 +1,16 @@
-import { asyncScheduler, defer, from, Observable, OperatorFunction, Subscription } from 'rxjs'
-import { concatAll, filter, mergeMap, observeOn, tap } from 'rxjs/operators'
+import {
+    asyncScheduler,
+    defer,
+    from,
+    Observable,
+    OperatorFunction,
+    Subscription,
+    concatAll,
+    filter,
+    mergeMap,
+    observeOn,
+    tap,
+} from 'rxjs'
 
 import { isDefined, isInstanceOf } from '@sourcegraph/shared/src/util/types'
 

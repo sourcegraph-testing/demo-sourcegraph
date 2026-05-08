@@ -1,6 +1,18 @@
 import * as Monaco from 'monaco-editor'
-import { Observable, fromEventPattern, of, asyncScheduler, Subject } from 'rxjs'
-import { map, takeUntil, switchMap, debounceTime, share, observeOn } from 'rxjs/operators'
+import {
+    Observable,
+    fromEventPattern,
+    of,
+    asyncScheduler,
+    Subject,
+    map,
+    takeUntil,
+    switchMap,
+    debounceTime,
+    share,
+    observeOn,
+    lastValueFrom,
+} from 'rxjs'
 
 import { SearchPatternType } from '../../graphql-operations'
 import { SearchSuggestion } from '../suggestions'
@@ -62,15 +74,14 @@ export function getProviders(
         },
         hover: {
             provideHover: (textModel, position, token) =>
-                of(textModel.getValue())
+                lastValueFrom(of(textModel.getValue())
                     .pipe(
                         map(value => scanSearchQuery(value, options.interpretComments ?? false, options.patternType)),
                         map(scanned =>
                             scanned.type === 'error' ? null : getHoverResult(scanned.term, position, textModel)
                         ),
                         takeUntil(fromEventPattern(handler => token.onCancellationRequested(handler)))
-                    )
-                    .toPromise(),
+                    )),
         },
         completion: {
             // An explicit list of trigger characters is needed for the Monaco editor to show completions.
@@ -78,7 +89,7 @@ export function getProviders(
             provideCompletionItems: (textModel, position, context, token) => {
                 const value = textModel.getValue()
                 completionRequests.next(value)
-                return of(value)
+                return lastValueFrom(of(value)
                     .pipe(
                         map(value => scanSearchQuery(value, options.interpretComments ?? false, options.patternType)),
                         switchMap(scanned =>
@@ -94,8 +105,7 @@ export function getProviders(
                         ),
                         observeOn(asyncScheduler),
                         map(completions => (token.isCancellationRequested ? undefined : completions))
-                    )
-                    .toPromise()
+                    ))
             },
         },
     }

@@ -13,8 +13,7 @@ import React, { useCallback, useMemo, useState } from 'react'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import TooltipPopoverWrapper from 'reactstrap/lib/TooltipPopoverWrapper'
-import { from, Subscription } from 'rxjs'
-import { filter, switchMap } from 'rxjs/operators'
+import { from, Subscription, filter, switchMap } from 'rxjs'
 import stringScore from 'string-score'
 import { Key } from 'ts-key-enum'
 

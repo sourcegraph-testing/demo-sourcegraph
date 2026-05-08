@@ -16,6 +16,7 @@ import { eventLogger } from '../../../tracking/eventLogger'
 import { AddUserEmailForm } from './AddUserEmailForm'
 import { SetUserPrimaryEmailForm } from './SetUserPrimaryEmailForm'
 import { UserEmail } from './UserEmail'
+import { lastValueFrom } from 'rxjs'
 
 interface Props {
     user: UserAreaUserFields
@@ -123,7 +124,7 @@ export const UserSettingsEmailsPage: FunctionComponent<Props> = ({ user }) => {
 
 async function fetchUserEmails(userID: Scalars['ID']): Promise<UserEmailsResult> {
     return dataOrThrowErrors(
-        await requestGraphQL<UserEmailsResult, UserEmailsVariables>(
+        await lastValueFrom(requestGraphQL<UserEmailsResult, UserEmailsVariables>(
             gql`
                 query UserEmails($user: ID!) {
                     node(id: $user) {
@@ -140,6 +141,6 @@ async function fetchUserEmails(userID: Scalars['ID']): Promise<UserEmailsResult>
                 }
             `,
             { user: userID }
-        ).toPromise()
+        ))
     )
 }

@@ -1,8 +1,7 @@
 import ErrorIcon from 'mdi-react/ErrorIcon'
 import ExternalLinkIcon from 'mdi-react/ExternalLinkIcon'
 import React, { useCallback } from 'react'
-import { Observable } from 'rxjs'
-import { catchError, map, mapTo, startWith, switchMap, tap } from 'rxjs/operators'
+import { Observable, catchError, map, mapTo, startWith, switchMap, tap } from 'rxjs'
 
 import { gql } from '@sourcegraph/shared/src/graphql/graphql'
 import * as GQL from '@sourcegraph/shared/src/graphql/schema'

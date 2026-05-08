@@ -1,8 +1,7 @@
 import * as H from 'history'
 import * as _monaco from 'monaco-editor' // type only
 import * as React from 'react'
-import { Subject, Subscription } from 'rxjs'
-import { distinctUntilChanged, filter, map, startWith } from 'rxjs/operators'
+import { Subject, Subscription, distinctUntilChanged, filter, map, startWith } from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import * as GQL from '@sourcegraph/shared/src/graphql/schema'

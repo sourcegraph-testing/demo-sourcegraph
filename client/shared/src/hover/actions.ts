@@ -1,8 +1,15 @@
 import { Remote } from 'comlink'
 import * as H from 'history'
 import { isEqual, uniqWith } from 'lodash'
-import { combineLatest, merge, Observable, of, Subscription, Unsubscribable, concat, from } from 'rxjs'
 import {
+    combineLatest,
+    merge,
+    Observable,
+    of,
+    Subscription,
+    Unsubscribable,
+    concat,
+    from,
     catchError,
     delay,
     distinctUntilChanged,
@@ -14,7 +21,8 @@ import {
     takeUntil,
     scan,
     mapTo,
-} from 'rxjs/operators'
+    lastValueFrom,
+} from 'rxjs'
 
 import { HoveredToken, LOADER_DELAY, MaybeLoadingResult, emitLoading } from '@sourcegraph/codeintellify'
 import { Location } from '@sourcegraph/extension-api-types'
@@ -375,7 +383,7 @@ export function registerHoverContributions({
                             parametersString
                         )
 
-                        const { result } = await wrapRemoteObservable(extensionHostAPI.getDefinition(parameters))
+                        const { result } = await lastValueFrom(wrapRemoteObservable(extensionHostAPI.getDefinition(parameters))
                             .pipe(
                                 getDefinitionURL(
                                     { urlToFile, requestGraphQL },
@@ -390,8 +398,7 @@ export function registerHoverContributions({
                                     parameters
                                 ),
                                 first(({ isLoading, result }) => !isLoading || result !== null)
-                            )
-                            .toPromise()
+                            ))
 
                         if (!result) {
                             throw new Error('No definition found.')

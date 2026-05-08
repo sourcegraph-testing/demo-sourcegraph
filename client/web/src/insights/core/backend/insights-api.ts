@@ -31,8 +31,8 @@ export const createInsightAPI = (): ApiService => ({
 export const createMockInsightAPI = (overrideRequests: Partial<ApiService>): ApiService => ({
     getCombinedViews: () => of([]),
     getInsightCombinedViews: () => of([]),
-    getSubjectSettings: () => throwError(new Error('Implement getSubjectSettings handler first')),
-    updateSubjectSettings: () => throwError(new Error('Implement getSubjectSettings handler first')),
+    getSubjectSettings: () => throwError(() => new Error('Implement getSubjectSettings handler first')),
+    updateSubjectSettings: () => throwError(() => new Error('Implement getSubjectSettings handler first')),
     getSearchInsightContent: () => Promise.reject(new Error('Implement getSubjectSettings handler first')),
     getLangStatsInsightContent: () => Promise.reject(new Error('Implement getLangStatsInsightContent handler first')),
     getRepositorySuggestions: () => Promise.reject(new Error('Implement getRepositorySuggestions handler first')),

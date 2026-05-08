@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import React, { useCallback, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { map, mapTo } from 'rxjs/operators'
+import { map, mapTo, lastValueFrom } from 'rxjs'
 
 import { dataOrThrowErrors, gql } from '@sourcegraph/shared/src/graphql/graphql'
 import { asError, isErrorLike } from '@sourcegraph/shared/src/util/errors'
@@ -38,7 +38,7 @@ export const accessTokenFragment = gql`
 `
 
 function deleteAccessToken(tokenID: Scalars['ID']): Promise<void> {
-    return requestGraphQL<DeleteAccessTokenResult, DeleteAccessTokenVariables>(
+    return lastValueFrom(requestGraphQL<DeleteAccessTokenResult, DeleteAccessTokenVariables>(
         gql`
             mutation DeleteAccessToken($tokenID: ID!) {
                 deleteAccessToken(byID: $tokenID) {
@@ -48,8 +48,7 @@ function deleteAccessToken(tokenID: Scalars['ID']): Promise<void> {
         `,
         { tokenID }
     )
-        .pipe(map(dataOrThrowErrors), mapTo(undefined))
-        .toPromise()
+        .pipe(map(dataOrThrowErrors), mapTo(undefined)))
 }
 
 export interface AccessTokenNodeProps {

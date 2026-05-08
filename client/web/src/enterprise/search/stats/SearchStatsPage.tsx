@@ -1,8 +1,7 @@
 import * as H from 'history'
 import ChartLineIcon from 'mdi-react/ChartLineIcon'
 import React, { useCallback, useState, useMemo } from 'react'
-import { of } from 'rxjs'
-import { catchError } from 'rxjs/operators'
+import { of, catchError } from 'rxjs'
 
 import { Form } from '@sourcegraph/branded/src/components/Form'
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'

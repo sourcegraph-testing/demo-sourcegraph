@@ -1,8 +1,7 @@
 import classNames from 'classnames'
 import * as H from 'history'
 import React, { useContext, useEffect, useMemo } from 'react'
-import { EMPTY, from } from 'rxjs'
-import { switchMap } from 'rxjs/operators'
+import { EMPTY, from, switchMap } from 'rxjs'
 
 import { wrapRemoteObservable } from '@sourcegraph/shared/src/api/client/api/common'
 import { ActivationProps } from '@sourcegraph/shared/src/components/activation/Activation'

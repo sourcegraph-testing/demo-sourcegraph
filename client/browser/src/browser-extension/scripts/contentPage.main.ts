@@ -1,7 +1,6 @@
 import '../../shared/polyfills'
 
-import { fromEvent, Subscription } from 'rxjs'
-import { first } from 'rxjs/operators'
+import { fromEvent, Subscription, first, lastValueFrom } from 'rxjs'
 
 import { setLinkComponent, AnchorLink } from '@sourcegraph/shared/src/components/Link'
 
@@ -57,9 +56,8 @@ async function main(): Promise<void> {
     // If the extension marker isn't present, inject it and listen for a custom event sent by the native
     // integration to signal its activation.
     injectExtensionMarker()
-    const nativeIntegrationActivationEventReceived = fromEvent(document, NATIVE_INTEGRATION_ACTIVATED)
-        .pipe(first())
-        .toPromise()
+    const nativeIntegrationActivationEventReceived = lastValueFrom(fromEvent(document, NATIVE_INTEGRATION_ACTIVATED)
+        .pipe(first()))
 
     const items = await storage.sync.get()
     const sourcegraphURL = items.sourcegraphURL || DEFAULT_SOURCEGRAPH_URL

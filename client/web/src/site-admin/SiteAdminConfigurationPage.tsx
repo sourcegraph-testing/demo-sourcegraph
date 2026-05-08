@@ -4,8 +4,17 @@ import * as H from 'history'
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router'
 import { Link } from 'react-router-dom'
-import { Subject, Subscription } from 'rxjs'
-import { catchError, concatMap, delay, mergeMap, retryWhen, tap, timeout } from 'rxjs/operators'
+import {
+    Subject,
+    Subscription,
+    catchError,
+    concatMap,
+    delay,
+    mergeMap,
+    retryWhen,
+    tap,
+    timeout,
+} from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import * as GQL from '@sourcegraph/shared/src/graphql/schema'

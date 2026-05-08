@@ -1,7 +1,6 @@
 import WrapIcon from 'mdi-react/WrapIcon'
 import * as React from 'react'
-import { fromEvent, Subject, Subscription } from 'rxjs'
-import { filter } from 'rxjs/operators'
+import { fromEvent, Subject, Subscription, filter } from 'rxjs'
 
 import { Tooltip } from '@sourcegraph/branded/src/components/tooltip/Tooltip'
 import { WrapDisabledIcon } from '@sourcegraph/shared/src/components/icons'

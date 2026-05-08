@@ -9,6 +9,7 @@ import { ErrorAlert } from '../../../components/alerts'
 import { LoaderButton } from '../../../components/LoaderButton'
 import { SetUserEmailPrimaryResult, SetUserEmailPrimaryVariables, UserEmailsResult } from '../../../graphql-operations'
 import { eventLogger } from '../../../tracking/eventLogger'
+import { lastValueFrom } from 'rxjs'
 
 type UserEmail = NonNullable<UserEmailsResult['node']>['emails'][number]
 
@@ -44,7 +45,7 @@ export const SetUserPrimaryEmailForm: FunctionComponent<Props> = ({ user, emails
 
             try {
                 dataOrThrowErrors(
-                    await requestGraphQL<SetUserEmailPrimaryResult, SetUserEmailPrimaryVariables>(
+                    await lastValueFrom(requestGraphQL<SetUserEmailPrimaryResult, SetUserEmailPrimaryVariables>(
                         gql`
                             mutation SetUserEmailPrimary($user: ID!, $email: String!) {
                                 setUserEmailPrimary(user: $user, email: $email) {
@@ -53,7 +54,7 @@ export const SetUserPrimaryEmailForm: FunctionComponent<Props> = ({ user, emails
                             }
                         `,
                         { user, email: primaryEmail }
-                    ).toPromise()
+                    ))
                 )
 
                 eventLogger.log('UserEmailAddressSetAsPrimary')

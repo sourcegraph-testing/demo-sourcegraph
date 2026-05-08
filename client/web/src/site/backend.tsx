@@ -1,5 +1,4 @@
-import { Observable, ReplaySubject } from 'rxjs'
-import { filter, mergeMap, take, tap } from 'rxjs/operators'
+import { Observable, ReplaySubject, filter, mergeMap, take, tap, lastValueFrom } from 'rxjs'
 
 import { gql } from '@sourcegraph/shared/src/graphql/graphql'
 import { createAggregateError } from '@sourcegraph/shared/src/util/errors'
@@ -72,8 +71,7 @@ export function refreshSiteFlags(): Observable<never> {
     )
 }
 
-refreshSiteFlags()
-    .toPromise()
+lastValueFrom(refreshSiteFlags())
     .then(
         () => undefined,
         error => console.error(error)

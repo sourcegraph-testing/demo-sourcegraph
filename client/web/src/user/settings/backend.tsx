@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { Observable, map } from 'rxjs'
 
 import { UserEvent, EventSource, Scalars } from '@sourcegraph/shared/src/graphql-operations'
 import { gql, dataOrThrowErrors } from '@sourcegraph/shared/src/graphql/graphql'

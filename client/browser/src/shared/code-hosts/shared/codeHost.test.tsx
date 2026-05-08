@@ -4,8 +4,17 @@ import { promisify } from 'util'
 import { Remote } from 'comlink'
 import { uniqueId, noop, isEmpty, pick } from 'lodash'
 import renderer from 'react-test-renderer'
-import { BehaviorSubject, NEVER, of, Subject, Subscription } from 'rxjs'
-import { filter, take, first } from 'rxjs/operators'
+import {
+    BehaviorSubject,
+    NEVER,
+    of,
+    Subject,
+    Subscription,
+    filter,
+    take,
+    first,
+    lastValueFrom,
+} from 'rxjs'
 import { TestScheduler } from 'rxjs/testing'
 import * as sinon from 'sinon'
 import * as sourcegraph from 'sourcegraph'
@@ -277,7 +286,7 @@ describe('codeHost', () => {
                     }),
                 })
             )
-            await wrapRemoteObservable(extensionHostAPI.viewerUpdates()).pipe(first()).toPromise()
+            await lastValueFrom(wrapRemoteObservable(extensionHostAPI.viewerUpdates()).pipe(first()))
 
             expect(getEditors(extensionAPI)).toEqual([
                 {
@@ -347,7 +356,7 @@ describe('codeHost', () => {
                 //     )
                 //     .toPromise()
 
-                await wrapRemoteObservable(extensionHostAPI.viewerUpdates()).pipe(first()).toPromise()
+                await lastValueFrom(wrapRemoteObservable(extensionHostAPI.viewerUpdates()).pipe(first()))
                 const editor = extensionAPI.app.activeWindow!.visibleViewComponents.find(
                     (viewer): viewer is ExtensionCodeEditor => viewer.type === 'CodeEditor'
                 )
@@ -358,9 +367,8 @@ describe('codeHost', () => {
 
                 const decorationType = extensionAPI.app.createDecorationType()
                 const decorated = (editor: ExtensionCodeEditor): Promise<TextDocumentDecoration[] | null> =>
-                    wrapRemoteObservable(extensionHostAPI.getTextDecorations({ viewerId: editor.viewerId }))
-                        .pipe(first(decorations => !isEmpty(decorations)))
-                        .toPromise()
+                    lastValueFrom(wrapRemoteObservable(extensionHostAPI.getTextDecorations({ viewerId: editor.viewerId }))
+                        .pipe(first(decorations => !isEmpty(decorations))))
 
                 // Set decorations and verify that a decoration attachment has been added
                 editor.setDecorations(decorationType, [
@@ -386,7 +394,7 @@ describe('codeHost', () => {
                         },
                     },
                 ])
-                await wrapRemoteObservable(extensionHostAPI.getTextDecorations({ viewerId: editor.viewerId }))
+                await lastValueFrom(wrapRemoteObservable(extensionHostAPI.getTextDecorations({ viewerId: editor.viewerId }))
                     .pipe(
                         filter(
                             decorations =>
@@ -395,8 +403,7 @@ describe('codeHost', () => {
                                 decorations[0].after.contentText === 'test decoration 2'
                         ),
                         take(1)
-                    )
-                    .toPromise()
+                    ))
                 expect(line.querySelectorAll('.line-decoration-attachment').length).toBe(1)
                 expect(line.querySelector('.line-decoration-attachment')!).toHaveTextContent('test decoration 2')
             })
@@ -455,17 +462,15 @@ describe('codeHost', () => {
                         platformContext: createMockPlatformContext({}),
                     })
                 )
-                await wrapRemoteObservable(extensionHostAPI.viewerUpdates())
+                await lastValueFrom(wrapRemoteObservable(extensionHostAPI.viewerUpdates())
                     .pipe(
                         filter(({ action }) => action === 'addition'),
                         take(2)
-                    )
-                    .toPromise()
+                    ))
                 const decorationType = extensionAPI.app.createDecorationType()
                 const decorated = (editor: ExtensionCodeEditor): Promise<TextDocumentDecoration[] | null> =>
-                    wrapRemoteObservable(extensionHostAPI.getTextDecorations({ viewerId: editor.viewerId }))
-                        .pipe(first(decorations => !isEmpty(decorations)))
-                        .toPromise()
+                    lastValueFrom(wrapRemoteObservable(extensionHostAPI.getTextDecorations({ viewerId: editor.viewerId }))
+                        .pipe(first(decorations => !isEmpty(decorations))))
 
                 // Set decorations and verify that a decoration attachment has been added
                 const viewers = extensionAPI.app.activeWindow!.visibleViewComponents
@@ -628,7 +633,7 @@ describe('codeHost', () => {
                     platformContext: createMockPlatformContext(),
                 })
             )
-            await wrapRemoteObservable(extensionHostAPI.viewerUpdates()).pipe(take(2)).toPromise()
+            await lastValueFrom(wrapRemoteObservable(extensionHostAPI.viewerUpdates()).pipe(take(2)))
 
             expect(getEditors(extensionAPI)).toEqual([
                 {
@@ -650,7 +655,7 @@ describe('codeHost', () => {
             // // Simulate codeView1 removal
             mutations.next([{ addedNodes: [], removedNodes: [codeView1] }])
             // One editor should have been removed, model should still exist
-            await wrapRemoteObservable(extensionHostAPI.viewerUpdates()).pipe(first()).toPromise()
+            await lastValueFrom(wrapRemoteObservable(extensionHostAPI.viewerUpdates()).pipe(first()))
 
             expect(getEditors(extensionAPI)).toEqual([
                 {
@@ -664,7 +669,7 @@ describe('codeHost', () => {
             // // Simulate codeView2 removal
             mutations.next([{ addedNodes: [], removedNodes: [codeView2] }])
             // // Second editor and model should have been removed
-            await wrapRemoteObservable(extensionHostAPI.viewerUpdates()).pipe(first()).toPromise()
+            await lastValueFrom(wrapRemoteObservable(extensionHostAPI.viewerUpdates()).pipe(first()))
             expect(getEditors(extensionAPI)).toEqual([])
         })
 
@@ -710,7 +715,7 @@ describe('codeHost', () => {
                     showGlobalDebug: true,
                 })
             )
-            await wrapRemoteObservable(extensionHostAPI.viewerUpdates()).pipe(first()).toPromise()
+            await lastValueFrom(wrapRemoteObservable(extensionHostAPI.viewerUpdates()).pipe(first()))
             expect(getEditors(extensionAPI).length).toEqual(1)
             await tick()
             codeView.dispatchEvent(new MouseEvent('mouseover'))
@@ -770,7 +775,7 @@ describe('codeHost', () => {
                     },
                 })
             )
-            await wrapRemoteObservable(extensionHostAPI.viewerUpdates()).pipe(first()).toPromise()
+            await lastValueFrom(wrapRemoteObservable(extensionHostAPI.viewerUpdates()).pipe(first()))
 
             expect(getEditors(extensionAPI).length).toEqual(1)
             await tick()
@@ -834,7 +839,7 @@ describe('codeHost', () => {
                     },
                 })
             )
-            await wrapRemoteObservable(extensionHostAPI.viewerUpdates()).pipe(first()).toPromise()
+            await lastValueFrom(wrapRemoteObservable(extensionHostAPI.viewerUpdates()).pipe(first()))
             expect(getEditors(extensionAPI).length).toEqual(1)
             await tick()
             codeView.dispatchEvent(new MouseEvent('mouseover'))

@@ -1,5 +1,4 @@
-import { concat, fromEvent, Observable, of } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { concat, fromEvent, Observable, of, map } from 'rxjs'
 
 /**
  * Props that can be extended by any component's Props which needs to react to theme change.

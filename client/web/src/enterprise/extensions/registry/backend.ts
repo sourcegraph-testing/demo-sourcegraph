@@ -1,5 +1,4 @@
-import { Observable, of } from 'rxjs'
-import { map, mapTo, switchMap } from 'rxjs/operators'
+import { Observable, of, map, mapTo, switchMap } from 'rxjs'
 
 import { gql } from '@sourcegraph/shared/src/graphql/graphql'
 import * as GQL from '@sourcegraph/shared/src/graphql/schema'

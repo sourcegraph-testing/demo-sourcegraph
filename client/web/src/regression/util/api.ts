@@ -2,8 +2,21 @@
  * Provides convenience functions for interacting with the Sourcegraph API from tests.
  */
 
-import { zip, timer, concat, throwError, defer, Observable } from 'rxjs'
-import { map, tap, retryWhen, delayWhen, take, mergeMap } from 'rxjs/operators'
+import {
+    zip,
+    timer,
+    concat,
+    throwError,
+    defer,
+    Observable,
+    map,
+    tap,
+    retryWhen,
+    delayWhen,
+    take,
+    mergeMap,
+    lastValueFrom,
+} from 'rxjs'
 
 import {
     CloneInProgressError,
@@ -57,7 +70,7 @@ export async function waitForRepos(
     ensureRepos: string[],
     options: WaitForRepoOptions = {}
 ): Promise<void> {
-    await zip(...ensureRepos.map(repoName => waitForRepo(gqlClient, repoName, options))).toPromise()
+    await lastValueFrom(zip(...ensureRepos.map(repoName => waitForRepo(gqlClient, repoName, options))))
 }
 
 export function waitForRepo(
@@ -122,7 +135,7 @@ export function waitForRepo(
                           }),
                           take(numberRetries)
                       ),
-                      defer(() => throwError(new Error(`Could not resolve repo ${repoName}: too many retries`)))
+                      defer(() => throwError(() => new Error(`Could not resolve repo ${repoName}: too many retries`)))
                   )
               )
           )
@@ -160,7 +173,7 @@ export function waitForRepo(
                           }),
                           take(numberRetries)
                       ),
-                      defer(() => throwError(new Error(`Could not resolve repo ${repoName}: too many retries`)))
+                      defer(() => throwError(() => new Error(`Could not resolve repo ${repoName}: too many retries`)))
                   )
               ),
               map(() => undefined)
@@ -190,7 +203,7 @@ export async function ensureNoTestExternalServices(
     }
 
     for (const externalService of externalServices) {
-        await gqlClient
+        await lastValueFrom(gqlClient
             .mutateGraphQL(
                 gql`
                     mutation DeleteExternalService($externalService: ID!) {
@@ -200,8 +213,7 @@ export async function ensureNoTestExternalServices(
                     }
                 `,
                 { externalService: externalService.id }
-            )
-            .toPromise()
+            ))
     }
 }
 
@@ -216,7 +228,7 @@ export function getExternalServices(
         uniqueDisplayName?: string
     } = {}
 ): Promise<GQL.IExternalService[]> {
-    return gqlClient
+    return lastValueFrom(gqlClient
         .queryGraphQL(
             gql`
                 query ExternalServicesRegression($first: Int) {
@@ -244,15 +256,14 @@ export function getExternalServices(
                         (options.kind === undefined || options.kind === kind)
                 )
             )
-        )
-        .toPromise()
+        ))
 }
 
 export async function updateExternalService(
     gqlClient: GraphQLClient,
     input: GQL.IUpdateExternalServiceInput
 ): Promise<void> {
-    await gqlClient
+    await lastValueFrom(gqlClient
         .mutateGraphQL(
             gql`
                 mutation UpdateExternalServiceRegression($input: UpdateExternalServiceInput!) {
@@ -270,8 +281,7 @@ export async function updateExternalService(
                     console.warn('updateExternalService warning:', warning)
                 }
             })
-        )
-        .toPromise()
+        ))
 }
 
 export async function ensureTestExternalService(
@@ -306,7 +316,7 @@ export async function ensureTestExternalService(
         displayName: externalServiceOptions.uniqueDisplayName,
         config: JSON.stringify(externalServiceOptions.config),
     }
-    await addExternalService(input, gqlClient).toPromise()
+    await lastValueFrom(addExternalService(input, gqlClient))
 
     if (externalServiceOptions.waitForRepos && externalServiceOptions.waitForRepos.length > 0) {
         await waitForRepos(gqlClient, externalServiceOptions.waitForRepos, waitForReposOptions)
@@ -343,7 +353,7 @@ export async function deleteUser(
         }
     }
 
-    await requestGraphQL<GQL.IMutation>({
+    await lastValueFrom(requestGraphQL<GQL.IMutation>({
         request: gql`
             mutation DeleteUser($user: ID!, $hard: Boolean) {
                 deleteUser(user: $user, hard: $hard) {
@@ -353,7 +363,7 @@ export async function deleteUser(
         `,
         variables: { hard: false, user: user.id },
         mightContainPrivateInfo: false,
-    }).toPromise()
+    }))
 }
 
 /**
@@ -361,7 +371,7 @@ export async function deleteUser(
  * dependency-injected `requestGraphQL`.
  */
 export async function setUserSiteAdmin(gqlClient: GraphQLClient, userID: GQL.ID, siteAdmin: boolean): Promise<void> {
-    await gqlClient
+    await lastValueFrom(gqlClient
         .mutateGraphQL(
             gql`
                 mutation SetUserIsSiteAdmin($userID: ID!, $siteAdmin: Boolean!) {
@@ -371,8 +381,7 @@ export async function setUserSiteAdmin(gqlClient: GraphQLClient, userID: GQL.ID,
                 }
             `,
             { userID, siteAdmin }
-        )
-        .toPromise()
+        ))
 }
 
 /**
@@ -380,7 +389,7 @@ export async function setUserSiteAdmin(gqlClient: GraphQLClient, userID: GQL.ID,
  * dependency-injected `requestGraphQL`.
  */
 export function currentProductVersion(gqlClient: GraphQLClient): Promise<string> {
-    return gqlClient
+    return lastValueFrom(gqlClient
         .queryGraphQL(
             gql`
                 query SiteFlags {
@@ -394,8 +403,7 @@ export function currentProductVersion(gqlClient: GraphQLClient): Promise<string>
         .pipe(
             map(dataOrThrowErrors),
             map(({ site }) => site.productVersion)
-        )
-        .toPromise()
+        ))
 }
 
 /**
@@ -412,7 +420,7 @@ export async function setUserEmailVerified(
     if (!user) {
         throw new Error(`User ${username} does not exist`)
     }
-    await gqlClient
+    await lastValueFrom(gqlClient
         .mutateGraphQL(
             gql`
                 mutation SetUserEmailVerified($user: ID!, $email: String!, $verified: Boolean!) {
@@ -423,8 +431,7 @@ export async function setUserEmailVerified(
             `,
             { user: user.id, email, verified }
         )
-        .pipe(map(dataOrThrowErrors))
-        .toPromise()
+        .pipe(map(dataOrThrowErrors)))
 }
 
 /**
@@ -434,7 +441,7 @@ export async function setUserEmailVerified(
 export function getViewerSettings({
     requestGraphQL,
 }: Pick<PlatformContext, 'requestGraphQL'>): Promise<GQL.ISettingsCascade> {
-    return requestGraphQL<GQL.IQuery>({
+    return lastValueFrom(requestGraphQL<GQL.IQuery>({
         request: gql`
             query ViewerSettings {
                 viewerSettings {
@@ -475,8 +482,7 @@ export function getViewerSettings({
         .pipe(
             map(dataOrThrowErrors),
             map(data => data.viewerSettings)
-        )
-        .toPromise()
+        ))
 }
 
 /**
@@ -622,7 +628,7 @@ export async function getUser(
     { requestGraphQL }: Pick<PlatformContext, 'requestGraphQL'>,
     username: string
 ): Promise<GQL.IUser | null> {
-    const user = await requestGraphQL<GQL.IQuery>({
+    const user = await lastValueFrom(requestGraphQL<GQL.IQuery>({
         request: gql`
             query User($username: String!) {
                 user(username: $username) {
@@ -664,8 +670,7 @@ export async function getUser(
         .pipe(
             map(dataOrThrowErrors),
             map(({ user }) => user)
-        )
-        .toPromise()
+        ))
     return user
 }
 
@@ -734,7 +739,7 @@ export function search(
     version: string,
     patternType: GQL.SearchPatternType
 ): Promise<GQL.ISearch> {
-    return requestGraphQL<GQL.IQuery>({
+    return lastValueFrom(requestGraphQL<GQL.IQuery>({
         request: gql`
         query Search($query: String!, $version: SearchVersion!, $patternType: SearchPatternType!) {
             search(query: $query, version: $version, patternType: $patternType) {
@@ -821,8 +826,7 @@ export function search(
                 }
                 return data.search
             })
-        )
-        .toPromise()
+        ))
 }
 
 /**

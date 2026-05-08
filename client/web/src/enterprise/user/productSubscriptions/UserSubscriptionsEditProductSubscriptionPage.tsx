@@ -3,8 +3,7 @@ import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon'
 import React, { useEffect, useMemo, useCallback } from 'react'
 import { RouteComponentProps } from 'react-router'
 import { Link } from 'react-router-dom'
-import { Observable, throwError } from 'rxjs'
-import { catchError, map, mapTo, startWith, switchMap, tap } from 'rxjs/operators'
+import { Observable, throwError, catchError, map, mapTo, startWith, switchMap, tap } from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import { gql } from '@sourcegraph/shared/src/graphql/graphql'
@@ -75,7 +74,7 @@ export const UserSubscriptionsEditProductSubscriptionPage: React.FunctionCompone
                                 ? productSubscription.id
                                 : null
                         if (subscriptionID === null) {
-                            return throwError(new Error('no product subscription'))
+                            return throwError(() => new Error('no product subscription'))
                         }
                         return updatePaidProductSubscription({
                             update: args.productSubscription,

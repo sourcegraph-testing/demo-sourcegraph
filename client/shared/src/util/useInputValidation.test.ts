@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { renderHook, act } from '@testing-library/react-hooks'
 import { last, min, noop } from 'lodash'
-import { BehaviorSubject, Observable, of, Subject, Subscription } from 'rxjs'
-import { delay } from 'rxjs/operators'
+import { BehaviorSubject, Observable, of, Subject, Subscription, delay } from 'rxjs'
 import * as sinon from 'sinon'
 
 import {

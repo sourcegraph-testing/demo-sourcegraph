@@ -1,5 +1,4 @@
-import { from, Observable } from 'rxjs'
-import { delay, filter, map, retryWhen } from 'rxjs/operators'
+import { from, Observable, delay, filter, map, retryWhen } from 'rxjs'
 
 import {
     CloneInProgressError,

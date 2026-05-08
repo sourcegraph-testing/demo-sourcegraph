@@ -13,6 +13,7 @@ import { scheduleRepositoryPermissionsSync } from '../../../site-admin/backend'
 import { eventLogger } from '../../../tracking/eventLogger'
 
 import { repoPermissionsInfo } from './backend'
+import { lastValueFrom } from 'rxjs'
 
 export interface RepoSettingsPermissionsPageProps {
     repo: SettingsAreaRepositoryFields
@@ -114,6 +115,6 @@ class ScheduleRepositoryPermissionsSyncActionContainer extends React.PureCompone
     }
 
     private scheduleRepositoryPermissions = async (): Promise<void> => {
-        await scheduleRepositoryPermissionsSync({ repository: this.props.repo.id }).toPromise()
+        await lastValueFrom(scheduleRepositoryPermissionsSync({ repository: this.props.repo.id }))
     }
 }

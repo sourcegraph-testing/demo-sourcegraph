@@ -2,8 +2,7 @@ import assert from 'assert'
 
 import { startCase } from 'lodash'
 import { Target, Page } from 'puppeteer'
-import { fromEvent } from 'rxjs'
-import { first, filter, timeout, mergeMap } from 'rxjs/operators'
+import { fromEvent, first, filter, timeout, mergeMap, lastValueFrom } from 'rxjs'
 
 import { getConfig } from '@sourcegraph/shared/src/testing/config'
 import { Driver, createDriverForTest } from '@sourcegraph/shared/src/testing/driver'
@@ -139,14 +138,13 @@ describe('Sourcegraph browser extension on github.com', function () {
                         let page: Page = driver.page
                         if (new URL(goToDefinitionURL).hostname !== 'github.com') {
                             ;[page] = await Promise.all([
-                                fromEvent<Target>(driver.browser, 'targetcreated')
+                                lastValueFrom(fromEvent<Target>(driver.browser, 'targetcreated')
                                     .pipe(
                                         timeout(5000),
                                         mergeMap(target => target.page()),
                                         filter(isDefined),
                                         first()
-                                    )
-                                    .toPromise(),
+                                    )),
                                 driver.page.click('.test-tooltip-go-to-definition'),
                             ])
                         } else {

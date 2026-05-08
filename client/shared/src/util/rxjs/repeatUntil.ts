@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs'
-import { repeatWhen, delay, takeWhile, repeat } from 'rxjs/operators'
+import { Observable, repeatWhen, delay, takeWhile, repeat } from 'rxjs'
 
 /**
  * Mirrors values from the source observable and resubscribes to the source observable when it completes,

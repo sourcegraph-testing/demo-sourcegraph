@@ -1,6 +1,8 @@
 import { isEqual } from 'lodash'
-import { from, Observable, Unsubscribable } from 'rxjs'
 import {
+    from,
+    Observable,
+    Unsubscribable,
     distinctUntilChanged,
     filter,
     first,
@@ -10,7 +12,7 @@ import {
     refCount,
     switchMap,
     withLatestFrom,
-} from 'rxjs/operators'
+} from 'rxjs'
 import type { HoverAlert } from 'sourcegraph'
 
 import { MarkupKind } from '@sourcegraph/extension-api-classes'

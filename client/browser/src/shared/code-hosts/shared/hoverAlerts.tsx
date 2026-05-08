@@ -1,5 +1,4 @@
-import { Observable, of } from 'rxjs'
-import { catchError, map, startWith, switchMap } from 'rxjs/operators'
+import { Observable, of, catchError, map, startWith, switchMap } from 'rxjs'
 import type { HoverAlert } from 'sourcegraph'
 
 import { MarkupKind } from '@sourcegraph/extension-api-classes'

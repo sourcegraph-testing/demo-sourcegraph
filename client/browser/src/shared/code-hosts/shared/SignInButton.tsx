@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react'
-import { interval, Observable } from 'rxjs'
-import { switchMap, filter, take, tap } from 'rxjs/operators'
+import { interval, Observable, switchMap, filter, take, tap } from 'rxjs'
 
 import { useEventObservable } from '@sourcegraph/shared/src/util/useObservable'
 

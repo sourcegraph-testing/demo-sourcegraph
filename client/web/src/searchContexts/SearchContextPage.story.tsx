@@ -93,7 +93,7 @@ add(
             {webProps => (
                 <SearchContextPage
                     {...webProps}
-                    fetchSearchContext={() => throwError(new Error('Failed to fetch search context'))}
+                    fetchSearchContext={() => throwError(() => new Error('Failed to fetch search context'))}
                 />
             )}
         </WebStory>

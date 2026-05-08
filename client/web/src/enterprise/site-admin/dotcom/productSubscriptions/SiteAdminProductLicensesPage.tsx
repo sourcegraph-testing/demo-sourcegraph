@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { RouteComponentProps } from 'react-router'
-import { Observable, of } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { Observable, of, map } from 'rxjs'
 
 import { gql } from '@sourcegraph/shared/src/graphql/graphql'
 import * as GQL from '@sourcegraph/shared/src/graphql/schema'

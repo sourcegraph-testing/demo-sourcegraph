@@ -1,7 +1,6 @@
 import * as H from 'history'
 import React from 'react'
-import { Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { Observable, map } from 'rxjs'
 
 import { IHighlightLineRange } from '../graphql/schema'
 import { ContentMatch, SymbolMatch, PathMatch, getFileMatchUrl } from '../search/stream'

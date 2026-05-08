@@ -1,6 +1,18 @@
-import { fromEvent, concat, Observable, of } from 'rxjs'
+import {
+    fromEvent,
+    concat,
+    Observable,
+    of,
+    catchError,
+    filter,
+    map,
+    mapTo,
+    publishReplay,
+    refCount,
+    take,
+    timeout,
+} from 'rxjs'
 import { fromFetch } from 'rxjs/fetch'
-import { catchError, filter, map, mapTo, publishReplay, refCount, take, timeout } from 'rxjs/operators'
 
 import { asError } from '@sourcegraph/shared/src/util/errors'
 

@@ -1,4 +1,4 @@
-import { take, toArray } from 'rxjs/operators'
+import { take, toArray, lastValueFrom } from 'rxjs'
 
 import { MarkupKind } from '@sourcegraph/extension-api-classes'
 
@@ -18,9 +18,8 @@ describe('content (integration)', () => {
         })
         await extensionAPI.internal.sync()
         expect(
-            await wrapRemoteObservable(extensionHostAPI.getLinkPreviews('http://example.com/foo'))
-                .pipe(take(2), toArray())
-                .toPromise()
+            await lastValueFrom(wrapRemoteObservable(extensionHostAPI.getLinkPreviews('http://example.com/foo'))
+                .pipe(take(2), toArray()))
         ).toEqual([
             null,
             {
@@ -43,9 +42,8 @@ describe('content (integration)', () => {
         subscription.unsubscribe()
         await extensionAPI.internal.sync()
         expect(
-            await wrapRemoteObservable(extensionHostAPI.getLinkPreviews('http://example.com/foo'))
-                .pipe(take(1))
-                .toPromise()
+            await lastValueFrom(wrapRemoteObservable(extensionHostAPI.getLinkPreviews('http://example.com/foo'))
+                .pipe(take(1)))
         ).toEqual(null)
     })
 
@@ -61,9 +59,8 @@ describe('content (integration)', () => {
         })
         await extensionAPI.internal.sync()
         expect(
-            await wrapRemoteObservable(extensionHostAPI.getLinkPreviews('http://example.com/foo'))
-                .pipe(take(2), toArray())
-                .toPromise()
+            await lastValueFrom(wrapRemoteObservable(extensionHostAPI.getLinkPreviews('http://example.com/foo'))
+                .pipe(take(2), toArray()))
         ).toEqual([
             null,
             {

@@ -2,8 +2,20 @@ import AlertCircleIcon from 'mdi-react/AlertCircleIcon'
 import MapSearchIcon from 'mdi-react/MapSearchIcon'
 import * as React from 'react'
 import { Route, RouteComponentProps, Switch } from 'react-router'
-import { combineLatest, merge, Observable, of, Subject, Subscription } from 'rxjs'
-import { catchError, distinctUntilChanged, map, mapTo, startWith, switchMap } from 'rxjs/operators'
+import {
+    combineLatest,
+    merge,
+    Observable,
+    of,
+    Subject,
+    Subscription,
+    catchError,
+    distinctUntilChanged,
+    map,
+    mapTo,
+    startWith,
+    switchMap,
+} from 'rxjs'
 
 import { LoadingSpinner } from '@sourcegraph/react-loading-spinner'
 import { ExtensionsControllerProps } from '@sourcegraph/shared/src/extensions/controller'
